@@ -987,7 +987,7 @@ const CFG={
    {k:'partners',l:'Partners',t:'multi',w:1,opts:()=>P.map(p=>[p.id,p.name])},
    {k:'_cover',l:'Cover',t:'cover',w:1},
    {k:'motif',l:'',t:'text',show:()=>false},{k:'palKey',l:'',t:'text',show:()=>false},
-   {k:'_hero',l:'Hero background',t:'hero',w:1},{k:'heroColors',l:'',t:'text',show:()=>false},{k:'heroImage',l:'',t:'text',show:()=>false},
+   {k:'_hero',l:'Hero background',t:'hero',w:1},
    yesNo('cd','Show countdown on the event page',true),yesNo('pub','Published on the website',false)],
   validate:d=>d.start&&d.end&&+new Date(d.end)<=+new Date(d.start)?{end:'End must be after the start.'}:{},
   before:(d,n)=>{d.pal=PAL[d.palKey]||PAL.maroon;d.tickets=d.tickets&&d.tickets.length?d.tickets.map(t=>[t[0],Number(t[1])||0,t[2]||'',Number(t[3])||0]):null;d.sched=d.sched||[];if(n)d.id=uniqueId(slugify(d.title),EV)},
