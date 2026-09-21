@@ -33,10 +33,10 @@ app.use('/api/upload', require('./routes/upload'));
 
 const Q = {
   eventsPub: `SELECT id, title, cat, venue, start, "end", blurb, "desc", sched, tickets, partners,
-    cover_image as "coverImage", cover_mode as "coverMode", motif, pal_key as "palKey", pal, cd, pub, posts, notices
+    cover_image as "coverImage", cover_mode as "coverMode", cover_frame as "coverFrame", motif, pal_key as "palKey", pal, cd, pub, posts, notices
     FROM events WHERE pub = true ORDER BY start DESC`,
   eventsAll: `SELECT id, title, cat, venue, start, "end", blurb, "desc", sched, tickets, partners,
-    cover_image as "coverImage", cover_mode as "coverMode", motif, pal_key as "palKey", pal, cd, pub, posts, notices
+    cover_image as "coverImage", cover_mode as "coverMode", cover_frame as "coverFrame", motif, pal_key as "palKey", pal, cd, pub, posts, notices
     FROM events ORDER BY start DESC`,
   postsPub: `SELECT id, title, kind, cat, sec, date, summary as x, body, ev_id as ev,
     cover_image as "coverImage", motif, pal_key as "palKey", pal, pub

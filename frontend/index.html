@@ -366,6 +366,9 @@ input[type=color]{padding:.15rem;height:42px;width:80px}
 .cover-section .seg{margin-bottom:.8rem}
 .cover-body .field{margin-bottom:.6rem}
 .cover-body .field:last-child{margin-bottom:0}
+.cover-opts{margin-top:.6rem}
+.cover-opts .seg{font-size:.85rem}
+.cover-opts .seg button{padding:.45rem .7rem}
 
 </style>
 </head>
@@ -460,7 +463,8 @@ ticket:'<path d="M3 9a2 2 0 0 0 0 6v3h18v-3a2 2 0 0 0 0-6V6H3z"/><path d="M14 6v
 play:'<path d="M9 6l10 6-10 6z" fill="currentColor"/>',chev:'<path d="m9 6 6 6-6 6"/>',left:'<path d="m15 6-6 6 6 6"/>',
 fb:'<path d="M14 8h2V5h-2.5A3.5 3.5 0 0 0 10 8.5V11H8v3h2v6h3v-6h2.2l.5-3H13V8.6c0-.4.2-.6 1-.6z" fill="currentColor" stroke="none"/>',
 ig:'<rect x="4" y="4" width="16" height="16" rx="4.5"/><circle cx="12" cy="12" r="3.6"/><circle cx="17" cy="7" r=".8" fill="currentColor"/>',
-yt:'<rect x="3" y="6" width="18" height="12" rx="3.5"/><path d="m10.5 9.5 4 2.5-4 2.5z" fill="currentColor"/>',check:'<path d="m5 12.5 4.5 4.5L19 7.5"/>'};
+yt:'<rect x="3" y="6" width="18" height="12" rx="3.5"/><path d="m10.5 9.5 4 2.5-4 2.5z" fill="currentColor"/>',check:'<path d="m5 12.5 4.5 4.5L19 7.5"/>',
+arch:'<path d="M4 20V10a8 8 0 0 1 16 0v10" stroke-linecap="round"/>',rect:'<rect x="4" y="4" width="16" height="16" rx="2"/>',circle:'<circle cx="12" cy="12" r="8"/>'};
 const I=(n,s)=>`<svg class="ico" width="${s||20}" height="${s||20}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${ico[n]}</svg>`;
 
 /* ---------- QR (visual placeholder) ---------- */
@@ -682,10 +686,11 @@ const byStatus=s=>EVp().filter(e=>status(e)===s).sort((a,b)=>s==='past'?+new Dat
 function dRange(e){const a=parts(e.start),b=parts(e.end);if(a.y===b.y&&a.m===b.m&&a.d===b.d)return dShort(e.start);if(a.y===b.y&&a.m===b.m)return `${a.d}\u2013${b.d} ${fmt(e.start,{month:'short'})} ${a.y}`;return `${dShort(e.start)} \u2013 ${dShort(e.end)}`}
 const tRange=e=>{const a=parts(e.start),b=parts(e.end);return a.d===b.d&&a.m===b.m?`${tTime(e.start)} \u2013 ${tTime(e.end)}`:`Starts ${tTime(e.start)}`};
 const cover=(e,w,h)=>e.coverMode==='image'&&e.coverImage?`<img src="${e.coverImage}" alt="${esc(e.title)}" style="width:100%;height:100%;object-fit:cover">`:art(e.motif,e.pal,e.id,w,h);
+const frameStyle=f=>f==='circle'?'border-radius:50%;aspect-ratio:1/1':f==='rect'?'border-radius:12px;aspect-ratio:16/10':'';
 const pillTxt={upcoming:'Upcoming',ongoing:'Happening now',past:'Completed'};
 const cd=(e,cls)=>`<div class="cd ${cls||''}" data-cd="${e.start}" data-end="${e.end}" role="timer" aria-label="Countdown to ${esc(e.title)}"><div><b data-u="d">00</b><span>Days</span></div><div><b data-u="h">00</b><span>Hours</span></div><div><b data-u="m">00</b><span>Minutes</span></div><div><b data-u="s">00</b><span>Seconds</span></div></div>`;
 const canBook=e=>e.tickets&&status(e)!=='past';
-function evCard(e){const st=status(e);return `<article class="evc"><a class="evc-img" href="#/event/${e.id}" aria-label="${esc(e.title)}">${cover(e)}<span class="pill ${st}">${pillTxt[st]}</span></a><div class="evc-b"><h3><a href="#/event/${e.id}">${e.title}</a></h3><p class="meta">${I('cal',16)}${dRange(e)}</p><p class="meta">${I('pin',16)}${e.venue}</p><div class="btns"><a class="btn btn-sm" href="#/event/${e.id}">View Event</a>${canBook(e)?`<a class="btn btn-sm btn-ghost" href="#/tickets/${e.id}">Get Ticket</a>`:''}</div></div></article>`}
+function evCard(e){const st=status(e);const fs=e.coverMode==='image'?frameStyle(e.coverFrame):'';return `<article class="evc"><a class="evc-img" href="#/event/${e.id}" aria-label="${esc(e.title)}" style="${fs}">${cover(e)}<span class="pill ${st}">${pillTxt[st]}</span></a><div class="evc-b"><h3><a href="#/event/${e.id}">${e.title}</a></h3><p class="meta">${I('cal',16)}${dRange(e)}</p><p class="meta">${I('pin',16)}${e.venue}</p><div class="btns"><a class="btn btn-sm" href="#/event/${e.id}">View Event</a>${canBook(e)?`<a class="btn btn-sm btn-ghost" href="#/tickets/${e.id}">Get Ticket</a>`:''}</div></div></article>`}
 const postCard=p=>`<a class="alb" href="#/${p.kind==='culture'?'article':'post'}/${p.id}"><div class="story-img">${art(p.motif,p.pal,p.id,480,270)}</div><span class="chip">${p.cat}</span><h3 style="margin-top:.4rem">${p.title}</h3><p class="soft" style="margin:0">${p.x}</p></a>`;
 const noticeRow=(n,i)=>`<a class="nt ${i===0?'nt-first':''}" href="#/notice/${n.id}"><div class="nt-d"><b>${dDay(n.date)}</b><span>${dMon(n.date)}</span></div><div><span class="chip">${n.cat}</span><h3>${n.title}</h3><p>${n.short}</p></div></a>`;
 const head=(title,lede,crumbs)=>`<section class="phead"><div class="ph-mand">${mandSvg(290,'#F2D592',1)}</div><div class="wrap"><p class="crumb"><a href="#/">Home</a>${(crumbs||[]).map(c=>` / ${c[1]?`<a href="#/${c[1]}">${c[0]}</a>`:c[0]}`).join('')}</p><h1>${title}</h1>${lede?`<p class="lede">${lede}</p>`:''}</div></section>`;
@@ -706,7 +711,7 @@ V.home=()=>{
  <h1>${esc(SETTINGS.tagline)}</h1>
  <p class="lede">The home of the Sanatani Community at North South University: festivals, stories, memories and the people who make them.</p>
  <div class="btns"><a class="btn btn-gold btn-lg" href="#/events">Explore Events</a><a class="btn btn-light btn-lg" href="#/gallery">View Gallery</a></div></div>
- ${nxt?`<aside class="feat" aria-label="Featured event"><div class="feat-img">${cover(nxt,500,400)}</div><div class="feat-b"><p class="feat-k">${st==='ongoing'?'Happening now':st==='past'?'Latest event':'Next event'}</p><h2>${nxt.title}</h2><p class="meta">${I('cal',16)}${dRange(nxt)}</p><p class="meta">${I('pin',16)}${nxt.venue}</p><div class="btns"><a class="btn btn-gold btn-sm" href="#/event/${nxt.id}">View Event</a>${canBook(nxt)?`<a class="btn btn-light btn-sm" href="#/tickets/${nxt.id}">Get Ticket</a>`:''}</div></div></aside>`:''}
+ ${nxt?`<aside class="feat" aria-label="Featured event"><div class="feat-img" style="${nxt.coverMode==='image'?frameStyle(nxt.coverFrame):''}">${cover(nxt,500,400)}</div><div class="feat-b"><p class="feat-k">${st==='ongoing'?'Happening now':st==='past'?'Latest event':'Next event'}</p><h2>${nxt.title}</h2><p class="meta">${I('cal',16)}${dRange(nxt)}</p><p class="meta">${I('pin',16)}${nxt.venue}</p><div class="btns"><a class="btn btn-gold btn-sm" href="#/event/${nxt.id}">View Event</a>${canBook(nxt)?`<a class="btn btn-light btn-sm" href="#/tickets/${nxt.id}">Get Ticket</a>`:''}</div></div></aside>`:''}
 </div></section>
 ${NTp().length?`<section class="sec"><div class="wrap"><div class="sh"><h2>Notices</h2><a class="lnk" href="#/notices">All notices</a></div><div class="notices">${NTs().slice(0,3).map(noticeRow).join('')}</div></div></section>`:''}
 <section class="sec alt"><div class="wrap"><div class="sh"><h2>Upcoming events</h2><a class="lnk" href="#/events">See all events</a></div>${list.length?`<div class="rail">${list.map(evCard).join('')}</div>`:empty('No upcoming events yet')}</div></section>
@@ -744,7 +749,7 @@ const MN=['January','February','March','April','May','June','July','August','Sep
 V.event=id=>{
   const e=EVM[id];if(!e)return notFound();const st=status(e),alb=ALBp().find(a=>a.ev===e.id),ns=NTp().filter(n=>n.ev===e.id),ps=POSTp().filter(p=>p.ev===e.id||(e.posts||[]).includes(p.id));
   const tk=e.tickets&&st!=='past'?`<div class="box"><h3>Tickets</h3>${e.tickets.map(([n,pr,d])=>`<div class="tt"><div><b>${n}</b><small>${d}</small></div><span class="price">${money(pr)}</span></div>`).join('')}<a class="btn btn-block" style="margin-top:1rem" href="#/tickets/${e.id}">Get Ticket</a></div>`:`<div class="box"><h3>${st==='past'?'This event has ended':'Entry'}</h3><p class="soft" style="margin:0">${alb?'See the photos and videos in the gallery.':'No tickets are needed for this event.'}</p>${alb?`<a class="btn btn-block" style="margin-top:1rem" href="#/gallery/${alb.id}">Open gallery</a>`:''}</div>`;
-  return {t:e.title,h:`<section class="phead"><div class="ph-mand">${mandSvg(290,'#F2D592',1)}</div><div class="wrap ev-head"><div><p class="crumb"><a href="#/">Home</a> / <a href="#/events">Events</a> / ${e.title}</p><span class="pill pill-i ${st}" style="margin-bottom:.8rem">${pillTxt[st]}</span><h1>${e.title}</h1><p class="lede" style="margin-bottom:1rem">${e.blurb}</p><p class="meta">${I('cal',18)}${dRange(e)}</p><p class="meta">${I('clock',18)}${tRange(e)}</p><p class="meta">${I('pin',18)}${e.venue}</p>${st==='upcoming'&&e.cd?`<div style="margin-top:1.2rem;max-width:420px">${cd(e,'cd-sm')}</div>`:''}<div class="btns" style="margin-top:1.3rem">${canBook(e)?`<a class="btn btn-gold" href="#/tickets/${e.id}">Get Ticket</a>`:''}<button class="btn btn-light" data-act="toast" data-m="Calendar files will be available once the site is connected to a backend.">Add to calendar</button></div></div><div class="ev-arch">${cover(e,500,575)}</div></div></section>
+  return {t:e.title,h:`<section class="phead"><div class="ph-mand">${mandSvg(290,'#F2D592',1)}</div><div class="wrap ev-head"><div><p class="crumb"><a href="#/">Home</a> / <a href="#/events">Events</a> / ${e.title}</p><span class="pill pill-i ${st}" style="margin-bottom:.8rem">${pillTxt[st]}</span><h1>${e.title}</h1><p class="lede" style="margin-bottom:1rem">${e.blurb}</p><p class="meta">${I('cal',18)}${dRange(e)}</p><p class="meta">${I('clock',18)}${tRange(e)}</p><p class="meta">${I('pin',18)}${e.venue}</p>${st==='upcoming'&&e.cd?`<div style="margin-top:1.2rem;max-width:420px">${cd(e,'cd-sm')}</div>`:''}<div class="btns" style="margin-top:1.3rem">${canBook(e)?`<a class="btn btn-gold" href="#/tickets/${e.id}">Get Ticket</a>`:''}<button class="btn btn-light" data-act="toast" data-m="Calendar files will be available once the site is connected to a backend.">Add to calendar</button></div></div><div class="ev-arch" style="${e.coverMode==='image'?frameStyle(e.coverFrame):''}">${cover(e,500,575)}</div></div></section>
 <section class="sec"><div class="wrap cols"><div>
  <div class="prose"><h2>About this event</h2>${e.desc.map(p=>`<p>${p}</p>`).join('')}</div>
  ${e.sched.length?`<h2 style="margin-top:2rem">Schedule</h2><ul class="sched">${e.sched.map(([a,b])=>`<li><b>${a}</b><span>${b}</span></li>`).join('')}</ul>`:''}
@@ -971,7 +976,7 @@ const CFG={
  events:{name:'events',route:'events',title:'Events',single:'Event',add:'Add event',sub:'Festivals, workshops and cultural nights.',coll:EV,pubToggle:1,
   sort:(a,b)=>+new Date(b.start)-+new Date(a.start),
   cols:[['Event',e=>`<b>${esc(e.title)}</b><br><small class="soft">${esc(e.cat)}</small>`],['When',e=>dRange(e)],['Status',evStBadge],['Tickets',e=>e.tickets?e.tickets.length+' types':'None']],
-  make:()=>({title:'',cat:'Festival',venue:V0,start:'',end:'',blurb:'',desc:[],sched:[],tickets:[],partners:[],coverMode:'art',coverImage:'',motif:'mandala',palKey:'maroon',cd:true,pub:false,posts:[],notices:[]}),
+  make:()=>({title:'',cat:'Festival',venue:V0,start:'',end:'',blurb:'',desc:[],sched:[],tickets:[],partners:[],coverMode:'art',coverFrame:'arch',coverImage:'',motif:'mandala',palKey:'maroon',cd:true,pub:false,posts:[],notices:[]}),
   fields:[{k:'title',l:'Title',t:'text',req:1,w:1},{k:'cat',l:'Category',t:'select',opts:[['Festival','Festival'],['Workshop','Workshop'],['Cultural','Cultural'],['Other','Other']]},{k:'venue',l:'Venue',t:'text',req:1},{k:'start',l:'Starts',t:'dt',req:1},{k:'end',l:'Ends',t:'dt',req:1},{k:'blurb',l:'Short description',t:'text',req:1,w:1,help:'One sentence shown on cards.'},{k:'desc',l:'About this event',t:'paras',req:1,w:1,help:'Separate paragraphs with a blank line.'},
    {k:'sched',l:'Schedule',t:'rows',w:1,cols:[{l:'When',w:'150px'},{l:'What happens'}]},
    {k:'tickets',l:'Ticket types',t:'rows',w:1,help:'Leave empty if the event needs no tickets or registration.',cols:[{l:'Type',w:'130px'},{l:'Price (BDT)',t:'num',w:'110px'},{l:'Note'},{l:'Capacity',t:'num',w:'100px'}]},
@@ -979,7 +984,7 @@ const CFG={
    {k:'_cover',l:'Cover',t:'cover',w:1},yesNo('cd','Show countdown on the event page',true),yesNo('pub','Published on the website',false)],
   validate:d=>d.start&&d.end&&+new Date(d.end)<=+new Date(d.start)?{end:'End must be after the start.'}:{},
   before:(d,n)=>{d.pal=PAL[d.palKey]||PAL.maroon;d.tickets=d.tickets&&d.tickets.length?d.tickets.map(t=>[t[0],Number(t[1])||0,t[2]||'',Number(t[3])||0]):null;d.sched=d.sched||[];if(n)d.id=uniqueId(slugify(d.title),EV)},
-  preview:d=>`<div class="cov">${d.coverMode==='image'&&d.coverImage?`<img src="${d.coverImage}" alt="Cover" style="width:100%;height:100%;object-fit:cover">`:art(d.motif,PAL[d.palKey]||PAL.maroon,d.title||'preview',500,400)}</div><b>${esc(d.title||'Untitled event')}</b><p class="soft" style="margin:.2rem 0 0">${d.start&&d.end?dRange({start:d.start,end:d.end}):'Set the dates'}</p>`},
+  preview:d=>`<div class="cov" style="${d.coverMode==='image'?frameStyle(d.coverFrame):''}">${d.coverMode==='image'&&d.coverImage?`<img src="${d.coverImage}" alt="Cover" style="width:100%;height:100%;object-fit:cover">`:art(d.motif,PAL[d.palKey]||PAL.maroon,d.title||'preview',500,400)}</div><b>${esc(d.title||'Untitled event')}</b><p class="soft" style="margin:.2rem 0 0">${d.start&&d.end?dRange({start:d.start,end:d.end}):'Set the dates'}</p>`},
  posts:{name:'posts',route:'posts',title:'News and culture',single:'Post',add:'Add post',sub:'News, updates, stories and culture articles.',coll:POSTS,pubToggle:1,sort:(a,b)=>b.date.localeCompare(a.date),
   cols:[['Title',p=>`<b>${esc(p.title)}</b><br><small class="soft">${esc(p.cat)}${p.kind==='culture'?' / '+p.sec:''}</small>`],['Date',p=>dShort(p.date)],['Type',p=>p.kind==='culture'?'Culture article':'News post'],['Status',stBadge]],
   make:()=>({title:'',kind:'post',cat:'Community News',sec:'festivals',date:todayISO(),x:'',b:[],ev:'',motif:'lotus',palKey:'yellow',pub:false}),
@@ -1029,11 +1034,12 @@ function fieldHtml(f,d,err){
     case'select':inp=`<select ${a}>${opts(f).map(([o,l])=>`<option value="${esc(o)}" ${String(v==null?'':v)===String(o)?'selected':''}>${esc(l)}</option>`).join('')}</select>`;break;
     case'check':inp=`<label class="chk"><input type="checkbox" ${a} ${(v==null?f.def:v)?'checked':''}> ${f.chk}</label>`;break;
     case'toggle':inp=`<div class="seg" role="group">${opts(f).map(([o,l])=>`<button type="button" data-ad="toggle" data-fk="${f.k}" data-val="${esc(o)}" aria-pressed="${String(v)===String(o)}">${l}</button>`).join('')}</div>`;break;
-    case'cover':{const cm=d.coverMode||'art';
+    case'cover':{const cm=d.coverMode||'art',fr=d.coverFrame||'arch';
       const toggleHtml=`<div class="seg" role="group"><button type="button" data-ad="cover-toggle" data-val="art" aria-pressed="${cm==='art'}">Generated art</button><button type="button" data-ad="cover-toggle" data-val="image" aria-pressed="${cm==='image'}">Upload image</button></div>`;
       const artHtml=cm!=='image'?`<div class="cover-opts"><div class="field"><label for="ff-motif">Cover art</label><select id="ff-motif" data-fk="motif" data-refresh="1">${MOTIFS.map(([o,l])=>`<option value="${esc(o)}" ${d.motif===o?'selected':''}>${l}</option>`).join('')}</select></div><div class="field"><label for="ff-palKey">Cover colours</label><select id="ff-palKey" data-fk="palKey" data-refresh="1">${PALS.map(([o,l])=>`<option value="${esc(o)}" ${d.palKey===o?'selected':''}>${l}</option>`).join('')}</select></div></div>`:'';
+      const frameHtml=cm==='image'?`<div class="cover-opts"><div class="field"><label>Image frame</label><div class="seg" role="group"><button type="button" data-ad="cover-frame" data-val="arch" aria-pressed="${fr==='arch'}">${I('arch',16)} Arch</button><button type="button" data-ad="cover-frame" data-val="rect" aria-pressed="${fr==='rect'}">${I('rect',16)} Rectangle</button><button type="button" data-ad="cover-frame" data-val="circle" aria-pressed="${fr==='circle'}">${I('circle',16)} Circle</button></div></div></div>`:'';
       const imgHtml=cm==='image'?`<div class="img-up${d.coverImage?' has':''}" data-fk="coverImage">${d.coverImage?`<img src="${d.coverImage}" alt="Cover image preview">`:''}<label class="img-up-btn"><input type="file" accept="image/*" data-ad="img-pick" data-fk="coverImage" hidden>${d.coverImage?`${I('edit',16)}Change image`:`${I('img',16)}Choose image`}</label>${d.coverImage?`<button class="img-up-rm" data-ad="img-rm" data-fk="coverImage" aria-label="Remove image">${I('trash',16)}Remove</button>`:''}</div>`:'';
-      inp=`<div class="cover-section">${toggleHtml}<div class="cover-body">${cm==='image'?imgHtml:artHtml}</div></div>`;break}
+      inp=`<div class="cover-section">${toggleHtml}<div class="cover-body">${cm==='image'?imgHtml+frameHtml:artHtml}</div></div>`;break}
     case'multi':inp=`<div class="multi">${opts(f).map(([o,l])=>`<label><input type="checkbox" data-fk="${f.k}" value="${esc(o)}" ${(v||[]).includes(o)?'checked':''}> ${esc(l)}</label>`).join('')||'<span class="soft">Nothing to choose yet.</span>'}</div>`;break;
     case'dt':inp=`<input type="datetime-local" ${a} value="${dtLocal(v)}">`;break;
     case'date':inp=`<input type="date" ${a} value="${esc(v||'')}">`;break;
@@ -1199,6 +1205,7 @@ document.addEventListener('click',e=>{
     case'img-rm':{if(AD.draft){AD.draft.o[b.dataset.fk]='';collect(CFG[AD.draft._name].fields,AD.draft.o);renderAdmin(AD.path)}break}
     case'toggle':{if(AD.draft){AD.draft.o[b.dataset.fk]=b.dataset.val;collect(CFG[AD.draft._name].fields,AD.draft.o);renderAdmin(AD.path)}break}
     case'cover-toggle':{if(AD.draft){AD.draft.o.coverMode=b.dataset.val;collect(CFG[AD.draft._name].fields,AD.draft.o);renderAdmin(AD.path)}break}
+    case'cover-frame':{if(AD.draft){AD.draft.o.coverFrame=b.dataset.val;collect(CFG[AD.draft._name].fields,AD.draft.o);renderAdmin(AD.path)}break}
   }
 });
 document.addEventListener('input',e=>{if(e.target.matches('#admin [data-ad-q]')){AD.q=e.target.value;refreshList()}});
