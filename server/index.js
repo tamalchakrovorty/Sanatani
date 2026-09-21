@@ -50,7 +50,7 @@ const Q = {
     FROM notices ORDER BY date DESC`,
   albumsPub: `SELECT id, ev_id as ev, n, vid, pub FROM albums WHERE pub = true`,
   albumsAll: `SELECT id, ev_id as ev, n, vid, pub FROM albums`,
-  partnerships: `SELECT id, partner_id as "partnerId", event_id as "eventId", text FROM partnerships`,
+  partnerships: `SELECT id, partner_id as p, event_id as ev, text as t FROM partnerships`,
   orders: `SELECT id, event_id as ev, name, email, phone, items, total, status, method, tickets, created_at as at
     FROM orders ORDER BY created_at DESC`,
   donations: `SELECT id, name, email, amount as amt, method, created_at as at
@@ -66,11 +66,11 @@ app.get('/api/public/all', async (req, res) => {
       pool.query(Q.postsPub),
       pool.query(Q.noticesPub),
       pool.query(Q.albumsPub),
-      pool.query('SELECT * FROM partners ORDER BY name'),
+      pool.query('SELECT id, name, kind, mono, color as c FROM partners ORDER BY name'),
       pool.query(Q.partnerships),
       pool.query('SELECT * FROM settings'),
-      pool.query('SELECT * FROM stats ORDER BY sort_order'),
-      pool.query('SELECT * FROM timeline ORDER BY sort_order'),
+      pool.query('SELECT ARRAY[number, label] as row FROM stats ORDER BY sort_order'),
+      pool.query('SELECT ARRAY[year, title, description] as row FROM timeline ORDER BY sort_order'),
     ]);
     const s = {};
     settings.rows.forEach(r => { s[r.key] = r.value; });
@@ -82,8 +82,8 @@ app.get('/api/public/all', async (req, res) => {
       partners: partners.rows,
       partnerships: partnerships.rows,
       settings: s,
-      stats: stats.rows,
-      timeline: timeline.rows,
+      stats: stats.rows.map(r => r.row),
+      timeline: timeline.rows.map(r => r.row),
     });
   } catch (err) {
     console.error('Public API error:', err);
@@ -98,15 +98,15 @@ app.get('/api/admin/all', authRequired, adminOnly, async (req, res) => {
       pool.query(Q.postsAll),
       pool.query(Q.noticesAll),
       pool.query(Q.albumsAll),
-      pool.query('SELECT * FROM partners ORDER BY name'),
+      pool.query('SELECT id, name, kind, mono, color as c FROM partners ORDER BY name'),
       pool.query(Q.partnerships),
       pool.query(Q.orders),
       pool.query(Q.donations),
       pool.query(Q.messages),
       pool.query('SELECT id, name, email, role, active FROM users ORDER BY name'),
       pool.query('SELECT * FROM settings'),
-      pool.query('SELECT * FROM stats ORDER BY sort_order'),
-      pool.query('SELECT * FROM timeline ORDER BY sort_order'),
+      pool.query('SELECT ARRAY[number, label] as row FROM stats ORDER BY sort_order'),
+      pool.query('SELECT ARRAY[year, title, description] as row FROM timeline ORDER BY sort_order'),
     ]);
     const s = {};
     settings.rows.forEach(r => { s[r.key] = r.value; });
@@ -122,8 +122,8 @@ app.get('/api/admin/all', authRequired, adminOnly, async (req, res) => {
       messages: messages.rows,
       users: users.rows,
       settings: s,
-      stats: stats.rows,
-      timeline: timeline.rows,
+      stats: stats.rows.map(r => r.row),
+      timeline: timeline.rows.map(r => r.row),
     });
   } catch (err) {
     console.error('Admin API error:', err);
