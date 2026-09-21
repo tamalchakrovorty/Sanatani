@@ -661,7 +661,7 @@ function seedDonations(){const R=rng('don'),now=Date.now();return Array.from({le
 function seedAll(){const now=Date.now(),clone=x=>JSON.parse(JSON.stringify(x));const palKey=o=>{o.palKey=Object.keys(PAL).find(k=>PAL[k]===o.pal)||'maroon';return o};const events=S_EV.map(e=>{const o=palKey(clone(e));o.pal=PAL[o.palKey];if(o.tickets)o.tickets=o.tickets.map(t=>[t[0],t[1],t[2],TIX_CAP[t[0]]||100]);return o});const posts=S_POSTS.map(p=>{const o=palKey(clone(p));o.pal=PAL[o.palKey];return o});return{events,albums:clone(S_ALB),partners:clone(S_P),partnerships:S_PS.map((p,i)=>Object.assign({id:'ps'+(i+1)},p)),posts,notices:clone(S_NT),timeline:clone(S_TL),stats:clone(S_STATS),orders:seedOrders(),donations:seedDonations(),messages:[{id:'m1',name:'Ishita Mondal',email:mailOf('Ishita Mondal'),subject:'Volunteering for decor',body:'Hello, I would like to join the decor team for Durga Puja. I have helped with alpana before.',at:new Date(now-2*864e5).toISOString(),read:false},{id:'m2',name:'Kolpo Studio',email:'hello@kolpo.example',subject:'Photography partnership',body:'We would love to cover the cultural night again this year. Can we set up a call?',at:new Date(now-5*864e5).toISOString(),read:false},{id:'m3',name:'Tuhin Das',email:mailOf('Tuhin Das'),subject:'Ticket transfer',body:'Can I transfer my Student ticket to a friend? Thanks.',at:new Date(now-9*864e5).toISOString(),read:true}],users:[{id:'u1',name:'Community Admin',email:'admin@sanatani-nsu.example',role:'Admin',active:true},{id:'u2',name:'Content Editor',email:'editor@sanatani-nsu.example',role:'Editor',active:true},{id:'u3',name:'Gate Volunteer',email:'gate@sanatani-nsu.example',role:'Volunteer',active:true},{id:'u4',name:'Former Editor',email:'old@sanatani-nsu.example',role:'Editor',active:false}],settings:Object.assign({},DEFAULT_SETTINGS)}}
 
 /* ---------- initial load ---------- */
-loadDB();
+/* loadDB moved to line 1199 */
 
 /* ---------- helpers ---------- */
 const NTs=()=>NTp().sort((a,b)=>b.date.localeCompare(a.date));
@@ -1196,7 +1196,7 @@ document.addEventListener('keydown',e=>{
 
 /* ---------- boot ---------- */
 shell();
-render();
+loadDB().then(()=>{shellDirty=true;render()});
 
 })();
 </script>
