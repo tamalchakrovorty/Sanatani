@@ -669,7 +669,7 @@ const status=e=>{const n=Date.now();return n<+new Date(e.start)?'upcoming':n<=+n
 const byStatus=s=>EVp().filter(e=>status(e)===s).sort((a,b)=>s==='past'?+new Date(b.start)-+new Date(a.start):+new Date(a.start)-+new Date(b.start));
 function dRange(e){const a=parts(e.start),b=parts(e.end);if(a.y===b.y&&a.m===b.m&&a.d===b.d)return dShort(e.start);if(a.y===b.y&&a.m===b.m)return `${a.d}\u2013${b.d} ${fmt(e.start,{month:'short'})} ${a.y}`;return `${dShort(e.start)} \u2013 ${dShort(e.end)}`}
 const tRange=e=>{const a=parts(e.start),b=parts(e.end);return a.d===b.d&&a.m===b.m?`${tTime(e.start)} \u2013 ${tTime(e.end)}`:`Starts ${tTime(e.start)}`};
-const cover=(e,w,h)=>e.coverImage?`<img src="${e.coverImage}" alt="${esc(e.title)}" style="width:100%;height:100%;object-fit:cover">`:art(e.motif,e.pal,e.id,w,h);
+const cover=(e,w,h)=>e.coverMode==='image'&&e.coverImage?`<img src="${e.coverImage}" alt="${esc(e.title)}" style="width:100%;height:100%;object-fit:cover">`:art(e.motif,e.pal,e.id,w,h);
 const pillTxt={upcoming:'Upcoming',ongoing:'Happening now',past:'Completed'};
 const cd=(e,cls)=>`<div class="cd ${cls||''}" data-cd="${e.start}" data-end="${e.end}" role="timer" aria-label="Countdown to ${esc(e.title)}"><div><b data-u="d">00</b><span>Days</span></div><div><b data-u="h">00</b><span>Hours</span></div><div><b data-u="m">00</b><span>Minutes</span></div><div><b data-u="s">00</b><span>Seconds</span></div></div>`;
 const canBook=e=>e.tickets&&status(e)!=='past';
@@ -959,15 +959,18 @@ const CFG={
  events:{name:'events',route:'events',title:'Events',single:'Event',add:'Add event',sub:'Festivals, workshops and cultural nights.',coll:EV,pubToggle:1,
   sort:(a,b)=>+new Date(b.start)-+new Date(a.start),
   cols:[['Event',e=>`<b>${esc(e.title)}</b><br><small class="soft">${esc(e.cat)}</small>`],['When',e=>dRange(e)],['Status',evStBadge],['Tickets',e=>e.tickets?e.tickets.length+' types':'None']],
-  make:()=>({title:'',cat:'Festival',venue:V0,start:'',end:'',blurb:'',desc:[],sched:[],tickets:[],partners:[],coverImage:'',motif:'mandala',palKey:'maroon',cd:true,pub:false,posts:[],notices:[]}),
+  make:()=>({title:'',cat:'Festival',venue:V0,start:'',end:'',blurb:'',desc:[],sched:[],tickets:[],partners:[],coverMode:'art',coverImage:'',motif:'mandala',palKey:'maroon',cd:true,pub:false,posts:[],notices:[]}),
   fields:[{k:'title',l:'Title',t:'text',req:1,w:1},{k:'cat',l:'Category',t:'select',opts:[['Festival','Festival'],['Workshop','Workshop'],['Cultural','Cultural'],['Other','Other']]},{k:'venue',l:'Venue',t:'text',req:1},{k:'start',l:'Starts',t:'dt',req:1},{k:'end',l:'Ends',t:'dt',req:1},{k:'blurb',l:'Short description',t:'text',req:1,w:1,help:'One sentence shown on cards.'},{k:'desc',l:'About this event',t:'paras',req:1,w:1,help:'Separate paragraphs with a blank line.'},
    {k:'sched',l:'Schedule',t:'rows',w:1,cols:[{l:'When',w:'150px'},{l:'What happens'}]},
    {k:'tickets',l:'Ticket types',t:'rows',w:1,help:'Leave empty if the event needs no tickets or registration.',cols:[{l:'Type',w:'130px'},{l:'Price (BDT)',t:'num',w:'110px'},{l:'Note'},{l:'Capacity',t:'num',w:'100px'}]},
    {k:'partners',l:'Partners',t:'multi',w:1,opts:()=>P.map(p=>[p.id,p.name])},
-   {k:'coverImage',l:'Cover image',t:'image',help:'Upload a photo to use as the cover. If empty, the generated art below is used.'},{k:'motif',l:'Cover art',t:'select',opts:MOTIFS,refresh:1},{k:'palKey',l:'Cover colours',t:'select',opts:PALS,refresh:1},yesNo('cd','Show countdown on the event page',true),yesNo('pub','Published on the website',false)],
+   {k:'coverMode',l:'Cover type',t:'select',opts:[['art','Generated art'],['image','Upload image']],refresh:1},
+   {k:'coverImage',l:'Cover image',t:'image',show:d=>d.coverMode==='image'},
+   {k:'motif',l:'Cover art',t:'select',opts:MOTIFS,refresh:1,show:d=>d.coverMode!=='image'},
+   {k:'palKey',l:'Cover colours',t:'select',opts:PALS,refresh:1,show:d=>d.coverMode!=='image'},yesNo('cd','Show countdown on the event page',true),yesNo('pub','Published on the website',false)],
   validate:d=>d.start&&d.end&&+new Date(d.end)<=+new Date(d.start)?{end:'End must be after the start.'}:{},
   before:(d,n)=>{d.pal=PAL[d.palKey]||PAL.maroon;d.tickets=d.tickets&&d.tickets.length?d.tickets.map(t=>[t[0],Number(t[1])||0,t[2]||'',Number(t[3])||0]):null;d.sched=d.sched||[];if(n)d.id=uniqueId(slugify(d.title),EV)},
-  preview:d=>`<div class="cov">${d.coverImage?`<img src="${d.coverImage}" alt="Cover" style="width:100%;height:100%;object-fit:cover">`:art(d.motif,PAL[d.palKey]||PAL.maroon,d.title||'preview',500,400)}</div><b>${esc(d.title||'Untitled event')}</b><p class="soft" style="margin:.2rem 0 0">${d.start&&d.end?dRange({start:d.start,end:d.end}):'Set the dates'}</p>`},
+  preview:d=>`<div class="cov">${d.coverMode==='image'&&d.coverImage?`<img src="${d.coverImage}" alt="Cover" style="width:100%;height:100%;object-fit:cover">`:art(d.motif,PAL[d.palKey]||PAL.maroon,d.title||'preview',500,400)}</div><b>${esc(d.title||'Untitled event')}</b><p class="soft" style="margin:.2rem 0 0">${d.start&&d.end?dRange({start:d.start,end:d.end}):'Set the dates'}</p>`},
  posts:{name:'posts',route:'posts',title:'News and culture',single:'Post',add:'Add post',sub:'News, updates, stories and culture articles.',coll:POSTS,pubToggle:1,sort:(a,b)=>b.date.localeCompare(a.date),
   cols:[['Title',p=>`<b>${esc(p.title)}</b><br><small class="soft">${esc(p.cat)}${p.kind==='culture'?' / '+p.sec:''}</small>`],['Date',p=>dShort(p.date)],['Type',p=>p.kind==='culture'?'Culture article':'News post'],['Status',stBadge]],
   make:()=>({title:'',kind:'post',cat:'Community News',sec:'festivals',date:todayISO(),x:'',b:[],ev:'',motif:'lotus',palKey:'yellow',pub:false}),
@@ -1009,6 +1012,7 @@ const CFG={
 /* form engine */
 function opts(f){return typeof f.opts==='function'?f.opts():f.opts}
 function fieldHtml(f,d,err){
+  if(f.show && !f.show(d)) return '';
   const v=d[f.k],id='ff-'+f.k,a=`id="${id}" data-fk="${f.k}" ${err[f.k]?'aria-invalid="true"':''} ${f.refresh?'data-refresh="1"':''}`;let inp;
   switch(f.t){
     case'area':inp=`<textarea ${a} rows="${f.rows||3}">${esc(v||'')}</textarea>`;break;
