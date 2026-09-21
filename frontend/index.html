@@ -371,8 +371,10 @@ input[type=color]{padding:.15rem;height:42px;width:80px}
 .cover-opts .seg button{padding:.45rem .7rem}
 .hero-preview{border:1px solid var(--line)}
 .hero-image{position:relative}
-.hero-image::after{content:'';position:absolute;inset:0;background:rgba(0,0,0,.45);pointer-events:none}
+.hero-image::after{content:'';position:absolute;inset:0;background:linear-gradient(to bottom,rgba(0,0,0,.15) 0%,rgba(0,0,0,.3) 40%,rgba(0,0,0,.6) 100%);pointer-events:none}
 .hero-image .wrap{position:relative;z-index:1}
+.hero-image .wrap *{text-shadow:0 1px 3px rgba(0,0,0,.6)}
+.hero-image .wrap .btns .btn{text-shadow:none}
 
 </style>
 </head>
