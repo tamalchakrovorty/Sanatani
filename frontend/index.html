@@ -361,6 +361,12 @@ input[type=color]{padding:.15rem;height:42px;width:80px}
 .img-up-rm{display:inline-flex;align-items:center;gap:.3rem;margin-top:.2rem;padding:.3rem .7rem;border-radius:6px;border:1px solid var(--line);background:var(--surface);font-size:.82rem;color:var(--err);cursor:pointer}
 .img-up-rm:hover{background:#fbe4e0}
 
+/* cover section in admin */
+.cover-section{border:1px solid var(--line);border-radius:12px;padding:1rem;background:var(--surface)}
+.cover-section .seg{margin-bottom:.8rem}
+.cover-body .field{margin-bottom:.6rem}
+.cover-body .field:last-child{margin-bottom:0}
+
 </style>
 </head>
 <body>
@@ -970,10 +976,7 @@ const CFG={
    {k:'sched',l:'Schedule',t:'rows',w:1,cols:[{l:'When',w:'150px'},{l:'What happens'}]},
    {k:'tickets',l:'Ticket types',t:'rows',w:1,help:'Leave empty if the event needs no tickets or registration.',cols:[{l:'Type',w:'130px'},{l:'Price (BDT)',t:'num',w:'110px'},{l:'Note'},{l:'Capacity',t:'num',w:'100px'}]},
    {k:'partners',l:'Partners',t:'multi',w:1,opts:()=>P.map(p=>[p.id,p.name])},
-   {k:'coverMode',l:'Cover type',t:'toggle',opts:[['art','Generated art'],['image','Upload image']],refresh:1},
-   {k:'coverImage',l:'Cover image',t:'image',show:d=>d.coverMode==='image'},
-   {k:'motif',l:'Cover art',t:'select',opts:MOTIFS,refresh:1,show:d=>d.coverMode!=='image'},
-   {k:'palKey',l:'Cover colours',t:'select',opts:PALS,refresh:1,show:d=>d.coverMode!=='image'},yesNo('cd','Show countdown on the event page',true),yesNo('pub','Published on the website',false)],
+   {k:'_cover',l:'Cover',t:'cover',w:1},yesNo('cd','Show countdown on the event page',true),yesNo('pub','Published on the website',false)],
   validate:d=>d.start&&d.end&&+new Date(d.end)<=+new Date(d.start)?{end:'End must be after the start.'}:{},
   before:(d,n)=>{d.pal=PAL[d.palKey]||PAL.maroon;d.tickets=d.tickets&&d.tickets.length?d.tickets.map(t=>[t[0],Number(t[1])||0,t[2]||'',Number(t[3])||0]):null;d.sched=d.sched||[];if(n)d.id=uniqueId(slugify(d.title),EV)},
   preview:d=>`<div class="cov">${d.coverMode==='image'&&d.coverImage?`<img src="${d.coverImage}" alt="Cover" style="width:100%;height:100%;object-fit:cover">`:art(d.motif,PAL[d.palKey]||PAL.maroon,d.title||'preview',500,400)}</div><b>${esc(d.title||'Untitled event')}</b><p class="soft" style="margin:.2rem 0 0">${d.start&&d.end?dRange({start:d.start,end:d.end}):'Set the dates'}</p>`},
@@ -1026,6 +1029,11 @@ function fieldHtml(f,d,err){
     case'select':inp=`<select ${a}>${opts(f).map(([o,l])=>`<option value="${esc(o)}" ${String(v==null?'':v)===String(o)?'selected':''}>${esc(l)}</option>`).join('')}</select>`;break;
     case'check':inp=`<label class="chk"><input type="checkbox" ${a} ${(v==null?f.def:v)?'checked':''}> ${f.chk}</label>`;break;
     case'toggle':inp=`<div class="seg" role="group">${opts(f).map(([o,l])=>`<button type="button" data-ad="toggle" data-fk="${f.k}" data-val="${esc(o)}" aria-pressed="${String(v)===String(o)}">${l}</button>`).join('')}</div>`;break;
+    case'cover':{const cm=d.coverMode||'art';
+      const toggleHtml=`<div class="seg" role="group"><button type="button" data-ad="cover-toggle" data-val="art" aria-pressed="${cm==='art'}">Generated art</button><button type="button" data-ad="cover-toggle" data-val="image" aria-pressed="${cm==='image'}">Upload image</button></div>`;
+      const artHtml=cm!=='image'?`<div class="cover-opts"><div class="field"><label for="ff-motif">Cover art</label><select id="ff-motif" data-fk="motif" data-refresh="1">${MOTIFS.map(([o,l])=>`<option value="${esc(o)}" ${d.motif===o?'selected':''}>${l}</option>`).join('')}</select></div><div class="field"><label for="ff-palKey">Cover colours</label><select id="ff-palKey" data-fk="palKey" data-refresh="1">${PALS.map(([o,l])=>`<option value="${esc(o)}" ${d.palKey===o?'selected':''}>${l}</option>`).join('')}</select></div></div>`:'';
+      const imgHtml=cm==='image'?`<div class="img-up${d.coverImage?' has':''}" data-fk="coverImage">${d.coverImage?`<img src="${d.coverImage}" alt="Cover image preview">`:''}<label class="img-up-btn"><input type="file" accept="image/*" data-ad="img-pick" data-fk="coverImage" hidden>${d.coverImage?`${I('edit',16)}Change image`:`${I('img',16)}Choose image`}</label>${d.coverImage?`<button class="img-up-rm" data-ad="img-rm" data-fk="coverImage" aria-label="Remove image">${I('trash',16)}Remove</button>`:''}</div>`:'';
+      inp=`<div class="cover-section">${toggleHtml}<div class="cover-body">${cm==='image'?imgHtml:artHtml}</div></div>`;break}
     case'multi':inp=`<div class="multi">${opts(f).map(([o,l])=>`<label><input type="checkbox" data-fk="${f.k}" value="${esc(o)}" ${(v||[]).includes(o)?'checked':''}> ${esc(l)}</label>`).join('')||'<span class="soft">Nothing to choose yet.</span>'}</div>`;break;
     case'dt':inp=`<input type="datetime-local" ${a} value="${dtLocal(v)}">`;break;
     case'date':inp=`<input type="date" ${a} value="${esc(v||'')}">`;break;
@@ -1044,6 +1052,7 @@ function collect(fields,d){
     const els=$$(`[data-fk="${f.k}"]`,root);
     if(f.t==='rows'){const rows=[];els.forEach(el=>{const r=+el.dataset.r,c=+el.dataset.c;(rows[r]=rows[r]||[])[c]=el.value});d[f.k]=rows.filter(Boolean).map(r=>f.cols.map((c,j)=>c.t==='num'?Number(r[j])||0:String(r[j]||'').trim())).filter(r=>r.some((x,j)=>f.cols[j].t!=='num'&&x));return}
     if(f.t==='image')return;
+    if(f.t==='cover')return;
     if(!els.length)return;const el=els[0];
     switch(f.t){case'check':d[f.k]=el.checked;break;case'multi':d[f.k]=els.filter(x=>x.checked).map(x=>x.value);break;case'paras':d[f.k]=el.value.split(/\n\s*\n/).map(x=>x.trim()).filter(Boolean);break;case'dt':d[f.k]=el.value?el.value+':00+06:00':'';break;case'num':d[f.k]=Number(el.value)||0;break;case'vid':d[f.k]=el.value.split(',').map(x=>parseInt(x,10)).filter(n=>!isNaN(n)&&n>=0);break;default:d[f.k]=el.value.trim()}
   });
@@ -1189,6 +1198,7 @@ document.addEventListener('click',e=>{
     case'msg-del':{apiFetch('messages/'+b.dataset.id,{method:'DELETE'}).then(()=>{MSGS.splice(MSGS.findIndex(m=>m.id===b.dataset.id),1);saveDB();closeModal();toast('Message deleted.')}).catch(()=>toast('Failed.'));break}
     case'img-rm':{if(AD.draft){AD.draft.o[b.dataset.fk]='';collect(CFG[AD.draft._name].fields,AD.draft.o);renderAdmin(AD.path)}break}
     case'toggle':{if(AD.draft){AD.draft.o[b.dataset.fk]=b.dataset.val;collect(CFG[AD.draft._name].fields,AD.draft.o);renderAdmin(AD.path)}break}
+    case'cover-toggle':{if(AD.draft){AD.draft.o.coverMode=b.dataset.val;collect(CFG[AD.draft._name].fields,AD.draft.o);renderAdmin(AD.path)}break}
   }
 });
 document.addEventListener('input',e=>{if(e.target.matches('#admin [data-ad-q]')){AD.q=e.target.value;refreshList()}});
