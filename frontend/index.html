@@ -371,7 +371,7 @@ input[type=color]{padding:.15rem;height:42px;width:80px}
 .cover-opts .seg button{padding:.45rem .7rem}
 .hero-preview{border:1px solid var(--line)}
 .hero-image{position:relative}
-.hero-image::after{content:'';position:absolute;inset:0;background:rgba(0,0,0,.45);pointer-events:none}
+.hero-image::after{content:'';position:absolute;inset:0;background:rgba(138,28,51,.55);pointer-events:none}
 .hero-image .wrap{position:relative;z-index:1}
 
 </style>
@@ -1059,8 +1059,8 @@ function fieldHtml(f,d,err){
         body=`<div class="cover-opts" style="margin-top:.5rem"><div class="field"><label>First colour</label><input type="color" data-ad="hero-color" data-idx="0" value="${esc(hc[0])}"></div><div class="field"><label>Second colour</label><input type="color" data-ad="hero-color" data-idx="1" value="${esc(hc[1])}"></div></div><div class="hero-preview" style="background:linear-gradient(135deg,${hc[0]},${hc[1]});height:60px;border-radius:8px;margin-top:.5rem"></div>`;
       }else{
         body=d.heroImage
-          ?`<div class="img-up has" data-fk="heroImage"><img src="${d.heroImage}" alt="Hero background preview"><label class="img-up-btn"><input type="file" accept="image/*" data-ad="hero-img-pick" data-fk="heroImage" hidden>${I('edit',16)}Change image</label><button class="img-up-rm" data-ad="hero-img-rm" data-fk="heroImage" aria-label="Remove image">${I('trash',16)}Remove</button></div><p class="soft" style="margin:.4rem 0 0;font-size:.82rem">Full-width background. Recommended ratio: 16:9</p>`
-          :`<div class="img-up" data-fk="heroImage"><label class="img-up-btn"><input type="file" accept="image/*" data-ad="hero-img-pick" data-fk="heroImage" hidden>${I('img',16)}Choose image</label></div><p class="soft" style="margin:.4rem 0 0;font-size:.82rem">Upload an image to use as full-width hero background. Recommended ratio: 16:9</p>`;
+          ?`<div class="img-up has" data-fk="heroImage"><img src="${d.heroImage}" alt="Hero background preview"><label class="img-up-btn"><input type="file" accept="image/*" data-ad="hero-img-pick" data-fk="heroImage" hidden>${I('edit',16)}Change image</label><button class="img-up-rm" data-ad="hero-img-rm" data-fk="heroImage" aria-label="Remove image">${I('trash',16)}Remove</button></div><p class="soft" style="margin:.4rem 0 0;font-size:.82rem">Full-width background. Recommended ratio: 21:9</p>`
+          :`<div class="img-up" data-fk="heroImage"><label class="img-up-btn"><input type="file" accept="image/*" data-ad="hero-img-pick" data-fk="heroImage" hidden>${I('img',16)}Choose image</label></div><p class="soft" style="margin:.4rem 0 0;font-size:.82rem">Upload an image to use as full-width hero background. Recommended ratio: 21:9</p>`;
       }
       inp=`<div class="cover-section">${toggleHtml}${body}</div>`;break}
     case'multi':inp=`<div class="multi">${opts(f).map(([o,l])=>`<label><input type="checkbox" data-fk="${f.k}" value="${esc(o)}" ${(v||[]).includes(o)?'checked':''}> ${esc(l)}</label>`).join('')||'<span class="soft">Nothing to choose yet.</span>'}</div>`;break;
