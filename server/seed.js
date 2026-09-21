@@ -92,13 +92,13 @@ async function seed() {
   for (const e of EVENTS) {
     const pal = PAL[e.palKey] || PAL.maroon;
     await pool.query(
-      `INSERT INTO events (id, title, cat, venue, start, "end", blurb, "desc", sched, tickets, partners, cover_image, cover_mode, cover_frame, motif, pal_key, pal, cd, pub, posts, notices, hero_style, hero_colors)
-       VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14,$15,$16,$17,$18,$19,$20,$21,$22,$23)
+      `INSERT INTO events (id, title, cat, venue, start, "end", blurb, "desc", sched, tickets, partners, cover_image, cover_mode, cover_frame, motif, pal_key, pal, cd, pub, posts, notices, hero_style, hero_colors, hero_image)
+       VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14,$15,$16,$17,$18,$19,$20,$21,$22,$23,$24)
        ON CONFLICT (id) DO NOTHING`,
       [e.id, e.title, e.cat, e.venue, e.start, e.end, e.blurb, JSON.stringify(e.desc), JSON.stringify(e.sched),
        e.tickets ? JSON.stringify(e.tickets) : null, JSON.stringify(e.partners || []),
        '', 'art', 'arch', e.motif, e.palKey, JSON.stringify(pal), e.cd, e.pub, '[]', '[]',
-       'palette', '[]']
+       'palette', '[]', '']
     );
   }
   console.log('Seeded ' + EVENTS.length + ' events');

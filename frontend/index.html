@@ -753,7 +753,7 @@ const MN=['January','February','March','April','May','June','July','August','Sep
 V.event=id=>{
   const e=EVM[id];if(!e)return notFound();const st=status(e),alb=ALBp().find(a=>a.ev===e.id),ns=NTp().filter(n=>n.ev===e.id),ps=POSTp().filter(p=>p.ev===e.id||(e.posts||[]).includes(p.id));
   const tk=e.tickets&&st!=='past'?`<div class="box"><h3>Tickets</h3>${e.tickets.map(([n,pr,d])=>`<div class="tt"><div><b>${n}</b><small>${d}</small></div><span class="price">${money(pr)}</span></div>`).join('')}<a class="btn btn-block" style="margin-top:1rem" href="#/tickets/${e.id}">Get Ticket</a></div>`:`<div class="box"><h3>${st==='past'?'This event has ended':'Entry'}</h3><p class="soft" style="margin:0">${alb?'See the photos and videos in the gallery.':'No tickets are needed for this event.'}</p>${alb?`<a class="btn btn-block" style="margin-top:1rem" href="#/gallery/${alb.id}">Open gallery</a>`:''}</div>`;
-  return {t:e.title,h:`<section class="phead${e.heroStyle==='image'&&e.coverImage?' hero-image':''}" style="${e.heroStyle==='image'&&e.coverImage?`background:url('${e.coverImage}') center/cover`:e.heroStyle==='gradient'&&e.heroColors&&e.heroColors.length===2?`background:linear-gradient(135deg,${e.heroColors[0]},${e.heroColors[1]})`:''}"><div class="ph-mand"${e.heroStyle==='image'?' style="display:none"':''}>${mandSvg(290,'#F2D592',1)}</div><div class="wrap ev-head"><div><p class="crumb"><a href="#/">Home</a> / <a href="#/events">Events</a> / ${e.title}</p><span class="pill pill-i ${st}" style="margin-bottom:.8rem">${pillTxt[st]}</span><h1>${e.title}</h1><p class="lede" style="margin-bottom:1rem">${e.blurb}</p><p class="meta">${I('cal',18)}${dRange(e)}</p><p class="meta">${I('clock',18)}${tRange(e)}</p><p class="meta">${I('pin',18)}${e.venue}</p>${st==='upcoming'&&e.cd?`<div style="margin-top:1.2rem;max-width:420px">${cd(e,'cd-sm')}</div>`:''}<div class="btns" style="margin-top:1.3rem">${canBook(e)?`<a class="btn btn-gold" href="#/tickets/${e.id}">Get Ticket</a>`:''}<button class="btn btn-light" data-act="toast" data-m="Calendar files will be available once the site is connected to a backend.">Add to calendar</button></div></div><div class="ev-arch" style="${e.coverMode==='image'?frameStyle(e.coverFrame):''}">${cover(e,500,575)}</div></div></section>
+  return {t:e.title,h:`<section class="phead${e.heroStyle==='image'&&e.heroImage?' hero-image':''}" style="${e.heroStyle==='image'&&e.heroImage?`background:url('${e.heroImage}') center/cover`:e.heroStyle==='gradient'&&e.heroColors&&e.heroColors.length===2?`background:linear-gradient(135deg,${e.heroColors[0]},${e.heroColors[1]})`:''}"><div class="ph-mand"${e.heroStyle==='image'?' style="display:none"':''}>${mandSvg(290,'#F2D592',1)}</div><div class="wrap ev-head"><div><p class="crumb"><a href="#/">Home</a> / <a href="#/events">Events</a> / ${e.title}</p><span class="pill pill-i ${st}" style="margin-bottom:.8rem">${pillTxt[st]}</span><h1>${e.title}</h1><p class="lede" style="margin-bottom:1rem">${e.blurb}</p><p class="meta">${I('cal',18)}${dRange(e)}</p><p class="meta">${I('clock',18)}${tRange(e)}</p><p class="meta">${I('pin',18)}${e.venue}</p>${st==='upcoming'&&e.cd?`<div style="margin-top:1.2rem;max-width:420px">${cd(e,'cd-sm')}</div>`:''}<div class="btns" style="margin-top:1.3rem">${canBook(e)?`<a class="btn btn-gold" href="#/tickets/${e.id}">Get Ticket</a>`:''}<button class="btn btn-light" data-act="toast" data-m="Calendar files will be available once the site is connected to a backend.">Add to calendar</button></div></div><div class="ev-arch" style="${e.coverMode==='image'?frameStyle(e.coverFrame):''}">${cover(e,500,575)}</div></div></section>
 <section class="sec"><div class="wrap cols"><div>
  <div class="prose"><h2>About this event</h2>${e.desc.map(p=>`<p>${p}</p>`).join('')}</div>
  ${e.sched.length?`<h2 style="margin-top:2rem">Schedule</h2><ul class="sched">${e.sched.map(([a,b])=>`<li><b>${a}</b><span>${b}</span></li>`).join('')}</ul>`:''}
@@ -980,14 +980,14 @@ const CFG={
  events:{name:'events',route:'events',title:'Events',single:'Event',add:'Add event',sub:'Festivals, workshops and cultural nights.',coll:EV,pubToggle:1,
   sort:(a,b)=>+new Date(b.start)-+new Date(a.start),
   cols:[['Event',e=>`<b>${esc(e.title)}</b><br><small class="soft">${esc(e.cat)}</small>`],['When',e=>dRange(e)],['Status',evStBadge],['Tickets',e=>e.tickets?e.tickets.length+' types':'None']],
-  make:()=>({title:'',cat:'Festival',venue:V0,start:'',end:'',blurb:'',desc:[],sched:[],tickets:[],partners:[],coverMode:'art',coverFrame:'arch',coverImage:'',motif:'mandala',palKey:'maroon',heroStyle:'palette',heroColors:[],cd:true,pub:false,posts:[],notices:[]}),
+  make:()=>({title:'',cat:'Festival',venue:V0,start:'',end:'',blurb:'',desc:[],sched:[],tickets:[],partners:[],coverMode:'art',coverFrame:'arch',coverImage:'',motif:'mandala',palKey:'maroon',heroStyle:'palette',heroColors:[],heroImage:'',cd:true,pub:false,posts:[],notices:[]}),
   fields:[{k:'title',l:'Title',t:'text',req:1,w:1},{k:'cat',l:'Category',t:'select',opts:[['Festival','Festival'],['Workshop','Workshop'],['Cultural','Cultural'],['Other','Other']]},{k:'venue',l:'Venue',t:'text',req:1},{k:'start',l:'Starts',t:'dt',req:1},{k:'end',l:'Ends',t:'dt',req:1},{k:'blurb',l:'Short description',t:'text',req:1,w:1,help:'One sentence shown on cards.'},{k:'desc',l:'About this event',t:'paras',req:1,w:1,help:'Separate paragraphs with a blank line.'},
    {k:'sched',l:'Schedule',t:'rows',w:1,cols:[{l:'When',w:'150px'},{l:'What happens'}]},
    {k:'tickets',l:'Ticket types',t:'rows',w:1,help:'Leave empty if the event needs no tickets or registration.',cols:[{l:'Type',w:'130px'},{l:'Price (BDT)',t:'num',w:'110px'},{l:'Note'},{l:'Capacity',t:'num',w:'100px'}]},
    {k:'partners',l:'Partners',t:'multi',w:1,opts:()=>P.map(p=>[p.id,p.name])},
    {k:'_cover',l:'Cover',t:'cover',w:1},
    {k:'motif',l:'',t:'text',show:()=>false},{k:'palKey',l:'',t:'text',show:()=>false},
-   {k:'_hero',l:'Hero background',t:'hero',w:1},{k:'heroColors',l:'',t:'text',show:()=>false},
+   {k:'_hero',l:'Hero background',t:'hero',w:1},{k:'heroColors',l:'',t:'text',show:()=>false},{k:'heroImage',l:'',t:'text',show:()=>false},
    yesNo('cd','Show countdown on the event page',true),yesNo('pub','Published on the website',false)],
   validate:d=>d.start&&d.end&&+new Date(d.end)<=+new Date(d.start)?{end:'End must be after the start.'}:{},
   before:(d,n)=>{d.pal=PAL[d.palKey]||PAL.maroon;d.tickets=d.tickets&&d.tickets.length?d.tickets.map(t=>[t[0],Number(t[1])||0,t[2]||'',Number(t[3])||0]):null;d.sched=d.sched||[];if(n)d.id=uniqueId(slugify(d.title),EV)},
@@ -1058,9 +1058,9 @@ function fieldHtml(f,d,err){
       }else if(hs==='gradient'){
         body=`<div class="cover-opts" style="margin-top:.5rem"><div class="field"><label>First colour</label><input type="color" data-ad="hero-color" data-idx="0" value="${esc(hc[0])}"></div><div class="field"><label>Second colour</label><input type="color" data-ad="hero-color" data-idx="1" value="${esc(hc[1])}"></div></div><div class="hero-preview" style="background:linear-gradient(135deg,${hc[0]},${hc[1]});height:60px;border-radius:8px;margin-top:.5rem"></div>`;
       }else{
-        body=d.coverImage
-          ?`<div class="img-up has" data-fk="coverImage"><img src="${d.coverImage}" alt="Hero background preview"><label class="img-up-btn"><input type="file" accept="image/*" data-ad="img-pick" data-fk="coverImage" hidden>${I('edit',16)}Change image</label><button class="img-up-rm" data-ad="cover-img-rm" data-fk="coverImage" aria-label="Remove image">${I('trash',16)}Remove</button></div><p class="soft" style="margin:.4rem 0 0;font-size:.82rem">Full-width background. Recommended ratio: 16:9</p>`
-          :`<div class="img-up" data-fk="coverImage"><label class="img-up-btn"><input type="file" accept="image/*" data-ad="img-pick" data-fk="coverImage" hidden>${I('img',16)}Choose image</label></div><p class="soft" style="margin:.4rem 0 0;font-size:.82rem">Upload a cover image to use as full-width hero background. Recommended ratio: 16:9</p>`;
+        body=d.heroImage
+          ?`<div class="img-up has" data-fk="heroImage"><img src="${d.heroImage}" alt="Hero background preview"><label class="img-up-btn"><input type="file" accept="image/*" data-ad="hero-img-pick" data-fk="heroImage" hidden>${I('edit',16)}Change image</label><button class="img-up-rm" data-ad="hero-img-rm" data-fk="heroImage" aria-label="Remove image">${I('trash',16)}Remove</button></div><p class="soft" style="margin:.4rem 0 0;font-size:.82rem">Full-width background. Recommended ratio: 16:9</p>`
+          :`<div class="img-up" data-fk="heroImage"><label class="img-up-btn"><input type="file" accept="image/*" data-ad="hero-img-pick" data-fk="heroImage" hidden>${I('img',16)}Choose image</label></div><p class="soft" style="margin:.4rem 0 0;font-size:.82rem">Upload an image to use as full-width hero background. Recommended ratio: 16:9</p>`;
       }
       inp=`<div class="cover-section">${toggleHtml}${body}</div>`;break}
     case'multi':inp=`<div class="multi">${opts(f).map(([o,l])=>`<label><input type="checkbox" data-fk="${f.k}" value="${esc(o)}" ${(v||[]).includes(o)?'checked':''}> ${esc(l)}</label>`).join('')||'<span class="soft">Nothing to choose yet.</span>'}</div>`;break;
@@ -1231,6 +1231,7 @@ document.addEventListener('click',e=>{
     case'cover-toggle':{if(AD.draft){AD.draft.o.coverMode=b.dataset.val;collect(CFG[AD.draft._name].fields,AD.draft.o);renderAdmin(AD.path)}break}
     case'cover-frame':{if(AD.draft){AD.draft.o.coverFrame=b.dataset.val;collect(CFG[AD.draft._name].fields,AD.draft.o);renderAdmin(AD.path)}break}
     case'hero-style':{if(AD.draft){AD.draft.o.heroStyle=b.dataset.val;collect(CFG[AD.draft._name].fields,AD.draft.o);renderAdmin(AD.path)}break}
+    case'hero-img-rm':{if(AD.draft){AD.draft.o.heroImage='';collect(CFG[AD.draft._name].fields,AD.draft.o);renderAdmin(AD.path)}break}
   }
 });
 document.addEventListener('input',e=>{if(e.target.matches('#admin [data-ad-q]')){AD.q=e.target.value;refreshList()}});
@@ -1239,6 +1240,9 @@ document.addEventListener('change',e=>{
   if(t.dataset.adF){AD[t.dataset.adF]=t.value;refreshList()}
   if(t.dataset.ad==='img-pick'&&t.files&&t.files[0]&&AD.draft){
     apiUpload(t.files[0]).then(res=>{AD.draft.o[t.dataset.fk]=res.url;collect(CFG[AD.draft._name].fields,AD.draft.o);renderAdmin(AD.path)}).catch(()=>toast('Upload failed.'));return;
+  }
+  if(t.dataset.ad==='hero-img-pick'&&t.files&&t.files[0]&&AD.draft){
+    apiUpload(t.files[0]).then(res=>{AD.draft.o.heroImage=res.url;collect(CFG[AD.draft._name].fields,AD.draft.o);renderAdmin(AD.path)}).catch(()=>toast('Upload failed.'));return;
   }
   if(t.dataset.ad==='hero-color'&&AD.draft){
     const hc=AD.draft.o.heroColors&&AD.draft.o.heroColors.length===2?[...AD.draft.o.heroColors]:['#8a1c30','#3d0a14'];

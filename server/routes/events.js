@@ -18,7 +18,7 @@ async function uniqueId(base, table) {
 
 const R = `id, title, cat, venue, start, "end", blurb, "desc", sched, tickets, partners,
   cover_image as "coverImage", cover_mode as "coverMode", cover_frame as "coverFrame", motif, pal_key as "palKey", pal, cd, pub, posts, notices,
-  hero_style as "heroStyle", hero_colors as "heroColors"`;
+  hero_style as "heroStyle", hero_colors as "heroColors", hero_image as "heroImage"`;
 
 router.get('/', async (req, res) => {
   try {
@@ -55,8 +55,8 @@ router.post('/', authRequired, adminOnly, async (req, res) => {
     const { rows } = await pool.query(
       `INSERT INTO events (id, title, cat, venue, start, "end", blurb, "desc", sched, tickets, partners,
         cover_image, cover_mode, cover_frame, motif, pal_key, pal, cd, pub, posts, notices,
-        hero_style, hero_colors)
-       VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14,$15,$16,$17,$18,$19,$20,$21,$22,$23)
+        hero_style, hero_colors, hero_image)
+       VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14,$15,$16,$17,$18,$19,$20,$21,$22,$23,$24)
        RETURNING ${R}`,
       [id, d.title, d.cat || 'Festival', d.venue, d.start, d.end, d.blurb || '',
        JSON.stringify(d.desc || []), JSON.stringify(d.sched || []),
@@ -65,7 +65,7 @@ router.post('/', authRequired, adminOnly, async (req, res) => {
        d.palKey || 'maroon', JSON.stringify(d.pal || ['#8a1c30', '#3d0a14']),
        d.cd !== false, d.pub === true, JSON.stringify(d.posts || []),
        JSON.stringify(d.notices || []), d.heroStyle || 'palette',
-       JSON.stringify(d.heroColors || [])]);
+       JSON.stringify(d.heroColors || []), d.heroImage || '']);
     res.status(201).json(rows[0]);
   } catch (err) {
     console.error('Create event error:', err);
@@ -80,7 +80,7 @@ router.put('/:id', authRequired, adminOnly, async (req, res) => {
       `UPDATE events SET title=$2, cat=$3, venue=$4, start=$5, "end"=$6, blurb=$7, "desc"=$8,
        sched=$9, tickets=$10, partners=$11, cover_image=$12, cover_mode=$13, cover_frame=$14, motif=$15,
        pal_key=$16, pal=$17, cd=$18, pub=$19, posts=$20, notices=$21,
-       hero_style=$22, hero_colors=$23
+       hero_style=$22, hero_colors=$23, hero_image=$24
        WHERE id=$1 RETURNING ${R}`,
       [req.params.id, d.title, d.cat, d.venue, d.start, d.end, d.blurb || '',
        JSON.stringify(d.desc || []), JSON.stringify(d.sched || []),
@@ -89,7 +89,7 @@ router.put('/:id', authRequired, adminOnly, async (req, res) => {
        d.palKey || 'maroon', JSON.stringify(d.pal || ['#8a1c30', '#3d0a14']),
        d.cd !== false, d.pub === true, JSON.stringify(d.posts || []),
        JSON.stringify(d.notices || []), d.heroStyle || 'palette',
-       JSON.stringify(d.heroColors || [])]);
+       JSON.stringify(d.heroColors || []), d.heroImage || '']);
     if (!rows.length) return res.status(404).json({ error: 'Not found' });
     res.json(rows[0]);
   } catch (err) {
