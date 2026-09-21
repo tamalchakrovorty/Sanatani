@@ -820,7 +820,7 @@ function render(){
   try{
     switch(a){case'':r=V.home();break;case'about':r=V.about();break;case'events':r=V.events(b);break;case'event':r=V.event(b);break;case'tickets':r=V.tickets(b);break;case'gallery':r=V.gallery(b);break;case'blog':r=V.blog(b);break;case'culture':r=V.culture(b);break;case'post':case'article':r=V.post(b);break;case'partners':r=V.partners();break;case'achievements':r=V.achievements();break;case'donate':r=V.donate();break;case'contact':r=V.contact();break;case'notices':r=V.notices();break;case'notice':r=V.notice(b);break;default:r=notFound()}
   }catch(err){console.error(err);r={t:'Error',h:head('Something went wrong','Please reload the page.')}}
-  $('#app').innerHTML=r.h;document.title=(r.t?r.t+' | ':'')+SETTINGS.siteName;
+  $('#app').innerHTML=r.h;document.title=(r.t?r.t+' | ':'')+SETTINGS.siteName+' — '+SETTINGS.university;
   const key={event:'events',post:'blog',article:'culture',tickets:null,notice:null,notices:null}[a];const k=key!==undefined?key:a;
   $$('[data-nav]').forEach(x=>x.getAttribute('data-nav')===k?x.setAttribute('aria-current','page'):x.removeAttribute('aria-current'));
   closeMenu();window.scrollTo(0,0);tick();
@@ -1137,7 +1137,7 @@ function layout(pg,title,body){
 }
 function renderAdmin(path){
   const [,pg='dashboard',arg]=path.split('/'),root=$('#admin'),same=AD.path===path,y=window.scrollY;
-  AD.path=path;document.title='Admin | '+SETTINGS.siteName;
+  AD.path=path;document.title='Admin | '+SETTINGS.siteName+' — '+SETTINGS.university;
   if(AD.pg!==pg){AD.q='';AD.fEv='all';AD.fSt='all'}AD.pg=pg;
   if(!same){AD.side=false;AD.modal=null}
   if(!AD.user){root.innerHTML=loginView();return}
