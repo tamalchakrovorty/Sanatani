@@ -575,8 +575,7 @@ const TIX_CAP={General:300,Student:200,Couple:80,VIP:40};
 async function apiFetch(path,opts={}){
   const headers=Object.assign({'Content-Type':'application/json'},opts.headers||{});
   if(AUTH_TOKEN)headers['Authorization']='Bearer '+AUTH_TOKEN;
-  const url=API_BASE+'/api/'+path;console.log('FETCH',url,opts.method||'GET');
-  const res=await fetch(url,Object.assign({},opts,{headers}));console.log('FETCH STATUS',res.status);
+  const res=await fetch(API_BASE+'/api/'+path,Object.assign({},opts,{headers}));
   if(!res.ok){const e=await res.json().catch(()=>({error:'Request failed'}));throw new Error(e.error||res.statusText)}
   return res.json();
 }
@@ -1158,8 +1157,8 @@ document.addEventListener('click',e=>{
     case'side':AD.side=!AD.side;$('.ad').classList.toggle('open',AD.side);break;
     case'theme':theme();break;
     case'toast':toast(b.dataset.m);break;
-    case'login':{const p=$('#l-p').value,em=$('#l-e').value.trim(),role=$('#l-r').value;console.log('LOGIN CLICKED',{em,p:!!p,role,API_BASE});if(!p||!em){$('#l-err').hidden=false;break}
-      apiLogin(em,p).then(user=>{console.log('LOGIN OK',user);AD.user=user;loadDB().then(()=>{console.log('LOADDB OK, going to admin');adminGo(role==='Volunteer'?'admin/checkin':'admin')})}).catch(err=>{console.error('LOGIN FAILED',err);$('#l-err').hidden=false});break}
+    case'login':{const p=$('#l-p').value,em=$('#l-e').value.trim(),role=$('#l-r').value;if(!p||!em){$('#l-err').hidden=false;break}
+      apiLogin(em,p).then(user=>{AD.user=user;loadDB().then(()=>adminGo(role==='Volunteer'?'admin/checkin':'admin'))}).catch(()=>{$('#l-err').hidden=false});break}
     case'logout':AD.user=null;AD.draft=null;apiLogout();adminGo('admin');break;
     case'modal-bg':if(e.target===b)closeModal();break;
     case'modal-close':closeModal();break;

@@ -31,15 +31,43 @@ app.use('/api/settings', require('./routes/settings'));
 app.use('/api/achievements', require('./routes/achievements'));
 app.use('/api/upload', require('./routes/upload'));
 
+const Q = {
+  eventsPub: `SELECT id, title, cat, venue, start, "end", blurb, "desc", sched, tickets, partners,
+    cover_image as "coverImage", motif, pal_key as "palKey", pal, cd, pub, posts, notices
+    FROM events WHERE pub = true ORDER BY start DESC`,
+  eventsAll: `SELECT id, title, cat, venue, start, "end", blurb, "desc", sched, tickets, partners,
+    cover_image as "coverImage", motif, pal_key as "palKey", pal, cd, pub, posts, notices
+    FROM events ORDER BY start DESC`,
+  postsPub: `SELECT id, title, kind, cat, sec, date, summary as x, body, ev_id as ev,
+    cover_image as "coverImage", motif, pal_key as "palKey", pal, pub
+    FROM posts WHERE pub = true ORDER BY date DESC`,
+  postsAll: `SELECT id, title, kind, cat, sec, date, summary as x, body, ev_id as ev,
+    cover_image as "coverImage", motif, pal_key as "palKey", pal, pub
+    FROM posts ORDER BY date DESC`,
+  noticesPub: `SELECT id, title, cat, date, short, body, ev_id as ev, pub
+    FROM notices WHERE pub = true ORDER BY date DESC`,
+  noticesAll: `SELECT id, title, cat, date, short, body, ev_id as ev, pub
+    FROM notices ORDER BY date DESC`,
+  albumsPub: `SELECT id, ev_id as ev, n, vid, pub FROM albums WHERE pub = true`,
+  albumsAll: `SELECT id, ev_id as ev, n, vid, pub FROM albums`,
+  partnerships: `SELECT id, partner_id as "partnerId", event_id as "eventId", text FROM partnerships`,
+  orders: `SELECT id, event_id as ev, name, email, phone, items, total, status, method, tickets, created_at as at
+    FROM orders ORDER BY created_at DESC`,
+  donations: `SELECT id, name, email, amount as amt, method, created_at as at
+    FROM donations ORDER BY created_at DESC`,
+  messages: `SELECT id, name, email, subject, body, read, created_at as at
+    FROM messages ORDER BY created_at DESC`,
+};
+
 app.get('/api/public/all', async (req, res) => {
   try {
     const [events, posts, notices, albums, partners, partnerships, settings, stats, timeline] = await Promise.all([
-      pool.query('SELECT * FROM events WHERE pub = true ORDER BY start DESC'),
-      pool.query('SELECT * FROM posts WHERE pub = true ORDER BY date DESC'),
-      pool.query('SELECT * FROM notices WHERE pub = true ORDER BY date DESC'),
-      pool.query('SELECT * FROM albums WHERE pub = true'),
+      pool.query(Q.eventsPub),
+      pool.query(Q.postsPub),
+      pool.query(Q.noticesPub),
+      pool.query(Q.albumsPub),
       pool.query('SELECT * FROM partners ORDER BY name'),
-      pool.query('SELECT * FROM partnerships'),
+      pool.query(Q.partnerships),
       pool.query('SELECT * FROM settings'),
       pool.query('SELECT * FROM stats ORDER BY sort_order'),
       pool.query('SELECT * FROM timeline ORDER BY sort_order'),
@@ -66,15 +94,15 @@ app.get('/api/public/all', async (req, res) => {
 app.get('/api/admin/all', authRequired, adminOnly, async (req, res) => {
   try {
     const [events, posts, notices, albums, partners, partnerships, orders, donations, messages, users, settings, stats, timeline] = await Promise.all([
-      pool.query('SELECT * FROM events ORDER BY start DESC'),
-      pool.query('SELECT * FROM posts ORDER BY date DESC'),
-      pool.query('SELECT * FROM notices ORDER BY date DESC'),
-      pool.query('SELECT * FROM albums'),
+      pool.query(Q.eventsAll),
+      pool.query(Q.postsAll),
+      pool.query(Q.noticesAll),
+      pool.query(Q.albumsAll),
       pool.query('SELECT * FROM partners ORDER BY name'),
-      pool.query('SELECT * FROM partnerships'),
-      pool.query('SELECT * FROM orders ORDER BY created_at DESC'),
-      pool.query('SELECT * FROM donations ORDER BY created_at DESC'),
-      pool.query('SELECT * FROM messages ORDER BY created_at DESC'),
+      pool.query(Q.partnerships),
+      pool.query(Q.orders),
+      pool.query(Q.donations),
+      pool.query(Q.messages),
       pool.query('SELECT id, name, email, role, active FROM users ORDER BY name'),
       pool.query('SELECT * FROM settings'),
       pool.query('SELECT * FROM stats ORDER BY sort_order'),
