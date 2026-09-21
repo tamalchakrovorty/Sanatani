@@ -1,0 +1,1204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Sanatani Community - North South University</title>
+<meta name="description" content="Culture, events, memories and stories from the Sanatani Community at North South University.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&family=Marcellus&family=Tiro+Bangla&display=swap" rel="stylesheet">
+<style>
+:root{
+  --maroon:#6E1423;--maroon-deep:#450C16;--saffron:#E58A2B;--gold:#D4A03A;--gold-soft:#F2D592;
+  --bg:#FBF6EB;--surface:#FFFDF8;--surface-2:#F4EAD5;--text:#2A2321;--soft:#6A5D55;--line:#E5D8BE;
+  --btn-bg:#6E1423;--btn-text:#FFF6E6;--link:#8A1C2E;--accent-text:#8A4B0A;--err:#B3261E;
+  --header-bg:rgba(251,246,235,.93);--toast-bg:#2A2321;--toast-text:#FFF6E6;
+  --serif:'Marcellus','Tiro Bangla',Georgia,serif;
+  --sans:'Hind Siliguri',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
+  box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#160C0E;--surface:#211215;--surface-2:#2A171A;--text:#F4EADB;--soft:#BBA99A;--line:#3B2428;
+    --btn-bg:#E9A84E;--btn-text:#2B1207;--link:#F0B25E;--accent-text:#F0B25E;--err:#FF9A90;
+    --header-bg:rgba(22,12,14,.93);--toast-bg:#F4EADB;--toast-text:#2A2321;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#160C0E;--surface:#211215;--surface-2:#2A171A;--text:#F4EADB;--soft:#BBA99A;--line:#3B2428;
+  --btn-bg:#E9A84E;--btn-text:#2B1207;--link:#F0B25E;--accent-text:#F0B25E;--err:#FF9A90;
+  --header-bg:rgba(22,12,14,.93);--toast-bg:#F4EADB;--toast-text:#2A2321;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-padding-top:calc(env(safe-area-inset-top,0px) + 84px);-webkit-text-size-adjust:100%}
+[hidden]{display:none!important}
+body{margin:0;background:var(--bg);color:var(--text);font:400 1.0625rem/1.65 var(--sans);-webkit-font-smoothing:antialiased}
+svg{display:block;max-width:100%}
+h1,h2,h3,h4{font-family:var(--serif);font-weight:400;line-height:1.16;margin:0 0 .6rem;letter-spacing:.005em}
+h1{font-size:clamp(2.1rem,5vw,3.5rem)}h2{font-size:clamp(1.65rem,3.2vw,2.4rem)}h3{font-size:1.28rem}h4{font-size:1.05rem}
+p{margin:0 0 1rem}a{color:var(--link)}
+.wrap{width:min(1180px,100% - 2.5rem);margin-inline:auto}
+.sec{padding:clamp(2.6rem,6vw,4.6rem) 0}.sec.alt{background:var(--surface-2)}
+.sh{display:flex;align-items:flex-end;justify-content:space-between;gap:1rem;margin-bottom:1.5rem}.sh h2{margin:0}
+.lnk{font-weight:600;text-decoration:none;border-bottom:2px solid var(--saffron);white-space:nowrap;padding-bottom:1px}
+.soft{color:var(--soft)}.center{text-align:center}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+:focus-visible{outline:3px solid var(--saffron);outline-offset:2px}
+::selection{background:var(--gold-soft);color:#2a1108}
+
+/* buttons */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.5rem;padding:.68rem 1.2rem;border-radius:10px;border:1.5px solid var(--btn-bg);background:var(--btn-bg);color:var(--btn-text);font:600 .98rem/1.2 var(--sans);text-decoration:none;cursor:pointer;transition:filter .15s}
+.btn:hover{filter:brightness(1.1)}.btn:disabled{opacity:.55;cursor:default}
+.btn-ghost{background:transparent;color:var(--link);border-color:var(--line)}
+.btn-gold{background:var(--saffron);border-color:var(--saffron);color:#2b1207}
+.btn-light{background:transparent;color:#FFF3DE;border-color:rgba(255,243,222,.55)}
+.btn-sm{padding:.48rem .9rem;font-size:.9rem}.btn-lg{padding:.85rem 1.6rem;font-size:1.05rem}.btn-block{width:100%}
+.btns{display:flex;flex-wrap:wrap;gap:.6rem}
+.ib{display:inline-grid;place-items:center;width:40px;height:40px;border-radius:10px;border:0;background:transparent;color:var(--text);cursor:pointer}
+.ib:hover{background:var(--surface-2)}
+
+
+/* demo bar + header */
+.demo{background:var(--maroon-deep);color:#F2D592;font-size:.82rem;display:flex;gap:.5rem;justify-content:center;align-items:center;padding:.35rem 2.2rem;text-align:center;position:relative}
+.demo button{position:absolute;right:.5rem;top:50%;transform:translateY(-50%);background:none;border:0;color:inherit;font-size:1.2rem;cursor:pointer;line-height:1}
+.hdr{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;background:var(--header-bg);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.hdr .wrap{width:min(1320px,100% - 1.6rem)}
+.hdr-in{display:flex;align-items:center;gap:.6rem;min-height:66px}
+.brand{display:flex;align-items:center;gap:.5rem;text-decoration:none;color:var(--text);min-width:0}
+.nsu{display:inline-block;flex:none;width:62px;height:auto;object-fit:contain}
+.brand svg{flex:none}.brand-txt{line-height:1.1;display:block}.brand-txt b{display:block;font:400 1rem/1.1 var(--serif)}.brand-txt span{display:block;font-size:.74rem;color:var(--soft);margin-top:2px}
+.nav{display:none}
+.hdr-act{margin-left:auto;display:flex;align-items:center;gap:.3rem}
+.hide-sm{display:none}
+@media(max-width:520px){.hdr .brand-txt span{display:none}.hdr .brand-txt b{font-size:.95rem}.hdr .nsu{width:52px}.hdr .brand svg{width:42px;height:42px}}
+@media(min-width:1200px){
+  .nav{display:flex;margin-left:auto;align-items:center}.hdr-act{margin-left:.6rem}.burger{display:none}.hide-sm{display:inline-grid}
+  .nav a{padding:.5rem .58rem;font-size:.93rem;color:var(--text);text-decoration:none;border-radius:8px;display:block;white-space:nowrap}
+  .nav a:hover{background:var(--surface-2)}.nav a[aria-current="page"]{color:var(--link);box-shadow:inset 0 -2px 0 var(--saffron);border-radius:0}
+  .dd{position:relative}.dd-menu{position:absolute;top:100%;left:0;min-width:210px;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:.35rem;display:none;box-shadow:0 14px 32px rgba(60,10,20,.16)}
+  .dd:hover .dd-menu,.dd:focus-within .dd-menu{display:block}
+}
+.mnav{position:fixed;inset:0;z-index:60;background:var(--bg);overflow:auto;padding:calc(env(safe-area-inset-top,0px) + .8rem) 1.25rem 2rem}
+.mnav-x{position:absolute;right:.8rem;top:calc(env(safe-area-inset-top,0px) + .6rem)}
+.mnav nav{margin:3.2rem 0 1.4rem}.mnav nav a{display:block;padding:.6rem 0;font:400 1.55rem/1.2 var(--serif);color:var(--text);text-decoration:none;border-bottom:1px solid var(--line)}
+.mnav nav a.sub{font:500 1rem var(--sans);padding:.4rem 0 .4rem 1rem;color:var(--soft);border:0}
+.mnav .foot{display:flex;gap:.6rem;flex-wrap:wrap}
+
+/* hero */
+.hero{position:relative;overflow:hidden;background:radial-gradient(120% 100% at 78% 18%,#8A2233 0%,var(--maroon) 42%,var(--maroon-deep) 100%);color:#FFF3DE}
+.hero-mand{position:absolute;width:min(560px,130vw);aspect-ratio:1;left:62%;top:18%;transform:translate(-50%,-50%);opacity:.3;pointer-events:none}
+.hero-mand svg,.ph-mand svg{width:100%;height:100%}
+@media(min-width:900px){.hero-mand{width:700px;left:73%;top:50%;opacity:.85}}
+@media(prefers-reduced-motion:no-preference){.hero-mand svg{animation:spin 320s linear infinite}}
+@keyframes spin{to{transform:rotate(360deg)}}
+.hero-in{position:relative;display:grid;gap:2.2rem;align-items:center;padding:clamp(2.4rem,7vw,5rem) 0 clamp(2.8rem,7vw,5rem)}
+@media(min-width:900px){.hero-in{grid-template-columns:1.08fr .92fr;gap:3rem}}
+.hero .bn{font:400 1.2rem/1.3 var(--serif);color:var(--gold-soft);margin-bottom:.9rem}
+.hero h1{font-size:clamp(2.4rem,6vw,4.3rem);line-height:1.06;margin-bottom:1.1rem;max-width:14em}
+.hero .lede{font-size:1.12rem;max-width:34em;color:#F3DFC2;margin-bottom:1.6rem}
+.feat{background:rgba(58,9,19,.78);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border:1px solid rgba(242,213,146,.4);border-radius:18px;padding:.8rem;max-width:400px;justify-self:center;width:100%}
+.feat-img{aspect-ratio:10/8;border-radius:50% 50% 10px 10px/38% 38% 10px 10px;overflow:hidden}
+.feat-img svg{width:100%;height:100%}
+.feat-b{padding:1rem .5rem .5rem}.feat-b h2{font-size:1.7rem;margin-bottom:.4rem}
+.feat-k{color:var(--gold-soft);font-size:.92rem;margin:0 0 .25rem}
+.meta{display:flex;align-items:center;gap:.5rem;margin:0 0 .3rem;font-size:.96rem;color:inherit}.meta svg{flex:none;opacity:.8}
+.feat .btns{margin-top:.9rem}
+
+/* page head */
+.phead{position:relative;overflow:hidden;background:linear-gradient(135deg,var(--maroon-deep),var(--maroon));color:#FFF3DE;padding:clamp(2.2rem,5vw,3.6rem) 0}
+.phead .wrap{position:relative}.phead h1{margin-bottom:.5rem}.phead .lede{color:#F0DAB9;max-width:40em;margin:0;font-size:1.08rem}
+.crumb{font-size:.88rem;color:var(--gold-soft);margin-bottom:.7rem}.crumb a{color:inherit;text-decoration:none}.crumb a:hover{text-decoration:underline}
+.ph-mand{position:absolute;right:-120px;top:-140px;width:460px;height:460px;opacity:.16;pointer-events:none}
+
+/* notices */
+.notices{display:grid;gap:.9rem}
+@media(min-width:900px){.notices{grid-template-columns:1.25fr 1fr}.nt-first{grid-row:span 2}}
+.nt{display:flex;gap:1rem;padding:1.1rem 1.2rem;background:var(--surface);border:1px solid var(--line);border-left:5px solid var(--saffron);border-radius:4px 14px 14px 4px;text-decoration:none;color:var(--text)}
+.nt:hover{border-left-color:var(--maroon)}
+.nt-first{background:linear-gradient(135deg,var(--maroon-deep),var(--maroon));border-color:var(--maroon);border-left-color:var(--saffron);color:#FFF3DE}
+.nt-first .chip{background:rgba(242,213,146,.2);color:var(--gold-soft)}
+.nt-d{flex:none;text-align:center;min-width:52px;font-family:var(--serif)}.nt-d b{display:block;font:400 2rem/1 var(--serif)}.nt-d span{font-size:.9rem;opacity:.8}
+.nt h3{margin:.35rem 0 .3rem;font-size:1.18rem}.nt p{margin:0;font-size:.96rem;opacity:.9}.nt-first h3{font-size:1.5rem}
+.chip{display:inline-block;padding:.12rem .6rem;border-radius:999px;background:var(--surface-2);color:var(--accent-text);font-size:.8rem;font-weight:600}
+
+/* event cards */
+.rail{display:grid;grid-auto-flow:column;grid-auto-columns:80%;gap:1rem;overflow-x:auto;scroll-snap-type:x mandatory;margin-inline:-1.25rem;padding:0 1.25rem .6rem;scrollbar-width:none}
+.rail::-webkit-scrollbar{display:none}.rail>*{scroll-snap-align:start}
+@media(min-width:800px){.rail{grid-auto-flow:row;grid-template-columns:repeat(3,1fr);grid-auto-columns:auto;overflow:visible;margin:0;padding:0}}
+.grid{display:grid;gap:1.4rem;grid-template-columns:repeat(auto-fill,minmax(min(100%,290px),1fr))}
+.evc{background:var(--surface);border:1px solid var(--line);border-radius:14px;overflow:hidden;display:flex;flex-direction:column}
+.evc-img{position:relative;display:block;margin:.6rem .6rem 0;aspect-ratio:10/10.4;border-radius:50% 50% 10px 10px/30% 30% 10px 10px;overflow:hidden}
+.evc-img svg{width:100%;height:100%;transition:transform .5s}.evc-img:hover svg{transform:scale(1.04)}
+.evc-b{padding:1rem 1.1rem 1.2rem;display:flex;flex-direction:column;gap:.15rem;flex:1}
+.evc h3{margin-bottom:.35rem}.evc h3 a{color:inherit;text-decoration:none}.evc h3 a:hover{color:var(--link)}
+.evc .meta{color:var(--soft);font-size:.92rem}.evc .btns{margin-top:auto;padding-top:.8rem}
+.pill{position:absolute;left:50%;bottom:10px;transform:translateX(-50%);padding:.15rem .7rem;border-radius:999px;font-size:.8rem;font-weight:600;background:var(--saffron);color:#2b1207;white-space:nowrap}
+.pill.ongoing{background:#2F7D5B;color:#fff}.pill.past{background:#e9e0cf;color:#4a3f38}
+.pill-i{position:static;transform:none;display:inline-block}
+
+/* countdown */
+.band{background:var(--maroon-deep);color:#FFF3DE;padding:clamp(2rem,5vw,3.2rem) 0}
+.band-in{display:grid;gap:1.4rem;align-items:center}@media(min-width:900px){.band-in{grid-template-columns:1fr auto}}
+.band h2{margin-bottom:.2rem}.band p{margin:0;color:var(--gold-soft)}
+.cd{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:.6rem;min-width:min(100%,380px)}
+.cd>div{border:1px solid rgba(242,213,146,.45);border-radius:12px;padding:.7rem .3rem;text-align:center;background:rgba(0,0,0,.14)}
+.cd b{display:block;font:400 clamp(1.8rem,5vw,2.7rem)/1 var(--serif);font-variant-numeric:tabular-nums;color:#FFF3DE}
+.cd span{font-size:.8rem;color:var(--gold-soft)}
+.cd-done{grid-column:1/-1;font:400 1.5rem var(--serif);color:var(--gold-soft);margin:0;text-align:center}
+.cd-sm b{font-size:1.6rem}
+
+/* stories */
+.stories{display:grid;gap:1.4rem}@media(min-width:900px){.stories{grid-template-columns:1.3fr 1fr}}
+.story-big{display:block;text-decoration:none;color:inherit}
+.story-img{aspect-ratio:16/9;border-radius:14px;overflow:hidden;margin-bottom:1rem}.story-img svg{width:100%;height:100%}
+.story-big h3{font-size:1.75rem}.story-big:hover h3{color:var(--link)}
+.story-list{display:grid;gap:1rem;align-content:start}
+.story-s{display:grid;grid-template-columns:110px 1fr;gap:1rem;text-decoration:none;color:inherit;align-items:center}
+.story-s .story-img{aspect-ratio:1;margin:0;border-radius:10px}.story-s h3{font-size:1.1rem;margin:.2rem 0 0}.story-s:hover h3{color:var(--link)}
+.date{font-size:.86rem;color:var(--soft)}
+
+/* gallery */
+.mosaic{display:grid;gap:.6rem;grid-template-columns:repeat(2,1fr)}
+@media(min-width:800px){.mosaic{grid-template-columns:repeat(4,1fr);grid-auto-rows:190px}.mosaic .w2{grid-column:span 2}.mosaic .h2{grid-row:span 2}}
+.tile{position:relative;display:block;overflow:hidden;border-radius:6px;aspect-ratio:1;border:0;padding:0;cursor:pointer;background:var(--surface-2);width:100%}
+@media(min-width:800px){.mosaic .tile{aspect-ratio:auto;height:100%}}
+.tile svg{width:100%;height:100%;object-fit:cover;transition:transform .5s}.tile:hover svg{transform:scale(1.05)}
+.tile .play{position:absolute;inset:0;display:grid;place-items:center;color:#fff;background:rgba(0,0,0,.18)}
+.tile .play i{display:grid;place-items:center;width:46px;height:46px;border-radius:50%;background:rgba(0,0,0,.55);border:1.5px solid #fff}
+.tile .cap{position:absolute;left:0;right:0;bottom:0;padding:1.6rem .8rem .6rem;background:linear-gradient(transparent,rgba(20,4,8,.75));color:#fff;font-size:.9rem;text-align:left}
+.walls{display:grid;gap:.6rem;grid-template-columns:repeat(auto-fill,minmax(min(100%,180px),1fr))}
+.albums{display:grid;gap:1.4rem;grid-template-columns:repeat(auto-fill,minmax(min(100%,270px),1fr))}
+.alb{display:block;text-decoration:none;color:inherit}.alb .story-img{aspect-ratio:4/3;margin-bottom:.7rem}.alb h3{margin-bottom:.1rem}.alb:hover h3{color:var(--link)}
+
+/* partners */
+.logos{display:flex;flex-wrap:wrap;gap:1rem 1.6rem;align-items:center;justify-content:center}
+.logo{display:flex;align-items:center;gap:.6rem;font:400 1.05rem var(--serif)}
+.mono{display:inline-grid;place-items:center;flex:none;width:46px;height:46px;border-radius:50%;color:#fff;font:400 .95rem var(--serif);letter-spacing:.03em}
+.pship{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:1.2rem;display:grid;gap:1rem}
+@media(min-width:800px){.pship{grid-template-columns:1fr 1.2fr;align-items:center}}
+.pship-t{display:grid;grid-template-columns:repeat(3,1fr);gap:.4rem}.pship-t>div{aspect-ratio:1;border-radius:6px;overflow:hidden}.pship-t svg{width:100%;height:100%}
+.pship h3{margin:.3rem 0 .3rem}
+
+/* stats + timeline */
+.ledger{display:grid;grid-template-columns:repeat(2,1fr);gap:1.4rem 0}
+@media(min-width:800px){.ledger{grid-template-columns:repeat(4,1fr)}}
+.ledger>div{padding:.2rem 1.2rem;border-left:1px solid var(--line)}
+.ledger b{display:block;font:400 clamp(2.1rem,4vw,3rem)/1.05 var(--serif);color:var(--link)}.ledger span{color:var(--soft);font-size:.95rem}
+.tl{border-left:2px solid var(--gold);margin:0 0 0 .5rem;padding:0 0 0 1.5rem;list-style:none}
+.tl li{position:relative;padding-bottom:1.6rem}.tl li::before{content:"";position:absolute;left:-1.5rem;top:.5rem;width:12px;height:12px;border-radius:50%;background:var(--bg);border:3px solid var(--saffron);transform:translateX(-7px)}
+.tl b{font:400 1.5rem var(--serif);color:var(--link);display:block}.tl p{margin:0;max-width:40em}
+.sched{list-style:none;margin:0;padding:0;display:grid;gap:.6rem}
+.sched li{display:grid;grid-template-columns:110px 1fr;gap:.8rem;padding:.7rem 0;border-bottom:1px solid var(--line)}.sched b{font-weight:600;color:var(--accent-text)}
+
+/* CTA */
+.cta{background:linear-gradient(135deg,var(--maroon-deep),var(--maroon));color:#FFF3DE;border-radius:20px;padding:clamp(1.8rem,5vw,3.2rem);display:grid;gap:1.4rem;position:relative;overflow:hidden}
+.cta .ph-mand{right:-100px;top:-90px;opacity:.14}.cta>*:not(.ph-mand){position:relative}.cta h2{margin-bottom:.4rem}.cta p{color:#F0DAB9;max-width:34em;margin:0}
+.chips{display:flex;flex-wrap:wrap;gap:.5rem}
+
+/* tabs */
+.tabs{display:flex;gap:.4rem;overflow-x:auto;padding:.1rem 0 .5rem;margin-bottom:1.2rem;scrollbar-width:none}.tabs::-webkit-scrollbar{display:none}
+.tab{padding:.5rem 1rem;border-radius:999px;border:1px solid var(--line);background:var(--surface);color:var(--text);text-decoration:none;white-space:nowrap;font-size:.95rem;cursor:pointer;font-family:inherit}
+.tab[aria-current="true"]{background:var(--btn-bg);border-color:var(--btn-bg);color:var(--btn-text)}
+.tab small{opacity:.7;margin-left:.3rem}
+
+/* two column layouts */
+.cols{display:grid;gap:2rem;align-items:start}@media(min-width:960px){.cols{grid-template-columns:1fr 340px}.cols.wide{grid-template-columns:1fr 400px}.sticky{position:sticky;top:calc(env(safe-area-inset-top,0px) + 86px)}}
+.box{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:1.3rem}
+.box h3{margin-bottom:.8rem}
+.ev-head{display:grid;gap:1.6rem;align-items:center}@media(min-width:860px){.ev-head{grid-template-columns:1fr 300px}}
+.ev-arch{aspect-ratio:10/11.5;max-width:300px;width:100%;border-radius:50% 50% 12px 12px/34% 34% 12px 12px;overflow:hidden;border:1px solid rgba(242,213,146,.4);justify-self:center}.ev-arch svg{width:100%;height:100%}
+.ev-head .meta{font-size:1.02rem;margin-bottom:.4rem}
+.tt{display:flex;justify-content:space-between;gap:1rem;padding:.7rem 0;border-bottom:1px solid var(--line)}.tt:last-of-type{border-bottom:0}
+.tt b{display:block;font-weight:600}.tt small{color:var(--soft)}.price{font:400 1.2rem var(--serif);white-space:nowrap}
+.prose{max-width:42em;font-size:1.08rem;line-height:1.75}.prose p{margin-bottom:1.1rem}
+.article-img{aspect-ratio:16/8;border-radius:14px;overflow:hidden;margin:1.4rem 0}.article-img svg{width:100%;height:100%}
+
+/* calendar */
+.cal-h{display:flex;align-items:center;justify-content:space-between;margin-bottom:.8rem}.cal-h h2{margin:0;font-size:1.6rem}
+.cal{display:grid;grid-template-columns:repeat(7,1fr);gap:4px}
+.cal-w{font-size:.82rem;color:var(--soft);text-align:center;padding:.3rem 0}
+.cal-d{min-height:64px;background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:.3rem .4rem;text-align:left;font:inherit;color:var(--text);display:flex;flex-direction:column;gap:2px;overflow:hidden}
+.cal-d.off{background:transparent;border-color:transparent}
+.cal-d.today{border-color:var(--saffron);box-shadow:inset 0 0 0 1px var(--saffron)}
+.cal-d.has{cursor:pointer;background:var(--maroon);border-color:var(--maroon);color:#FFF3DE}.cal-d.has:hover{filter:brightness(1.15)}
+.cal-d.sel{outline:3px solid var(--saffron)}
+.cal-t{display:none;font-size:.72rem;line-height:1.2;color:var(--gold-soft)}@media(min-width:800px){.cal-d{min-height:92px}.cal-t{display:block}}
+
+/* tickets, forms */
+.steps{display:flex;gap:.4rem;margin-bottom:1.6rem;overflow-x:auto}
+.step{flex:1;min-width:88px;border-top:3px solid var(--line);padding-top:.4rem;font-size:.9rem;color:var(--soft)}.step.on{border-color:var(--saffron);color:var(--text);font-weight:600}.step.done{border-color:var(--maroon);color:var(--text)}
+.field{display:grid;gap:.3rem;margin-bottom:1rem}.field label{font-weight:500;font-size:.93rem}
+input,textarea,select{width:100%;padding:.68rem .85rem;border:1.5px solid var(--line);border-radius:10px;background:var(--surface);color:var(--text);font:inherit}
+input:focus,textarea:focus{outline:none;border-color:var(--saffron);box-shadow:0 0 0 3px rgba(229,138,43,.25)}
+[aria-invalid="true"]{border-color:var(--err)}.err{color:var(--err);font-size:.86rem;margin:0}
+.two{display:grid;gap:0 1rem}@media(min-width:640px){.two{grid-template-columns:1fr 1fr}}
+.qty{display:inline-flex;align-items:center;gap:.6rem}.qty button{width:36px;height:36px;border-radius:50%;border:1.5px solid var(--line);background:var(--surface);color:var(--text);font-size:1.2rem;cursor:pointer}.qty output{min-width:1.4rem;text-align:center;font-weight:600}
+.opt{display:flex;align-items:center;gap:.8rem;padding:.8rem 1rem;border:1.5px solid var(--line);border-radius:12px;margin-bottom:.6rem;cursor:pointer;background:var(--surface)}
+.opt input{width:auto}.opt.on{border-color:var(--saffron);background:var(--surface-2)}.opt .mono{width:36px;height:36px;border-radius:8px;font-size:.8rem}
+.sum{display:flex;justify-content:space-between;gap:1rem;padding:.35rem 0}.sum.tot{border-top:1px solid var(--line);margin-top:.5rem;padding-top:.8rem;font-weight:600;font-size:1.1rem}
+.amts{display:grid;grid-template-columns:repeat(2,1fr);gap:.6rem;margin-bottom:1rem}@media(min-width:560px){.amts{grid-template-columns:repeat(4,1fr)}}
+.amt{padding:.85rem .4rem;border:1.5px solid var(--line);border-radius:12px;background:var(--surface);color:var(--text);font:400 1.25rem var(--serif);cursor:pointer}.amt.on{border-color:var(--saffron);background:var(--surface-2);box-shadow:inset 0 0 0 1px var(--saffron)}
+.bar{height:10px;background:var(--surface-2);border-radius:99px;overflow:hidden;margin:.3rem 0 .9rem}.bar i{display:block;height:100%;background:linear-gradient(90deg,var(--maroon),var(--saffron))}
+.ticket{--sw:150px;display:grid;grid-template-columns:1fr var(--sw);background:linear-gradient(135deg,var(--maroon),var(--maroon-deep));color:#FFF3DE;border-radius:16px;position:relative;margin-bottom:1.2rem;overflow:hidden}
+.ticket::before,.ticket::after{content:"";position:absolute;right:calc(var(--sw) - 10px);width:20px;height:20px;border-radius:50%;background:var(--bg)}.ticket::before{top:-10px}.ticket::after{bottom:-10px}
+.ticket .main{padding:1.3rem 1.3rem 1.3rem 1.5rem}.ticket h3{font-size:1.5rem;margin-bottom:.6rem}.ticket .k{font-size:.8rem;color:var(--gold-soft);display:block}.ticket .v{display:block;margin-bottom:.5rem;font-weight:500}
+.ticket .stub{border-left:2px dashed rgba(242,213,146,.5);display:grid;place-items:center;gap:.4rem;padding:1rem .6rem;background:rgba(0,0,0,.14);text-align:center}
+.ticket .qr{width:106px;height:106px;background:#fff;border-radius:8px;padding:6px}.ticket .qr svg{width:100%;height:100%}.ticket .tid{font:.72rem/1.2 ui-monospace,Menlo,monospace;color:var(--gold-soft);word-break:break-all}
+@media(max-width:520px){.ticket{--sw:128px}.ticket .qr{width:90px;height:90px}}
+.ok{display:grid;place-items:center;width:56px;height:56px;border-radius:50%;background:#2F7D5B;color:#fff;margin-bottom:.8rem}
+.note{font-size:.88rem;color:var(--soft);background:var(--surface-2);border-radius:10px;padding:.7rem .9rem}
+
+/* footer */
+.ftr{background:var(--maroon-deep);color:#EBD9BE;padding:3rem 0 2rem;margin-top:0}
+.ftr-in{display:grid;gap:2rem}@media(min-width:860px){.ftr-in{grid-template-columns:1.4fr 1fr 1fr 1fr}}
+.ftr h4{color:var(--gold-soft);margin-bottom:.6rem}.ftr a{color:inherit;text-decoration:none;display:block;padding:.15rem 0}.ftr a:hover{color:#fff;text-decoration:underline}
+.ftr .brand{color:#FFF3DE}.ftr .brand-txt span{color:var(--gold-soft)}.ftr p{max-width:30em;margin:.8rem 0}
+.soc{display:flex;gap:.5rem}.soc a{display:grid;place-items:center;width:40px;height:40px;border:1px solid rgba(242,213,146,.4);border-radius:50%;padding:0}
+.copy{border-top:1px solid rgba(242,213,146,.2);margin-top:2rem;padding-top:1.2rem;font-size:.86rem;color:#CDB99C}
+
+/* overlays */
+.ov{position:fixed;inset:0;z-index:70;background:rgba(20,6,9,.72);display:flex;justify-content:center;align-items:flex-start;padding:calc(env(safe-area-inset-top,0px) + 4vh) 1rem 1rem}
+.ov-p{width:min(680px,100%);max-height:88vh;overflow:auto;background:var(--surface);border-radius:16px;padding:1rem;border:1px solid var(--line)}
+.ov input{font-size:1.1rem;padding:.85rem 1rem}
+.res{list-style:none;margin:.6rem 0 0;padding:0}.res a{display:block;padding:.6rem .5rem;border-radius:8px;text-decoration:none;color:var(--text)}.res a:hover{background:var(--surface-2)}
+.res small{color:var(--soft)}.res h4{margin:.9rem .5rem .2rem;color:var(--accent-text);font:600 .88rem var(--sans)}
+.lb{position:fixed;inset:0;z-index:80;background:rgba(12,3,6,.94);display:grid;place-items:center;padding:1rem}
+.lb-f{width:min(900px,100%)}.lb-img{aspect-ratio:4/3;max-height:74vh;width:100%;border-radius:8px;overflow:hidden;position:relative;background:#000;margin:0 auto}.lb-img svg{width:100%;height:100%}
+.lb-cap{color:#F0DAB9;text-align:center;margin-top:.7rem;font-size:.95rem}
+.lb .ib{color:#fff;position:absolute}.lb-x{top:calc(env(safe-area-inset-top,0px) + .6rem);right:.6rem}.lb-p{left:.4rem;top:50%}.lb-n{right:.4rem;top:50%}
+.lb .ib:hover{background:rgba(255,255,255,.14)}
+.toast{position:fixed;left:50%;bottom:calc(1.2rem + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--toast-bg);color:var(--toast-text);padding:.7rem 1.1rem;border-radius:10px;z-index:100;max-width:90vw;font-size:.93rem;box-shadow:0 8px 24px rgba(0,0,0,.3)}
+.empty{text-align:center;padding:3rem 1rem;color:var(--soft)}
+.val{display:grid;gap:1rem;grid-template-columns:repeat(auto-fit,minmax(min(100%,230px),1fr))}.val>div{border-top:3px solid var(--saffron);padding-top:.8rem}
+@media print{.hdr,.ftr,.demo{display:none}}
+
+/* ---------- admin panel ---------- */
+#admin{display:none}
+.is-admin #admin{display:block}
+.is-admin #hdr,.is-admin #ftr,.is-admin #app,.is-admin #demo,.is-admin #mnav,.is-admin #search{display:none!important}
+.ad{display:grid;min-height:100vh;background:var(--bg)}
+@media(min-width:980px){.ad{grid-template-columns:262px 1fr}}
+.ad-side{position:fixed;z-index:65;top:0;bottom:0;left:0;width:272px;max-width:86vw;background:linear-gradient(180deg,var(--maroon-deep),#2f0810);color:#EBD9BE;overflow:auto;padding:calc(env(safe-area-inset-top,0px) + 1rem) .8rem 1.5rem;transform:translateX(-102%);transition:transform .22s}
+.ad.open .ad-side{transform:none}
+.ad-scrim{position:fixed;inset:0;z-index:64;background:rgba(10,3,5,.55);display:none}.ad.open .ad-scrim{display:block}
+@media(min-width:980px){.ad-side{position:sticky;height:100vh;transform:none;width:auto;max-width:none}.ad-scrim{display:none!important}.ad-burger{display:none}}
+.ad-brand{display:flex;align-items:center;gap:.6rem;padding:.2rem .5rem 1rem;color:#FFF3DE;font:400 1.05rem/1.15 var(--serif)}.ad-brand small{display:block;font:400 .75rem var(--sans);color:var(--gold-soft)}
+.ad-side h4{font:600 .78rem var(--sans);color:var(--gold-soft);opacity:.85;margin:1.1rem .6rem .3rem}
+.ad-side a{display:flex;align-items:center;gap:.65rem;padding:.55rem .7rem;border-radius:9px;color:inherit;text-decoration:none;font-size:.96rem;border-left:3px solid transparent}
+.ad-side a:hover{background:rgba(255,243,222,.08)}
+.ad-side a[aria-current="page"]{background:rgba(242,213,146,.15);border-left-color:var(--saffron);color:#fff}
+.ad-side .cnt{margin-left:auto;background:var(--saffron);color:#2b1207;border-radius:99px;font-size:.75rem;font-weight:700;padding:0 .5rem}
+.ad-main{min-width:0}
+.ad-top{position:sticky;top:env(safe-area-inset-top,0px);z-index:40;display:flex;align-items:center;gap:.5rem;padding:.6rem 1rem;background:var(--header-bg);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border-bottom:1px solid var(--line);min-height:62px}
+.ad-top h1{font-size:1.3rem;margin:0;flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ad-topr{display:flex;align-items:center;gap:.5rem}
+.ad-user{display:none;line-height:1.15;font-size:.92rem;text-align:right}.ad-user small{display:block;color:var(--soft);font-size:.76rem}
+@media(min-width:700px){.ad-user{display:block}}
+.ad-body{padding:1.2rem 1rem 3rem;max-width:1180px}
+@media(min-width:700px){.ad-body{padding:1.6rem 1.6rem 4rem}}
+.ad-h{display:flex;align-items:flex-end;justify-content:space-between;gap:1rem;flex-wrap:wrap;margin-bottom:1.2rem}.ad-h h2{margin:0;font-size:1.5rem}.ad-h p{margin:.2rem 0 0;color:var(--soft)}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:1.1rem}
+.card h3{font-size:1.15rem;margin-bottom:.7rem}
+.kpis{display:grid;gap:.8rem;grid-template-columns:repeat(2,1fr);margin-bottom:1.2rem}@media(min-width:900px){.kpis{grid-template-columns:repeat(4,1fr)}}
+.kpi{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:1rem;border-top:3px solid var(--saffron)}.kpi b{display:block;font:400 1.9rem/1.1 var(--serif);color:var(--link)}.kpi span{font-size:.9rem;color:var(--soft)}
+.dg{display:grid;gap:1rem}@media(min-width:900px){.dg.two{grid-template-columns:1.4fr 1fr}}
+.qa{display:flex;flex-wrap:wrap;gap:.5rem}
+.toolbar{display:flex;gap:.6rem;flex-wrap:wrap;margin-bottom:1rem;align-items:center}.toolbar input,.toolbar select{width:auto;min-width:0;flex:1 1 160px;max-width:340px;padding:.55rem .8rem}
+.tbl-w{overflow-x:auto;background:var(--surface);border:1px solid var(--line);border-radius:12px}
+.tbl{width:100%;border-collapse:collapse;font-size:.95rem}.tbl th{text-align:left;font-weight:600;font-size:.84rem;color:var(--soft);padding:.7rem .8rem;border-bottom:1px solid var(--line);white-space:nowrap}
+.tbl td{padding:.65rem .8rem;border-bottom:1px solid var(--line);vertical-align:middle}.tbl tr:last-child td{border-bottom:0}
+.tbl td.act{white-space:nowrap;text-align:right}
+@media(max-width:760px){
+  .tbl thead{display:none}.tbl,.tbl tbody,.tbl tr,.tbl td{display:block;width:100%}
+  .tbl tr{padding:.7rem .8rem;border-bottom:1px solid var(--line)}.tbl tr:last-child{border-bottom:0}
+  .tbl td{border:0;padding:.18rem 0;display:flex;justify-content:space-between;gap:1rem;text-align:right}
+  .tbl td::before{content:attr(data-label);color:var(--soft);font-size:.84rem;text-align:left;flex:none}
+  .tbl td.act{justify-content:flex-end}.tbl td.act::before{display:none}
+}
+.badge{display:inline-block;padding:.1rem .6rem;border-radius:99px;font-size:.78rem;font-weight:600;background:var(--surface-2);color:var(--soft);white-space:nowrap}
+.badge.ok{background:#dcefe3;color:#1d5a3b}.badge.warn{background:#fbe9c9;color:#8a4b0a}.badge.bad{background:#f6d9d5;color:#8c2118}.badge.info{background:#e0e7f7;color:#2b3f7a}
+:root[data-theme="dark"] .badge.ok{background:#1d3a2a;color:#9fe0bb}:root[data-theme="dark"] .badge.warn{background:#4a3414;color:#f0c27a}:root[data-theme="dark"] .badge.bad{background:#4a1f1b;color:#ffb1a7}:root[data-theme="dark"] .badge.info{background:#1f2a4d;color:#b3c3f5}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]) .badge.ok{background:#1d3a2a;color:#9fe0bb}:root:not([data-theme="light"]) .badge.warn{background:#4a3414;color:#f0c27a}:root:not([data-theme="light"]) .badge.bad{background:#4a1f1b;color:#ffb1a7}:root:not([data-theme="light"]) .badge.info{background:#1f2a4d;color:#b3c3f5}}
+.ib.sm{width:34px;height:34px}.ib.danger:hover{color:var(--err)}
+.fgrid{display:grid;gap:0 1rem}@media(min-width:760px){.fgrid{grid-template-columns:1fr 1fr}.fgrid .span2{grid-column:1/-1}}
+.ed{display:grid;gap:1rem}@media(min-width:1000px){.ed.pv{grid-template-columns:1fr 300px;align-items:start}}
+.ed .field textarea{resize:vertical}
+.chk{display:flex;align-items:center;gap:.6rem;font-weight:400!important}.chk input{width:auto}
+.multi{display:flex;flex-wrap:wrap;gap:.4rem .9rem}.multi label{display:flex;gap:.4rem;align-items:center;font-weight:400}.multi input{width:auto}
+.rows{display:grid;gap:.5rem}.rows .row{display:grid;gap:.4rem;grid-template-columns:var(--cols) 40px;align-items:center}
+@media(max-width:700px){.rows .row{grid-template-columns:1fr 40px;padding:.6rem;border:1px solid var(--line);border-radius:10px}.rows .row input{grid-column:1}.rows .row .ib{grid-column:2;grid-row:1}}
+input[type=color]{padding:.15rem;height:42px;width:80px}
+.pvbox{position:sticky;top:calc(env(safe-area-inset-top,0px) + 76px)}.pvbox .cov{aspect-ratio:10/8;border-radius:50% 50% 10px 10px/38% 38% 10px 10px;overflow:hidden;margin-bottom:.8rem}.pvbox .cov svg{width:100%;height:100%}
+.bars .b{margin-bottom:.9rem}.bars .b div.t{display:flex;justify-content:space-between;gap:1rem;font-size:.92rem}.bars .bar{margin:.25rem 0 0}
+.chart{width:100%;height:auto}.chart text{font:11px var(--sans);fill:var(--soft)}
+.login{min-height:100vh;display:grid;place-items:center;padding:1.2rem;background:radial-gradient(120% 100% at 80% 10%,#8A2233 0%,var(--maroon) 45%,var(--maroon-deep) 100%)}
+.login .card{width:min(420px,100%);padding:1.6rem}.login h2{margin:.8rem 0 .3rem}
+.scan{border:2px dashed var(--line);border-radius:14px;padding:1.2rem;text-align:center;color:var(--soft);margin-top:1rem}
+.res-card{border-radius:12px;padding:1rem 1.1rem;margin-top:1rem;border:1px solid var(--line)}.res-card.ok{background:#e4f3ea;border-color:#9fd3b5;color:#1d3d2b}.res-card.warn{background:#fdf0d8;border-color:#e6c07d;color:#5e3a08}.res-card.bad{background:#fbe4e0;border-color:#eba59c;color:#6a1a12}
+.res-card h3{margin:0 0 .3rem}.res-card p{margin:.1rem 0}
+.modal{position:fixed;inset:0;z-index:90;background:rgba(10,3,5,.6);display:grid;place-items:center;padding:1rem}
+.modal .card{width:min(560px,100%);max-height:88vh;overflow:auto;padding:1.4rem}
+.dz{border:2px dashed var(--line);border-radius:14px;padding:1.4rem;text-align:center;color:var(--soft);cursor:pointer;background:var(--surface)}
+.thumbs{display:grid;gap:.4rem;grid-template-columns:repeat(auto-fill,minmax(84px,1fr));margin-top:1rem}.thumbs div{aspect-ratio:1;border-radius:6px;overflow:hidden;position:relative}.thumbs svg{width:100%;height:100%}
+.thumbs .v{position:absolute;right:4px;top:4px;background:rgba(0,0,0,.6);color:#fff;border-radius:99px;font-size:.66rem;padding:0 .4rem}
+.msg-b{white-space:pre-wrap;background:var(--surface-2);padding:1rem;border-radius:10px;margin:.8rem 0}
+.unread td:first-child{box-shadow:inset 3px 0 0 var(--saffron)}.unread{font-weight:600}
+.btn-danger{background:#B3261E;border-color:#B3261E;color:#fff}
+.img-up{border:2px dashed var(--line);border-radius:12px;padding:1.4rem;text-align:center;background:var(--surface);display:flex;flex-direction:column;align-items:center;gap:.6rem;position:relative;overflow:hidden}
+.img-up.has{border-style:solid;padding:0}
+.img-up img{width:100%;max-height:200px;object-fit:cover;border-radius:10px}
+.img-up-btn{cursor:pointer;display:inline-flex;align-items:center;gap:.4rem;padding:.5rem 1rem;border-radius:8px;background:var(--surface-2);border:1px solid var(--line);font-size:.88rem;color:var(--text);transition:background .15s}
+.img-up-btn:hover{background:var(--line)}
+.img-up.has .img-up-btn{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,.45);color:#fff;border-radius:10px;opacity:0;transition:opacity .2s}
+.img-up.has:hover .img-up-btn{opacity:1}
+.img-up-rm{display:inline-flex;align-items:center;gap:.3rem;margin-top:.2rem;padding:.3rem .7rem;border-radius:6px;border:1px solid var(--line);background:var(--surface);font-size:.82rem;color:var(--err);cursor:pointer}
+.img-up-rm:hover{background:#fbe4e0}
+
+</style>
+</head>
+<body>
+<div class="demo" id="demo"><span>Preview build. All names, dates, figures and images are placeholders.</span><button data-act="close-demo" aria-label="Dismiss notice">&times;</button></div>
+<header class="hdr" id="hdr"></header>
+<div class="mnav" id="mnav" hidden></div>
+<main id="app"></main>
+<footer class="ftr" id="ftr"></footer>
+<div id="admin"></div>
+<div class="ov" id="search" hidden role="dialog" aria-label="Search"><div class="ov-p">
+  <div style="display:flex;gap:.5rem;align-items:center"><input id="q" type="search" placeholder="Search events, stories, culture, gallery" autocomplete="off" aria-label="Search the site"><button class="ib" data-act="close-search" aria-label="Close search"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div>
+  <ul class="res" id="res"></ul></div></div>
+<div class="lb" id="lb" hidden role="dialog" aria-label="Photo viewer"></div>
+<div class="toast" id="toast" hidden role="status"></div>
+<script>
+(function(){'use strict';
+const $=(s,r=document)=>r.querySelector(s),$$=(s,r=document)=>[...r.querySelectorAll(s)];
+const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const TZ='Asia/Dhaka';
+const fmt=(iso,o)=>new Intl.DateTimeFormat('en-GB',Object.assign({timeZone:TZ},o)).format(new Date(iso));
+const dShort=i=>fmt(i,{day:'numeric',month:'short',year:'numeric'});
+const dDay=i=>fmt(i,{day:'numeric'}),dMon=i=>fmt(i,{month:'short'});
+const tTime=i=>fmt(i,{hour:'numeric',minute:'2-digit',hour12:true}).toUpperCase();
+const parts=i=>{const p=new Intl.DateTimeFormat('en-CA',{timeZone:TZ,year:'numeric',month:'2-digit',day:'2-digit'}).format(new Date(i)).split('-').map(Number);return{y:p[0],m:p[1],d:p[2]}};
+const money=n=>n?'\u09F3'+n.toLocaleString('en-US'):'Free';
+const T=(n)=>Number(n)||0;
+
+/* ---------- procedural art ---------- */
+function hash(s){let h=1779033703^s.length;for(let i=0;i<s.length;i++){h=Math.imul(h^s.charCodeAt(i),3432918353);h=h<<13|h>>>19}return h>>>0}
+function rng(seed){let a=hash(String(seed));return()=>{a|=0;a=a+0x6D2B79F5|0;let t=Math.imul(a^a>>>15,1|a);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296}}
+let uid=0;
+function mandala(R,c,sw){
+  const P=(r0,r1,w,n,off)=>{let o='';for(let i=0;i<n;i++)o+=`<path transform="rotate(${(off||0)+i*360/n})" d="M0 ${-r0}C${w} ${-(r0+(r1-r0)*.3)} ${w} ${-(r0+(r1-r0)*.72)} 0 ${-r1}C${-w} ${-(r0+(r1-r0)*.72)} ${-w} ${-(r0+(r1-r0)*.3)} 0 ${-r0}Z"/>`;return o};
+  const D=(r,n,rad,fill)=>{let o='';for(let i=0;i<n;i++){const a=i*2*Math.PI/n;o+=`<circle cx="${(Math.sin(a)*r).toFixed(1)}" cy="${(-Math.cos(a)*r).toFixed(1)}" r="${rad}" ${fill?`fill="${c}"`:''}/>`}return o};
+  return `<g fill="none" stroke="${c}" stroke-width="${sw}"><circle r="${R}"/><circle r="${R*.93}"/>${D(R*.965,72,1.5,1)}${D(R*.86,36,R*.042)}${P(R*.6,R*.83,R*.1,18)}${P(R*.62,R*.78,R*.05,18,10)}<circle r="${R*.58}"/>${P(R*.34,R*.58,R*.11,12,15)}<circle r="${R*.32}"/>${P(R*.14,R*.32,R*.09,8)}<circle r="${R*.09}"/>${D(R*.2,8,R*.02,1)}</g>`;
+}
+const mandSvg=(R,c,sw)=>`<svg viewBox="-${R+6} -${R+6} ${2*R+12} ${2*R+12}" aria-hidden="true">${mandala(R,c,sw)}</svg>`;
+function art(m,p,seed,w,h){
+  w=w||400;h=h||260;const id='g'+(++uid),R=rng(seed);
+  let s=`<svg viewBox="0 0 ${w} ${h}" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><defs><linearGradient id="${id}" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="${p[0]}"/><stop offset="1" stop-color="${p[1]}"/></linearGradient><radialGradient id="${id}v"><stop offset=".55" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".3"/></radialGradient><radialGradient id="${id}f"><stop offset="0" stop-color="#fff6c8"/><stop offset=".45" stop-color="#ffc85a"/><stop offset="1" stop-color="#ff9a2a" stop-opacity="0"/></radialGradient></defs><rect width="${w}" height="${h}" fill="url(#${id})"/>`;
+  if(m==='mandala')s+=`<g transform="translate(${w/2} ${h*.56})" opacity=".9">${mandala(h*.62,'#F6D48A',1.1)}</g>`;
+  if(m==='mandala-light')s+=`<g transform="translate(${w/2} ${h*.56})" opacity=".85">${mandala(h*.62,'#7a1426',1.3)}</g>`;
+  if(m==='diya'){
+    for(let i=0;i<16;i++)s+=`<circle cx="${R()*w}" cy="${R()*h*.7}" r="${4+R()*14}" fill="#ffd27a" opacity="${.07+R()*.16}"/>`;
+    [[.24,.76],[.5,.68],[.76,.76]].forEach(([x,y])=>{const cx=w*x,cy=h*y;s+=`<circle cx="${cx}" cy="${cy-16}" r="38" fill="url(#${id}f)" opacity=".9"/><path d="M${cx-26} ${cy-6}q26 32 52 0z" fill="#b5541c"/><path d="M${cx-26} ${cy-6}h52" stroke="#f6c46a" stroke-width="2.5"/><path d="M${cx} ${cy-9}c-9-11-8-22 0-33 8 11 9 22 0 33z" fill="#ffe08a"/>`});
+  }
+  if(m==='lotus'){
+    const cx=w/2,by=h*.88;
+    const pt=(a,len,wd,fill)=>`<path transform="rotate(${a} ${cx} ${by})" d="M${cx} ${by}C${cx-wd} ${by-len*.35} ${cx-wd*.8} ${by-len*.8} ${cx} ${by-len}C${cx+wd*.8} ${by-len*.8} ${cx+wd} ${by-len*.35} ${cx} ${by}Z" fill="${fill}" fill-opacity=".9" stroke="#e58aa6" stroke-opacity=".7" stroke-width="1.3"/>`;
+    s+=`<ellipse cx="${cx}" cy="${by+4}" rx="${w*.4}" ry="10" fill="none" stroke="#fff" stroke-opacity=".55"/><ellipse cx="${cx}" cy="${by+4}" rx="${w*.27}" ry="6" fill="none" stroke="#fff" stroke-opacity=".5"/>`;
+    [[-74,.5],[74,.5],[-48,.6],[48,.6],[-24,.68],[24,.68],[0,.74]].forEach(([a,l],i)=>s+=pt(a,h*l,h*.13,i<2?'#fff':i<4?'#fff6f8':'#ffeaf0'));
+  }
+  if(m==='splash'){
+    const cols=['#e63e8b','#f6c026','#2fb46b','#2d8fe0','#f2701d','#a23fd0'];
+    for(let i=0;i<15;i++)s+=`<circle cx="${R()*w}" cy="${R()*h}" r="${14+R()*48}" fill="${cols[i%6]}" opacity="${.32+R()*.4}"/>`;
+    for(let i=0;i<30;i++)s+=`<circle cx="${R()*w}" cy="${R()*h}" r="${2+R()*5}" fill="${cols[(i+2)%6]}" opacity=".8"/>`;
+  }
+  if(m==='temple'){
+    const gx=w/2,gy=h*.92;
+    s+=`<circle cx="${w*.72}" cy="${h*.28}" r="${h*.13}" fill="#fff3c4" opacity=".85"/><g fill="#2b0a10"><path d="M${gx-92} ${gy}v-58h184v58z"/><path d="M${gx-108} ${gy-58}Q${gx-62} ${gy-64} ${gx} ${gy-92}Q${gx+62} ${gy-64} ${gx+108} ${gy-58}z"/><path d="M${gx-66} ${gy-92}Q${gx-32} ${gy-96} ${gx} ${gy-122}Q${gx+32} ${gy-96} ${gx+66} ${gy-92}z"/><rect x="${gx-1.5}" y="${gy-142}" width="3" height="22"/></g>`;
+    [-48,0,48].forEach(x=>s+=`<path d="M${gx+x-11} ${gy}v-24a11 11 0 0 1 22 0v24z" fill="#f3b562" opacity=".92"/>`);
+  }
+  if(m==='sun'){
+    s+=`<g transform="translate(${w/2} ${h*.6})">`;
+    for(let i=0;i<28;i++)s+=`<path transform="rotate(${i*360/28})" d="M0 ${-h*.34}V${-h*.5}" stroke="#c0392b" stroke-width="3" stroke-linecap="round" opacity=".55"/>`;
+    s+=`<circle r="${h*.28}" fill="#c8322a"/><circle r="${h*.2}" fill="none" stroke="#fbe3b0" stroke-opacity=".6"/></g>`;
+    for(let x=0;x<w+26;x+=26)s+=`<circle cx="${x}" cy="${h}" r="15" fill="#7a1426" opacity=".85"/>`;
+  }
+  if(m==='moon'){
+    for(let i=0;i<34;i++)s+=`<circle cx="${R()*w}" cy="${R()*h*.75}" r="${.6+R()*1.6}" fill="#fff" opacity="${.4+R()*.5}"/>`;
+    s+=`<circle cx="${w*.66}" cy="${h*.36}" r="${h*.32}" fill="#fff6d8" opacity=".12"/><circle cx="${w*.66}" cy="${h*.36}" r="${h*.2}" fill="#fff6d8"/><circle cx="${w*.7}" cy="${h*.32}" r="${h*.05}" fill="#efe1b4" opacity=".7"/><path d="M0 ${h} L0 ${h*.82} Q${w*.25} ${h*.7} ${w*.5} ${h*.84} T${w} ${h*.8} V${h}z" fill="#070b22" opacity=".85"/>`;
+  }
+  return s+`<rect width="${w}" height="${h}" fill="url(#${id}v)"/></svg>`;
+}
+function photo(seed,p,w,h){
+  w=w||300;h=h||300;const R=rng(seed),id='p'+(++uid);
+  let s=`<svg viewBox="0 0 ${w} ${h}" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><defs><linearGradient id="${id}" x1="${R().toFixed(2)}" y1="0" x2="${R().toFixed(2)}" y2="1"><stop offset="0" stop-color="${p[0]}"/><stop offset="1" stop-color="${p[1]}"/></linearGradient></defs><rect width="${w}" height="${h}" fill="url(#${id})"/>`;
+  for(let i=0;i<16;i++)s+=`<circle cx="${(R()*w).toFixed(0)}" cy="${(R()*h*.75).toFixed(0)}" r="${(5+R()*22).toFixed(0)}" fill="#ffe3a0" opacity="${(.08+R()*.26).toFixed(2)}"/>`;
+  const n=3+Math.floor(R()*4);
+  for(let i=0;i<n;i++){const x=(i+.5)*w/n+(R()-.5)*30,sc=(h/300)*(.8+R()*.7);s+=`<g transform="translate(${x.toFixed(0)} ${h}) scale(${sc.toFixed(2)})" fill="#1a0509" opacity=".78"><circle cy="-86" r="13"/><path d="M-22 0v-48a22 22 0 0 1 44 0v48z"/></g>`}
+  return s+'</svg>';
+}
+const nsuMark=()=>`<img class="nsu" src="/uploads/nsu-logo.png" alt="North South University logo" width="62" height="62">`;
+const mark=s=>`<img class="sanatani-logo" src="/uploads/sanatani-logo.png" alt="Sanatani Community logo" width="${s}" height="${s}" style="border-radius:50%">`;
+
+/* ---------- icons ---------- */
+const ico={search:'<circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/>',menu:'<path d="M4 7h16M4 12h16M4 17h16"/>',close:'<path d="M6 6l12 12M18 6L6 18"/>',
+moon:'<path d="M20 14.5A8 8 0 0 1 9.5 4 8 8 0 1 0 20 14.5z"/>',pin:'<path d="M12 21s7-6.2 7-11.5A7 7 0 0 0 5 9.5C5 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/>',
+clock:'<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>',cal:'<rect x="3.5" y="5" width="17" height="15" rx="2"/><path d="M8 3v4M16 3v4M3.5 10h17"/>',
+ticket:'<path d="M3 9a2 2 0 0 0 0 6v3h18v-3a2 2 0 0 0 0-6V6H3z"/><path d="M14 6v12" stroke-dasharray="2 2"/>',heart:'<path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.5A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/>',
+play:'<path d="M9 6l10 6-10 6z" fill="currentColor"/>',chev:'<path d="m9 6 6 6-6 6"/>',left:'<path d="m15 6-6 6 6 6"/>',
+fb:'<path d="M14 8h2V5h-2.5A3.5 3.5 0 0 0 10 8.5V11H8v3h2v6h3v-6h2.2l.5-3H13V8.6c0-.4.2-.6 1-.6z" fill="currentColor" stroke="none"/>',
+ig:'<rect x="4" y="4" width="16" height="16" rx="4.5"/><circle cx="12" cy="12" r="3.6"/><circle cx="17" cy="7" r=".8" fill="currentColor"/>',
+yt:'<rect x="3" y="6" width="18" height="12" rx="3.5"/><path d="m10.5 9.5 4 2.5-4 2.5z" fill="currentColor"/>',check:'<path d="m5 12.5 4.5 4.5L19 7.5"/>'};
+const I=(n,s)=>`<svg class="ico" width="${s||20}" height="${s||20}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${ico[n]}</svg>`;
+
+/* ---------- QR (visual placeholder) ---------- */
+function qr(seed){
+  const R=rng(seed),n=25,g=[];let d='';
+  for(let y=0;y<n;y++){g[y]=[];for(let x=0;x<n;x++)g[y][x]=R()>.52}
+  const fin=(ox,oy)=>{for(let y=-1;y<8;y++)for(let x=-1;x<8;x++){const X=ox+x,Y=oy+y;if(X<0||Y<0||X>=n||Y>=n)continue;const ring=x>=0&&x<7&&y>=0&&y<7&&(x===0||x===6||y===0||y===6||(x>=2&&x<=4&&y>=2&&y<=4));g[Y][X]=ring}};
+  fin(0,0);fin(n-7,0);fin(0,n-7);
+  for(let y=0;y<n;y++)for(let x=0;x<n;x++)if(g[y][x])d+=`M${x} ${y}h1v1h-1z`;
+  return `<svg viewBox="0 0 ${n} ${n}" shape-rendering="crispEdges" role="img" aria-label="QR code placeholder"><path d="${d}" fill="#1a0509"/></svg>`;
+}
+
+
+/* ---------- data ---------- */
+const PAL={maroon:['#8a1c30','#3d0a14'],saffron:['#f2a541','#a8481a'],night:['#2b1a63','#0b0b28'],yellow:['#fff1a8','#f0b94a'],cream:['#fdf0d5','#f5b866'],holi:['#fff3e6','#ffc7dc'],moon:['#1f3a7a','#0a1234'],ivory:['#fbeed2','#e9c98a']};
+const V0='NSU Campus, Bashundhara, Dhaka';
+const S_EV=[
+{id:'durga-puja-2026',title:'Durga Puja 2026',cat:'Festival',start:'2026-10-16T09:00:00+06:00',end:'2026-10-20T21:00:00+06:00',venue:V0,motif:'mandala',pal:PAL.maroon,cd:1,
+ blurb:'Five days of puja, aarti, bhog and student-led cultural evenings.',
+ desc:['Durga Puja is the largest gathering of our year. For five days the campus fills with the sound of the dhak, the smell of dhoop and the colour of alpana at every doorway.','Come for the morning puja, stay for the evening aarti and the cultural night, where students from every department perform. Everyone is welcome, whatever their background.'],
+ sched:[['Fri 16 Oct','Bodhon and inauguration, 9:00 AM'],['Sat 17 Oct','Saptami puja and cultural evening'],['Sun 18 Oct','Ashtami pushpanjali, aarti and dhunuchi naach'],['Mon 19 Oct','Navami puja and student cultural night'],['Tue 20 Oct','Dashami, farewell aarti and bisarjan']],
+ tickets:[['General',0,'Puja entry, free registration'],['Student',150,'Cultural night and bhog, NSU ID required'],['Couple',400,'Two entries with bhog'],['VIP',1200,'Reserved seating and bhog']],
+ partners:['shonar-tori','bengal-bloom','kolpo'],posts:['durga-puja-2026-schedule','volunteer-call'],notices:['puja-registration-open','volunteer-orientation']},
+{id:'alpana-dhak-workshop-2026',title:'Alpana and Dhak Workshop Week',cat:'Workshop',start:'2026-09-14T16:00:00+06:00',end:'2026-09-26T18:00:00+06:00',venue:V0+' (Art Room)',motif:'mandala-light',pal:PAL.cream,cd:1,
+ blurb:'Two weeks of hands-on alpana painting and dhak rhythm practice.',
+ desc:['Learn to draw alpana with rice paste and a soft brush, and to keep time on the dhak, in small evening batches led by senior members.','No experience needed. Bring a cloth to sit on. The best designs will decorate the Durga Puja entrance.'],
+ sched:[['Week 1','Alpana basics: lines, lotus and footprints'],['Week 2','Dhak rhythms for beginners'],['Sat 26 Sep','Showcase and tea']],
+ tickets:[['Participant',0,'Free registration, limited seats']],partners:['campusprint'],posts:['alpana-workshop-week'],notices:['workshop-seats']},
+{id:'kali-puja-diwali-2026',title:'Deepotsav: Kali Puja and Diwali Night',cat:'Festival',start:'2026-11-08T18:00:00+06:00',end:'2026-11-08T22:00:00+06:00',venue:V0+' (Central Field)',motif:'diya',pal:PAL.night,cd:1,
+ blurb:'An evening of a thousand clay lamps, music and prasad.',
+ desc:['On the darkest night of the season we light the field with rows of diyas, hold the Kali Puja and end with music under the lamps.','Bring a friend, and a shawl for the evening breeze.'],
+ sched:[['6:00 PM','Diya lighting'],['7:00 PM','Kali Puja and aarti'],['8:30 PM','Music and prasad']],
+ tickets:[['General',100,'Entry with a diya kit'],['Student',50,'NSU ID required']],partners:['pujo-bazaar'],posts:[],notices:[]},
+{id:'saraswati-puja-2027',title:'Saraswati Puja 2027',cat:'Festival',start:'2027-02-11T08:00:00+06:00',end:'2027-02-11T14:00:00+06:00',venue:V0+' (Auditorium)',motif:'lotus',pal:PAL.yellow,cd:1,
+ blurb:'Offer your books and pens at the feet of the goddess of knowledge.',
+ desc:['Students of every department gather in yellow to begin the day with puja, pushpanjali and a shared khichuri lunch.','Register your name in advance so the priest can read it during the anjali.'],
+ sched:[['8:00 AM','Puja begins'],['11:00 AM','Pushpanjali'],['1:00 PM','Khichuri bhog']],
+ tickets:[['Registration',0,'Free, add your name for the anjali']],partners:['bengal-bloom'],posts:[],notices:[]},
+{id:'pohela-boishakh-2027',title:'Pohela Boishakh Mela',cat:'Cultural',start:'2027-04-14T10:00:00+06:00',end:'2027-04-14T18:00:00+06:00',venue:V0+' (Central Field)',motif:'sun',pal:PAL.ivory,cd:1,
+ blurb:'A day-long fair to welcome the Bengali New Year.',
+ desc:['Stalls, folk songs, panta ilish and games on the lawn. Wear red and white.','Community members can book a stall for handmade crafts and food.'],
+ sched:[['10:00 AM','Fair opens'],['1:00 PM','Folk music'],['5:00 PM','Closing song']],
+ tickets:[['Entry',0,'Free registration']],partners:['shonar-tori'],posts:[],notices:[]},
+{id:'janmashtami-2026',title:'Janmashtami 2026',cat:'Festival',start:'2026-09-04T18:00:00+06:00',end:'2026-09-04T22:00:00+06:00',venue:V0+' (Auditorium)',motif:'moon',pal:PAL.moon,cd:0,
+ blurb:'Kirtan, storytelling and midnight prasad for Krishna\u2019s birthday.',desc:['An evening of kirtan and stories from the life of Krishna, ending with prasad shared among everyone who came.'],sched:[],tickets:null,partners:['shonar-tori'],posts:['janmashtami-2026-recap'],notices:[]},
+{id:'holi-2026',title:'Basanta Utsav and Holi 2026',cat:'Festival',start:'2026-03-04T11:00:00+06:00',end:'2026-03-04T15:00:00+06:00',venue:V0+' (Central Field)',motif:'splash',pal:PAL.holi,cd:0,
+ blurb:'Spring songs, dance and a field full of colour.',desc:['The campus field turned into a canvas of colour, with spring songs from the Basanta Utsav programme.'],sched:[],tickets:null,partners:['pujo-bazaar'],posts:[],notices:[]},
+{id:'saraswati-puja-2026',title:'Saraswati Puja 2026',cat:'Festival',start:'2026-01-23T08:00:00+06:00',end:'2026-01-23T14:00:00+06:00',venue:V0+' (Auditorium)',motif:'lotus',pal:PAL.yellow,cd:0,
+ blurb:'A morning of puja, pushpanjali and khichuri.',desc:['Hundreds of students offered their books and pens and shared a khichuri lunch.'],sched:[],tickets:null,partners:['bengal-bloom','campusprint'],posts:[],notices:[]},
+{id:'durga-puja-2025',title:'Durga Puja 2025',cat:'Festival',start:'2025-09-28T09:00:00+06:00',end:'2025-10-02T21:00:00+06:00',venue:V0,motif:'mandala',pal:PAL.saffron,cd:0,
+ blurb:'Five days of puja, drums and cultural nights.',desc:['Our biggest Puja yet: five days of ritual, food and student performances, closing with a tearful farewell to the goddess.'],sched:[],tickets:null,partners:['shonar-tori','bengal-bloom','kolpo'],posts:[],notices:[]}
+];
+const S_ALB=[{id:'durga-puja-2025',ev:'durga-puja-2025',n:12,vid:[3,9]},{id:'saraswati-puja-2026',ev:'saraswati-puja-2026',n:9,vid:[4]},{id:'holi-2026',ev:'holi-2026',n:10,vid:[2,7]},{id:'janmashtami-2026',ev:'janmashtami-2026',n:8,vid:[]}];
+const S_P=[{id:'shonar-tori',name:'Shonar Tori Caf\u00e9',kind:'Food and beverage',mono:'ST',c:'#B5541C'},{id:'bengal-bloom',name:'Bengal Bloom',kind:'Florals and decor',mono:'BB',c:'#2F7D5B'},{id:'kolpo',name:'Kolpo Studio',kind:'Photography and film',mono:'K',c:'#2b1a63'},{id:'pujo-bazaar',name:'Pujo Bazaar',kind:'Festival goods',mono:'PB',c:'#8A1C30'},{id:'campusprint',name:'CampusPrint',kind:'Printing and signage',mono:'CP',c:'#3B5A9D'}];
+const S_PS=[
+{p:'shonar-tori',ev:'durga-puja-2025',t:'Ran the community kitchen and served bhog on all five days.'},
+{p:'bengal-bloom',ev:'durga-puja-2025',t:'Decorated the mandap with marigold and jasmine garlands every morning.'},
+{p:'kolpo',ev:'durga-puja-2025',t:'Photographed and filmed the festival, and lent us the lights for the cultural night.'},
+{p:'campusprint',ev:'saraswati-puja-2026',t:'Printed the programme booklets and the welcome banners.'},
+{p:'pujo-bazaar',ev:'holi-2026',t:'Supplied the herbal colours and set up a small festival goods stall.'}];
+const CATS=['Community News','Event Updates','Culture','Announcements','Activities','Stories'];
+const slug=s=>s.toLowerCase().replace(/[^a-z]+/g,'-').replace(/^-|-$/g,'');
+const S_POSTS=[
+{id:'durga-puja-2026-schedule',kind:'post',cat:'Event Updates',date:'2026-09-12',title:'Durga Puja 2026: the five-day schedule is out',ev:'durga-puja-2026',motif:'mandala',pal:PAL.maroon,
+ x:'From Bodhon on Friday 16 October to the farewell aarti on Tuesday 20 October, here is what each day holds.',
+ b:['Puja begins on Friday 16 October with Bodhon and the inauguration at 9:00 AM. Each evening after aarti, students from every department take the stage for music, dance and short plays.','Registration is open for all five days. Student and Couple passes include the cultural night and bhog, while General entry to the puja stays free.','Full timings are on the event page. Any change will be posted as a notice.']},
+{id:'alpana-workshop-week',kind:'post',cat:'Activities',date:'2026-09-14',title:'Alpana and dhak workshop week has begun',ev:'alpana-dhak-workshop-2026',motif:'mandala-light',pal:PAL.cream,
+ x:'The first batch is already drawing lotus patterns in rice paste. A second evening batch has been added.',
+ b:['Our senior members are teaching alpana in the Art Room every evening. Beginners start with straight lines and work up to the lotus.','Next week the same room turns into a dhak practice studio. The best designs will greet visitors at the Puja entrance.']},
+{id:'volunteer-call',kind:'post',cat:'Announcements',date:'2026-09-08',title:'We need volunteers for Durga Puja',ev:'durga-puja-2026',motif:'diya',pal:PAL.night,
+ x:'Decor, bhog service, registration desk and stage crew: pick a team and join the orientation.',
+ b:['Puja is run by students, and this year we are building five teams: decor, bhog service, registration, stage and guest care.','Volunteers get a team shirt and a seat at the community dinner. Come to the orientation and tell us where you would like to help.']},
+{id:'janmashtami-2026-recap',kind:'post',cat:'Community News',date:'2026-09-06',title:'Janmashtami 2026: an evening of kirtan',ev:'janmashtami-2026',motif:'moon',pal:PAL.moon,
+ x:'Kirtan, stories and prasad brought the auditorium together on Friday night.',
+ b:['More than a hundred students filled the auditorium for kirtan and storytelling. The youngest storyteller was a first-year student who had never spoken on stage before.','Photos and videos are now in the gallery.']},
+{id:'first-puja-away-from-home',kind:'post',cat:'Stories',date:'2026-08-30',title:'My first Puja away from home',motif:'lotus',pal:PAL.yellow,
+ x:'A first-year student on finding a family at the campus mandap. (Sample story.)',
+ b:['I came to Dhaka not knowing anyone. On the first evening of Puja I stood at the back of the mandap, and a senior handed me a tray of flowers and said, \u201cYou are late, come help.\u201d','By the last day I knew the dhak players by name. That is what this community gave me: a place where I did not have to explain myself.']},
+{id:'durga-puja-meaning',kind:'culture',sec:'festivals',cat:'Culture',date:'2026-08-20',title:'Durga Puja: the story behind the festival',motif:'mandala',pal:PAL.maroon,
+ x:'A story of good over arrogance, and a homecoming for Bengal.',
+ b:['Durga Puja celebrates the goddess Durga\u2019s victory over the buffalo demon Mahishasura, a story of goodness overcoming arrogance and violence.','In Bengal it is also a homecoming. Families gather, neighbourhoods build pandals and the city stays awake for drums, food and lights. The festival runs over five main days, from Shashthi to Dashami, and ends with the immersion of the idol.']},
+{id:'saraswati-books',kind:'culture',sec:'festivals',cat:'Culture',date:'2026-01-20',title:'Saraswati Puja: why books rest at the goddess\u2019s feet',motif:'lotus',pal:PAL.yellow,
+ x:'The one day students are happy not to study.',
+ b:['On Saraswati Puja, students traditionally place their books, notebooks and pens before the goddess of knowledge and do not study that day.','The pause is a form of respect. Learning is offered up, then taken back with a blessing. Yellow clothes, marigolds and khichuri are part of the day.']},
+{id:'kali-puja-diwali',kind:'culture',sec:'festivals',cat:'Culture',date:'2026-07-15',title:'Kali Puja and Diwali: lighting the darkest night',motif:'diya',pal:PAL.night,
+ x:'Why the new-moon night glows with clay lamps.',
+ b:['In Bengal the new-moon night of the autumn season is marked with Kali Puja, while much of India lights lamps for Diwali on the same night.','Homes, rooftops and campuses glow with rows of clay diyas. The lamps are a promise that even the darkest night gives way to light.']},
+{id:'alpana-art',kind:'culture',sec:'traditions',cat:'Culture',date:'2026-07-02',title:'Alpana: the floor art of Bengal',motif:'mandala-light',pal:PAL.cream,
+ x:'Rice paste, a bare hand and a pattern older than anyone remembers.',
+ b:['Alpana is a folk art of Bengal in which patterns are drawn on floors and courtyards with rice paste, traditionally by women, for festivals and rituals.','Lotus flowers, sheaves of paddy, fish and the footprints of the goddess are common motifs. The paste washes away, so every festival begins with a fresh drawing.']},
+{id:'dhunuchi-aarti',kind:'culture',sec:'traditions',cat:'Culture',date:'2026-06-18',title:'Dhunuchi naach: the dance of the incense burner',motif:'diya',pal:PAL.saffron,
+ x:'Smoke, drums and a whole mandap moving together.',
+ b:['During the evening aarti of Durga Puja, dancers move to the beat of the dhak while balancing clay burners of smoking incense in their hands.','It looks like performance but it is worship. Anyone can join, and the rhythm carries even a first-time dancer along.']},
+{id:'terracotta-temples',kind:'culture',sec:'heritage',cat:'Culture',date:'2026-06-01',title:'The terracotta temples of Bengal',motif:'temple',pal:PAL.cream,
+ x:'Stories in baked clay, still standing in Dinajpur.',
+ b:['Across Bengal, brick temples were decorated with terracotta panels showing scenes from the Ramayana, the Mahabharata and village life.','The Kantajew Temple near Dinajpur, built in the early 18th century, is among the finest examples in Bangladesh.']},
+{id:'dhakeshwari-temple',kind:'culture',sec:'heritage',cat:'Culture',date:'2026-05-12',title:'Dhakeshwari Temple: a landmark of Old Dhaka',motif:'temple',pal:PAL.ivory,
+ x:'The national temple of Bangladesh and a centre of Puja in the capital.',
+ b:['Dhakeshwari National Temple in Old Dhaka is the national Hindu temple of Bangladesh and a centre of Durga Puja celebrations in the capital.','Each year devotees and visitors gather there, and many of our members grew up going to its aarti with their families.']}
+];
+const S_NT=[
+{id:'puja-registration-open',cat:'Registration',date:'2026-09-15',title:'Durga Puja 2026 registration is open',short:'Reserve your pass before 10 October. Student passes need a valid NSU ID.',ev:'durga-puja-2026',b:['Registration for all five days of Durga Puja is now open. General entry is free, but you still need to register so we can plan the bhog.','Student, Couple and VIP passes include the cultural night. Student passes need a valid NSU ID at the gate.']},
+{id:'volunteer-orientation',cat:'Volunteers',date:'2026-09-18',title:'Volunteer orientation this Friday',short:'Friday 25 September, 4:00 PM, Auditorium foyer.',ev:'durga-puja-2026',b:['Meet the five Puja teams and pick where you would like to help. Orientation takes about an hour and tea is provided.']},
+{id:'workshop-seats',cat:'Event update',date:'2026-09-17',title:'Alpana workshop: a new evening batch is added',short:'Twenty more seats from 5:00 PM daily.',ev:'alpana-dhak-workshop-2026',b:['Because of demand we have added a second batch at 5:00 PM. Registered participants can switch batches from the event page.']}
+];
+const S_TL=[['2020','The community is founded','A handful of students begin meeting for Saraswati Puja.'],['2021','First on-campus Puja','The first Durga Puja mandap goes up on campus.'],['2023','Cultural nights begin','Student performances become part of every major festival.'],['2025','Our biggest Durga Puja','Five days, five partners and the first ticketed cultural night.'],['2026','This website','Events, memories and stories in one place.']];
+const S_STATS=[['24','Events hosted'],['3,200+','Attendees across events'],['15','Partner organisations'],['6','Years together']];
+const PAY=[['bkash','bKash','#E2136E'],['nagad','Nagad','#F6821F'],['rocket','Rocket','#8C3494'],['card','Card','#2A2321']];
+
+
+/* ---------- store: live data + API persistence ----------
+   Every collection is a plain array that is mutated in place, so views can hold references.
+   Data is fetched from the Express/PostgreSQL backend via REST API. */
+const API_BASE=(location.hostname==='localhost'||location.hostname==='127.0.0.1')?'http://localhost:3001':'';
+let AUTH_TOKEN=localStorage.getItem('sanatani_token')||null;
+
+const EV=[],ALB=[],P=[],PS=[],POSTS=[],NT=[],TL=[],STATS=[],ORDERS=[],DONS=[],MSGS=[],USERS=[];
+const SETTINGS={};
+const DEFAULT_SETTINGS={siteName:'Sanatani Community',university:'North South University',tagline:'Celebrating Our Culture. Connecting Our Community.',email:'community@sanatani-nsu.example',address:'Bashundhara R/A, Dhaka 1229',facebook:'',instagram:'',youtube:'',featured:'auto',demoBar:false};
+const COLLECTIONS={events:EV,albums:ALB,partners:P,partnerships:PS,posts:POSTS,notices:NT,timeline:TL,stats:STATS,orders:ORDERS,donations:DONS,messages:MSGS,users:USERS};
+const TIX_CAP={General:300,Student:200,Couple:80,VIP:40};
+
+/* ---------- API helpers ---------- */
+async function apiFetch(path,opts={}){
+  const headers=Object.assign({'Content-Type':'application/json'},opts.headers||{});
+  if(AUTH_TOKEN)headers['Authorization']='Bearer '+AUTH_TOKEN;
+  const res=await fetch(API_BASE+'/api/'+path,Object.assign({},opts,{headers}));
+  if(!res.ok){const e=await res.json().catch(()=>({error:'Request failed'}));throw new Error(e.error||res.statusText)}
+  return res.json();
+}
+function apiUpload(file){
+  return new Promise((resolve,reject)=>{
+    const fd=new FormData();fd.append('file',file);
+    const xhr=new XMLHttpRequest();
+    xhr.open('POST',API_BASE+'/api/upload');
+    if(AUTH_TOKEN)xhr.setRequestHeader('Authorization','Bearer '+AUTH_TOKEN);
+    xhr.onload=()=>{if(xhr.status>=200&&xhr.status<300)resolve(JSON.parse(xhr.responseText));else reject(new Error('Upload failed'))};
+    xhr.onerror=()=>reject(new Error('Network error'));
+    xhr.send(fd);
+  });
+}
+
+/* ---------- fill in-memory arrays from API data ---------- */
+function fillDB(src){
+  const map={events:EV,albums:ALB,partners:P,partnerships:PS,posts:POSTS,notices:NT,timeline:TL,stats:STATS,orders:ORDERS,donations:DONS,messages:MSGS,users:USERS};
+  for(const k in map)map[k].splice(0,map[k].length,...(src[k]||[]));
+  Object.keys(SETTINGS).forEach(k=>delete SETTINGS[k]);Object.assign(SETTINGS,DEFAULT_SETTINGS,src.settings||{});
+}
+
+/* ---------- load from API ---------- */
+async function loadDB(){
+  try{
+    const endpoint=AUTH_TOKEN?'admin/all':'public/all';
+    const data=await apiFetch(endpoint);
+    fillDB(data);
+  }catch(err){
+    console.warn('API unavailable, using seed data:',err.message);
+    fillDB(seedAll());
+  }
+}
+
+/* saveDB is now a no-op; each mutation calls the API directly */
+function saveDB(){}
+function resetDB(){}
+
+/* ---------- published-only views ---------- */
+const isPub=x=>x.pub!==false;
+const EVp=()=>EV.filter(isPub),POSTp=()=>POSTS.filter(isPub),NTp=()=>NT.filter(isPub);
+const ALBp=()=>ALB.filter(a=>isPub(a)&&EV.some(e=>e.id===a.ev&&isPub(e)));
+const look=f=>new Proxy({},{get:(_,id)=>typeof id==='string'?f().find(v=>v.id===id):undefined});
+const EVM=look(EVp),PM=look(()=>P),POM=look(POSTp),NTM=look(NTp);
+const byId=(arr,id)=>arr.find(x=>x.id===id);
+const newId=(prefix,arr)=>{let n=arr.length+1,id;do{id=prefix+(n++)}while(arr.some(x=>x.id===id));return id};
+
+/* ---------- public writes (no auth needed) ---------- */
+async function recordOrder(ev,info,items,method){
+  const total=items.reduce((s,[n,q])=>{const t=ev.tickets.find(x=>x[0]===n);return s+(t?t[1]*q:0)},0);
+  const data=await apiFetch('orders',{method:'POST',body:JSON.stringify({eventId:ev.id,name:info.name,email:info.email,phone:info.phone,items,total,method:total?method:'Free'})});
+  ORDERS.unshift(data);return data;
+}
+async function recordDonation(d){
+  const data=await apiFetch('donations',{method:'POST',body:JSON.stringify(d)});
+  DONS.unshift(data);return data;
+}
+async function recordMessage(m){
+  const data=await apiFetch('messages',{method:'POST',body:JSON.stringify(m)});
+  MSGS.unshift(data);return data;
+}
+
+/* ---------- auth ---------- */
+async function apiLogin(email,password){
+  const data=await apiFetch('auth/login',{method:'POST',body:JSON.stringify({email,password})});
+  AUTH_TOKEN=data.token;localStorage.setItem('sanatani_token',data.token);
+  return data.user;
+}
+function apiLogout(){AUTH_TOKEN=null;localStorage.removeItem('sanatani_token')}
+function isLoggedIn(){return!!AUTH_TOKEN}
+
+/* ---------- admin CRUD helpers ---------- */
+async function adminCreate(type,d){const data=await apiFetch(type,{method:'POST',body:JSON.stringify(d)});COLLECTIONS[type==='albums'?'albums':type==='partners'?'partners':type].unshift(data);return data}
+async function adminUpdate(type,id,d){const data=await apiFetch(type+'/'+id,{method:'PUT',body:JSON.stringify(d)});const arr=COLLECTIONS[type==='albums'?'albums':type==='partners'?'partners':type];const i=arr.findIndex(x=>x.id===id);if(i>-1)arr[i]=data;return data}
+async function adminDelete(type,id){await apiFetch(type+'/'+id,{method:'DELETE'});const arr=COLLECTIONS[type==='albums'?'albums':type==='partners'?'partners':type];const i=arr.findIndex(x=>x.id===id);if(i>-1)arr.splice(i,1)}
+async function adminTogglePub(type,id){const data=await apiFetch(type+'/'+id+'/pub',{method:'PATCH'});const arr=COLLECTIONS[type==='albums'?'albums':type==='partners'?'partners':type];const item=arr.find(x=>x.id===id);if(item)item.pub=data.pub;return data}
+
+/* ---------- seed data (fallback when API is offline) ---------- */
+const NAMES=['Anik Das','Mitali Roy','Sourav Paul','Ritu Sarkar','Debjit Ghosh','Tania Saha','Arnab Dey','Sneha Biswas','Pritom Nath','Ishita Mondal','Joy Chowdhury','Moumita Kar','Rahul Sen','Ananya Dutta','Suman Halder','Puja Roy','Tuhin Das','Nabanita Sen','Abir Basak','Trisha Paul'];
+const mailOf=n=>n.toLowerCase().replace(/[^a-z]+/g,'.')+'@mail.example';
+function seedOrders(){const R=rng('orders'),now=Date.now(),out=[];let n=0;const plan=[['durga-puja-2026',18],['alpana-dhak-workshop-2026',8],['kali-puja-diwali-2026',5]];plan.forEach(([id,count])=>{const ev=S_EV.find(e=>e.id===id);for(let i=0;i<count;i++){const name=NAMES[Math.floor(R()*NAMES.length)],t=ev.tickets[Math.floor(R()*ev.tickets.length)],qty=1+Math.floor(R()*3),status=R()<.08?'cancelled':R()<.1?'pending':'paid';const at=new Date(now-Math.floor(R()*20*864e5)).toISOString(),total=t[1]*qty;const tickets=[];if(status==='paid')for(let k=0;k<qty;k++)tickets.push({id:'NSUSC-2026-'+String(Math.floor(R()*900)+100).padStart(6,'0'),type:t[0],used:id==='alpana-dhak-workshop-2026'&&R()<.6});out.push({id:'ORD-'+(1001+n++),ev:id,name,email:mailOf(name),phone:'017'+String(Math.floor(R()*90000000)+10000000),items:[[t[0],qty]],total,method:total?['bKash','Nagad','Card','Rocket'][Math.floor(R()*4)]:'Free',status:total||status!=='paid'?status:'paid',at,tickets})}});return out.sort((a,b)=>b.at.localeCompare(a.at))}
+function seedDonations(){const R=rng('don'),now=Date.now();return Array.from({length:12},(_,i)=>{const name=NAMES[Math.floor(R()*NAMES.length)];return{id:'DON-2026-'+String(100+i).padStart(6,'0'),name:R()<.2?'Anonymous':name,email:mailOf(name),amt:[200,500,500,1000,1000,2500,5000][Math.floor(R()*7)],method:['bKash','Nagad','Card'][Math.floor(R()*3)],at:new Date(now-Math.floor(R()*40*864e5)).toISOString()}}).sort((a,b)=>b.at.localeCompare(a.at))}
+function seedAll(){const now=Date.now(),clone=x=>JSON.parse(JSON.stringify(x));const palKey=o=>{o.palKey=Object.keys(PAL).find(k=>PAL[k]===o.pal)||'maroon';return o};const events=S_EV.map(e=>{const o=palKey(clone(e));o.pal=PAL[o.palKey];if(o.tickets)o.tickets=o.tickets.map(t=>[t[0],t[1],t[2],TIX_CAP[t[0]]||100]);return o});const posts=S_POSTS.map(p=>{const o=palKey(clone(p));o.pal=PAL[o.palKey];return o});return{events,albums:clone(S_ALB),partners:clone(S_P),partnerships:S_PS.map((p,i)=>Object.assign({id:'ps'+(i+1)},p)),posts,notices:clone(S_NT),timeline:clone(S_TL),stats:clone(S_STATS),orders:seedOrders(),donations:seedDonations(),messages:[{id:'m1',name:'Ishita Mondal',email:mailOf('Ishita Mondal'),subject:'Volunteering for decor',body:'Hello, I would like to join the decor team for Durga Puja. I have helped with alpana before.',at:new Date(now-2*864e5).toISOString(),read:false},{id:'m2',name:'Kolpo Studio',email:'hello@kolpo.example',subject:'Photography partnership',body:'We would love to cover the cultural night again this year. Can we set up a call?',at:new Date(now-5*864e5).toISOString(),read:false},{id:'m3',name:'Tuhin Das',email:mailOf('Tuhin Das'),subject:'Ticket transfer',body:'Can I transfer my Student ticket to a friend? Thanks.',at:new Date(now-9*864e5).toISOString(),read:true}],users:[{id:'u1',name:'Community Admin',email:'admin@sanatani-nsu.example',role:'Admin',active:true},{id:'u2',name:'Content Editor',email:'editor@sanatani-nsu.example',role:'Editor',active:true},{id:'u3',name:'Gate Volunteer',email:'gate@sanatani-nsu.example',role:'Volunteer',active:true},{id:'u4',name:'Former Editor',email:'old@sanatani-nsu.example',role:'Editor',active:false}],settings:Object.assign({},DEFAULT_SETTINGS)}}
+
+/* ---------- initial load ---------- */
+loadDB();
+
+/* ---------- helpers ---------- */
+const NTs=()=>NTp().sort((a,b)=>b.date.localeCompare(a.date));
+const status=e=>{const n=Date.now();return n<+new Date(e.start)?'upcoming':n<=+new Date(e.end)?'ongoing':'past'};
+const byStatus=s=>EVp().filter(e=>status(e)===s).sort((a,b)=>s==='past'?+new Date(b.start)-+new Date(a.start):+new Date(a.start)-+new Date(b.start));
+function dRange(e){const a=parts(e.start),b=parts(e.end);if(a.y===b.y&&a.m===b.m&&a.d===b.d)return dShort(e.start);if(a.y===b.y&&a.m===b.m)return `${a.d}\u2013${b.d} ${fmt(e.start,{month:'short'})} ${a.y}`;return `${dShort(e.start)} \u2013 ${dShort(e.end)}`}
+const tRange=e=>{const a=parts(e.start),b=parts(e.end);return a.d===b.d&&a.m===b.m?`${tTime(e.start)} \u2013 ${tTime(e.end)}`:`Starts ${tTime(e.start)}`};
+const cover=(e,w,h)=>e.coverImage?`<img src="${e.coverImage}" alt="${esc(e.title)}" style="width:100%;height:100%;object-fit:cover">`:art(e.motif,e.pal,e.id,w,h);
+const pillTxt={upcoming:'Upcoming',ongoing:'Happening now',past:'Completed'};
+const cd=(e,cls)=>`<div class="cd ${cls||''}" data-cd="${e.start}" data-end="${e.end}" role="timer" aria-label="Countdown to ${esc(e.title)}"><div><b data-u="d">00</b><span>Days</span></div><div><b data-u="h">00</b><span>Hours</span></div><div><b data-u="m">00</b><span>Minutes</span></div><div><b data-u="s">00</b><span>Seconds</span></div></div>`;
+const canBook=e=>e.tickets&&status(e)!=='past';
+function evCard(e){const st=status(e);return `<article class="evc"><a class="evc-img" href="#/event/${e.id}" aria-label="${esc(e.title)}">${cover(e)}<span class="pill ${st}">${pillTxt[st]}</span></a><div class="evc-b"><h3><a href="#/event/${e.id}">${e.title}</a></h3><p class="meta">${I('cal',16)}${dRange(e)}</p><p class="meta">${I('pin',16)}${e.venue}</p><div class="btns"><a class="btn btn-sm" href="#/event/${e.id}">View Event</a>${canBook(e)?`<a class="btn btn-sm btn-ghost" href="#/tickets/${e.id}">Get Ticket</a>`:''}</div></div></article>`}
+const postCard=p=>`<a class="alb" href="#/${p.kind==='culture'?'article':'post'}/${p.id}"><div class="story-img">${art(p.motif,p.pal,p.id,480,270)}</div><span class="chip">${p.cat}</span><h3 style="margin-top:.4rem">${p.title}</h3><p class="soft" style="margin:0">${p.x}</p></a>`;
+const noticeRow=(n,i)=>`<a class="nt ${i===0?'nt-first':''}" href="#/notice/${n.id}"><div class="nt-d"><b>${dDay(n.date)}</b><span>${dMon(n.date)}</span></div><div><span class="chip">${n.cat}</span><h3>${n.title}</h3><p>${n.short}</p></div></a>`;
+const head=(title,lede,crumbs)=>`<section class="phead"><div class="ph-mand">${mandSvg(290,'#F2D592',1)}</div><div class="wrap"><p class="crumb"><a href="#/">Home</a>${(crumbs||[]).map(c=>` / ${c[1]?`<a href="#/${c[1]}">${c[0]}</a>`:c[0]}`).join('')}</p><h1>${title}</h1>${lede?`<p class="lede">${lede}</p>`:''}</div></section>`;
+const tabs=(items,cur)=>`<div class="tabs" role="tablist">${items.map(([l,h,n])=>`<a class="tab" href="#/${h}" ${cur===h?'aria-current="true"':''}>${l}${n!=null?`<small>${n}</small>`:''}</a>`).join('')}</div>`;
+const empty=t=>`<div class="empty"><h3>${t}</h3><p>Check back soon or browse the other tabs.</p></div>`;
+const notFound=()=>({t:'Page not found',h:head('Page not found','That page does not exist. Try the menu, or go back to the homepage.')+`<section class="sec"><div class="wrap"><a class="btn" href="#/">Back to home</a></div></section>`});
+
+/* ---------- views ---------- */
+const V={};
+V.home=()=>{
+  const up=byStatus('upcoming'),og=byStatus('ongoing'),fs=SETTINGS.featured&&SETTINGS.featured!=='auto'?EVM[SETTINGS.featured]:null,nxt=fs||up[0]||og[0]||byStatus('past')[0];
+  const list=[...og,...up].slice(0,3),ps=POSTp().filter(p=>p.kind==='post').sort((a,b)=>b.date.localeCompare(a.date));
+  const mos=ALBp().slice(0,4).map((al,i)=>{const e=EVM[al.ev];return `<a class="tile ${['w2 h2','','','w2'][i]}" href="#/gallery/${al.id}" aria-label="${esc(e.title)} album">${photo(al.id+i,e.pal,600,600)}</a>`}).join('');
+  const st=nxt?status(nxt):'';
+  return {t:'',h:`
+<section class="hero"><div class="hero-mand">${mandSvg(290,'#F2D592',1.1)}</div><div class="wrap hero-in">
+ <div><p class="bn">\u09A8\u09B0\u09CD\u09A5 \u09B8\u09BE\u0989\u09A5 \u0987\u0989\u09A8\u09BF\u09AD\u09BE\u09B0\u09CD\u09B8\u09BF\u099F\u09BF\u09B0 \u09B8\u09A8\u09BE\u09A4\u09A8\u09C0 \u0995\u09AE\u09BF\u0989\u09A8\u09BF\u099F\u09BF</p>
+ <h1>${esc(SETTINGS.tagline)}</h1>
+ <p class="lede">The home of the Sanatani Community at North South University: festivals, stories, memories and the people who make them.</p>
+ <div class="btns"><a class="btn btn-gold btn-lg" href="#/events">Explore Events</a><a class="btn btn-light btn-lg" href="#/gallery">View Gallery</a></div></div>
+ ${nxt?`<aside class="feat" aria-label="Featured event"><div class="feat-img">${cover(nxt,500,400)}</div><div class="feat-b"><p class="feat-k">${st==='ongoing'?'Happening now':st==='past'?'Latest event':'Next event'}</p><h2>${nxt.title}</h2><p class="meta">${I('cal',16)}${dRange(nxt)}</p><p class="meta">${I('pin',16)}${nxt.venue}</p><div class="btns"><a class="btn btn-gold btn-sm" href="#/event/${nxt.id}">View Event</a>${canBook(nxt)?`<a class="btn btn-light btn-sm" href="#/tickets/${nxt.id}">Get Ticket</a>`:''}</div></div></aside>`:''}
+</div></section>
+${NTp().length?`<section class="sec"><div class="wrap"><div class="sh"><h2>Notices</h2><a class="lnk" href="#/notices">All notices</a></div><div class="notices">${NTs().slice(0,3).map(noticeRow).join('')}</div></div></section>`:''}
+<section class="sec alt"><div class="wrap"><div class="sh"><h2>Upcoming events</h2><a class="lnk" href="#/events">See all events</a></div>${list.length?`<div class="rail">${list.map(evCard).join('')}</div>`:empty('No upcoming events yet')}</div></section>
+${up[0]&&up[0].cd?`<section class="band"><div class="wrap band-in"><div><h2>${up[0].title} begins in</h2><p>${dShort(up[0].start)}, ${tTime(up[0].start)}, ${up[0].venue}</p></div>${cd(up[0])}</div></section>`:''}
+${ps.length?`<section class="sec"><div class="wrap"><div class="sh"><h2>Latest stories</h2><a class="lnk" href="#/blog">News and blog</a></div><div class="stories"><a class="story-big" href="#/post/${ps[0].id}"><div class="story-img">${art(ps[0].motif,ps[0].pal,ps[0].id,800,450)}</div><span class="chip">${ps[0].cat}</span><h3 style="margin-top:.4rem">${ps[0].title}</h3><p class="soft">${ps[0].x}</p></a><div class="story-list">${ps.slice(1,4).map(p=>`<a class="story-s" href="#/post/${p.id}"><div class="story-img">${art(p.motif,p.pal,p.id,200,200)}</div><div><span class="date">${dShort(p.date)}</span><h3>${p.title}</h3></div></a>`).join('')}</div></div></div></section>`:''}
+${mos?`<section class="sec alt"><div class="wrap"><div class="sh"><h2>Memories</h2><a class="lnk" href="#/gallery">View Gallery</a></div><div class="mosaic">${mos}</div></div></section>`:''}
+<section class="sec"><div class="wrap center"><h2>Thank you to our partners</h2><p class="soft" style="max-width:36em;margin:0 auto 1.6rem">These brands and organisations put their hands to the work beside us, from the kitchen to the stage lights.</p><div class="logos">${P.map(p=>`<span class="logo"><span class="mono" style="background:${p.c}">${p.mono}</span>${p.name}</span>`).join('')}</div><p style="margin-top:1.8rem"><a class="btn btn-ghost" href="#/partners">Explore Partners</a></p></div></section>
+<section class="sec alt"><div class="wrap"><div class="sh"><h2>Our journey so far</h2><a class="lnk" href="#/achievements">Achievements</a></div><div class="ledger">${STATS.map(([n,l])=>`<div><b>${n}</b><span>${l}</span></div>`).join('')}</div></div></section>
+<section class="sec"><div class="wrap"><div class="cta"><div class="ph-mand">${mandSvg(290,'#F2D592',1)}</div><div><h2>Support our community</h2><p>Your gift pays for festival materials, scholarships for students in need and the small things that make a Puja feel like home.</p></div><div class="chips"><a class="btn btn-gold" href="#/donate">Donate now</a><a class="btn btn-light" href="#/donate">See where funds go</a></div></div></div></section>`};
+};
+V.about=()=>({t:'About',h:head('About us','A student community that keeps festivals, stories and friendships alive on campus.',[['About']])+`
+<section class="sec"><div class="wrap cols"><div class="prose"><h2>Who we are</h2><p>We are students, alumni and friends of North South University who gather around Sanatani culture. We plan the festivals, cook the bhog, paint the alpana and keep the drums going.</p><h2 style="margin-top:2rem">Community purpose</h2><p>To give every student, whether they grew up with these festivals or are meeting them for the first time, a welcoming place to celebrate, learn and belong.</p><h2 style="margin-top:2rem">This platform</h2><p>This site is our shared home: where events are announced, tickets are booked, memories are kept and partners are thanked.</p></div><aside class="box sticky"><h3>Vision</h3><p>A campus where culture is a source of friendship, and every festival leaves people closer than it found them.</p><div class="ev-arch" style="margin:1rem auto 0">${art('mandala',PAL.maroon,'about',400,460)}</div></aside></div></section>
+<section class="sec alt"><div class="wrap"><h2>Our values</h2><div class="val"><div><h3>Belonging</h3><p>Everyone is welcome at our door, whatever their background.</p></div><div><h3>Respect</h3><p>For traditions, for each other and for the campus we share.</p></div><div><h3>Learning</h3><p>We explain why we do what we do, and we ask questions too.</p></div><div><h3>Service</h3><p>We give back through scholarships, food and volunteer hours.</p></div></div></div></section>`});
+V.events=tab=>{
+  tab=tab||'upcoming';const groups={upcoming:byStatus('upcoming'),ongoing:byStatus('ongoing'),past:byStatus('past')};
+  const tb=tabs([['Upcoming','events/upcoming',groups.upcoming.length],['Ongoing','events/ongoing',groups.ongoing.length],['Past','events/past',groups.past.length],['Calendar','events/calendar']],'events/'+tab);
+  let body;
+  if(tab==='calendar')body=calView();else body=groups[tab]&&groups[tab].length?`<div class="grid">${groups[tab].map(evCard).join('')}</div>`:empty('No '+tab+' events right now');
+  return {t:'Events',h:head('Events','Festivals, workshops and cultural nights, all in one calendar.',[['Events']])+`<section class="sec"><div class="wrap">${tb}${body}</div></section>`};
+};
+let CAL=null;
+function calView(){
+  if(!CAL){const n=byStatus('upcoming')[0]||byStatus('ongoing')[0]||EVp()[0],p=parts(n.start);CAL={y:p.y,m:p.m-1,sel:null}}
+  const {y,m}=CAL,mp={};
+  EVp().forEach(e=>{const a=parts(e.start),b=parts(e.end);for(let t=Date.UTC(a.y,a.m-1,a.d),end=Date.UTC(b.y,b.m-1,b.d);t<=end;t+=864e5){const k=new Date(t).toISOString().slice(0,10);(mp[k]=mp[k]||[]).push(e)}});
+  const lead=new Date(Date.UTC(y,m,1)).getUTCDay(),dim=new Date(Date.UTC(y,m+1,0)).getUTCDate(),tp=parts(new Date().toISOString());
+  let cells='';for(let i=0;i<lead;i++)cells+='<div class="cal-d off"></div>';
+  for(let d=1;d<=dim;d++){const k=`${y}-${String(m+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`,evs=mp[k]||[],isT=tp.y===y&&tp.m===m+1&&tp.d===d;
+    cells+=evs.length?`<button class="cal-d has ${isT?'today':''} ${CAL.sel===k?'sel':''}" data-act="cal-day" data-k="${k}" aria-label="${d} ${MN[m]}: ${esc(evs.map(e=>e.title).join(', '))}"><b>${d}</b><span class="cal-t">${esc(evs[0].title)}</span></button>`:`<div class="cal-d ${isT?'today':''}"><span>${d}</span></div>`}
+  const monthEvs=CAL.sel?mp[CAL.sel]:EVp().filter(e=>Object.keys(mp).some(k=>k.startsWith(`${y}-${String(m+1).padStart(2,'0')}`)&&mp[k].includes(e)));
+  const uniq=[...new Set(monthEvs)].sort((a,b)=>+new Date(a.start)-+new Date(b.start));
+  return `<div class="cal-h"><button class="ib" data-act="cal-prev" aria-label="Previous month">${I('left',22)}</button><h2>${MN[m]} ${y}</h2><button class="ib" data-act="cal-next" aria-label="Next month">${I('chev',22)}</button></div><div class="cal">${['Sun','Mon','Tue','Wed','Thu','Fri','Sat'].map(d=>`<div class="cal-w">${d}</div>`).join('')}${cells}</div><div style="margin-top:1.6rem"><h3>${CAL.sel?'On '+dShort(CAL.sel+'T12:00:00+06:00'):'This month'}</h3>${uniq.length?`<div class="grid">${uniq.map(evCard).join('')}</div>`:'<p class="soft">Nothing scheduled. Tap a highlighted date to open its event.</p>'}</div>`;
+}
+const MN=['January','February','March','April','May','June','July','August','September','October','November','December'];
+V.event=id=>{
+  const e=EVM[id];if(!e)return notFound();const st=status(e),alb=ALBp().find(a=>a.ev===e.id),ns=NTp().filter(n=>n.ev===e.id),ps=POSTp().filter(p=>p.ev===e.id||(e.posts||[]).includes(p.id));
+  const tk=e.tickets&&st!=='past'?`<div class="box"><h3>Tickets</h3>${e.tickets.map(([n,pr,d])=>`<div class="tt"><div><b>${n}</b><small>${d}</small></div><span class="price">${money(pr)}</span></div>`).join('')}<a class="btn btn-block" style="margin-top:1rem" href="#/tickets/${e.id}">Get Ticket</a></div>`:`<div class="box"><h3>${st==='past'?'This event has ended':'Entry'}</h3><p class="soft" style="margin:0">${alb?'See the photos and videos in the gallery.':'No tickets are needed for this event.'}</p>${alb?`<a class="btn btn-block" style="margin-top:1rem" href="#/gallery/${alb.id}">Open gallery</a>`:''}</div>`;
+  return {t:e.title,h:`<section class="phead"><div class="ph-mand">${mandSvg(290,'#F2D592',1)}</div><div class="wrap ev-head"><div><p class="crumb"><a href="#/">Home</a> / <a href="#/events">Events</a> / ${e.title}</p><span class="pill pill-i ${st}" style="margin-bottom:.8rem">${pillTxt[st]}</span><h1>${e.title}</h1><p class="lede" style="margin-bottom:1rem">${e.blurb}</p><p class="meta">${I('cal',18)}${dRange(e)}</p><p class="meta">${I('clock',18)}${tRange(e)}</p><p class="meta">${I('pin',18)}${e.venue}</p>${st==='upcoming'&&e.cd?`<div style="margin-top:1.2rem;max-width:420px">${cd(e,'cd-sm')}</div>`:''}<div class="btns" style="margin-top:1.3rem">${canBook(e)?`<a class="btn btn-gold" href="#/tickets/${e.id}">Get Ticket</a>`:''}<button class="btn btn-light" data-act="toast" data-m="Calendar files will be available once the site is connected to a backend.">Add to calendar</button></div></div><div class="ev-arch">${cover(e,500,575)}</div></div></section>
+<section class="sec"><div class="wrap cols"><div>
+ <div class="prose"><h2>About this event</h2>${e.desc.map(p=>`<p>${p}</p>`).join('')}</div>
+ ${e.sched.length?`<h2 style="margin-top:2rem">Schedule</h2><ul class="sched">${e.sched.map(([a,b])=>`<li><b>${a}</b><span>${b}</span></li>`).join('')}</ul>`:''}
+ ${alb?`<h2 style="margin-top:2.4rem">Event gallery</h2><div class="walls">${[0,1,2,3].map(i=>`<a class="tile" href="#/gallery/${alb.id}" aria-label="Open gallery">${photo(alb.id+i,e.pal,300,300)}</a>`).join('')}</div>`:''}
+ ${ns.length?`<h2 style="margin-top:2.4rem">Related notices</h2><div class="notices" style="grid-template-columns:1fr">${ns.map((n,i)=>noticeRow(n,1)).join('')}</div>`:''}
+ ${ps.length?`<h2 style="margin-top:2.4rem">Related news</h2><div class="grid">${ps.map(postCard).join('')}</div>`:''}
+</div><aside class="sticky" style="display:grid;gap:1rem">${tk}${(e.partners||[]).length?`<div class="box"><h3>Partners</h3>${e.partners.map(id=>{const p=PM[id];return `<div class="logo" style="padding:.4rem 0"><span class="mono" style="background:${p.c}">${p.mono}</span><span>${p.name}<br><small class="soft" style="font:400 .85rem var(--sans)">${p.kind}</small></span></div>`}).join('')}</div>`:''}</aside></div></section>`};
+};
+/* tickets */
+let TK={slug:null};
+const tkReset=s=>{TK={slug:s,step:1,qty:{},info:{name:'',email:'',phone:'',sid:''},pay:'bkash',ids:[],busy:false,err:{}}};
+const tkTotal=e=>e.tickets.reduce((s,[n,p])=>s+p*(TK.qty[n]||0),0),tkCount=e=>e.tickets.reduce((s,[n])=>s+(TK.qty[n]||0),0);
+V.tickets=id=>{
+  if(!id){const l=EVp().filter(canBook).sort((a,b)=>+new Date(a.start)-+new Date(b.start));return {t:'Get Tickets',h:head('Get Tickets','Choose an event to book or register.',[['Get Tickets']])+`<section class="sec"><div class="wrap">${l.length?`<div class="grid">${l.map(evCard).join('')}</div>`:empty('No events open for booking')}</div></section>`}}
+  const e=EVM[id];if(!e||!canBook(e))return notFound();
+  if(TK.slug!==id)tkReset(id);
+  const paid=tkTotal(e)>0,labels=paid?['Tickets','Details','Payment','Ticket']:['Tickets','Details','Ticket'],cur=TK.step===4?labels.length-1:TK.step-1;
+  const stepper=`<div class="steps">${labels.map((l,i)=>`<div class="step ${i===cur?'on':i<cur?'done':''}">${i+1}. ${l}</div>`).join('')}</div>`;
+  const summary=`<aside class="box sticky"><h3>${e.title}</h3><p class="meta soft">${I('cal',16)}${dRange(e)}</p><p class="meta soft">${I('pin',16)}${e.venue}</p><div style="margin-top:1rem">${e.tickets.filter(([n])=>TK.qty[n]).map(([n,p])=>`<div class="sum"><span>${TK.qty[n]} \u00D7 ${n}</span><span>${money(p*TK.qty[n])}</span></div>`).join('')||'<p class="soft">No tickets selected yet.</p>'}<div class="sum tot"><span>Total</span><span>${money(tkTotal(e))}</span></div></div></aside>`;
+  const er=k=>TK.err[k]?`<p class="err" role="alert">${TK.err[k]}</p>`:'';
+  let main='';
+  if(TK.step===1)main=`<h2>Choose your tickets</h2>${e.tickets.map(([n,p,d])=>`<div class="tt"><div><b>${n}</b><small>${d}</small><div class="price" style="margin-top:.2rem">${money(p)}</div></div><div class="qty"><button data-act="qty" data-t="${n}" data-d="-1" aria-label="Remove one ${n} ticket">\u2212</button><output>${TK.qty[n]||0}</output><button data-act="qty" data-t="${n}" data-d="1" aria-label="Add one ${n} ticket">+</button></div></div>`).join('')}${er('qty')}<div class="btns" style="margin-top:1.4rem"><button class="btn btn-lg" data-act="tk-next">Continue</button></div>`;
+  if(TK.step===2)main=`<h2>Who is coming?</h2><div class="two"><div class="field"><label for="f-name">Full name</label><input id="f-name" data-f="name" value="${esc(TK.info.name)}" autocomplete="name" ${TK.err.name?'aria-invalid="true"':''}>${er('name')}</div><div class="field"><label for="f-phone">Mobile number</label><input id="f-phone" data-f="phone" value="${esc(TK.info.phone)}" inputmode="tel" autocomplete="tel" placeholder="01XXXXXXXXX" ${TK.err.phone?'aria-invalid="true"':''}>${er('phone')}</div></div><div class="field"><label for="f-email">Email for your ticket</label><input id="f-email" data-f="email" type="email" value="${esc(TK.info.email)}" autocomplete="email" ${TK.err.email?'aria-invalid="true"':''}>${er('email')}</div>${TK.qty.Student?`<div class="field"><label for="f-sid">NSU student ID</label><input id="f-sid" data-f="sid" value="${esc(TK.info.sid)}" inputmode="numeric" ${TK.err.sid?'aria-invalid="true"':''}>${er('sid')}<small class="soft">Needed for Student tickets. It will be checked at the gate.</small></div>`:''}<div class="btns" style="margin-top:1rem"><button class="btn btn-ghost" data-act="tk-back">Back</button><button class="btn btn-lg" data-act="tk-next">${paid?'Continue to payment':'Confirm registration'}</button></div>`;
+  if(TK.step===3)main=`<h2>Payment</h2><p class="soft">Choose how you would like to pay ${money(tkTotal(e))}.</p>${PAY.map(([k,n,c])=>`<label class="opt ${TK.pay===k?'on':''}"><input type="radio" name="pay" value="${k}" data-act="pay" ${TK.pay===k?'checked':''}><span class="mono" style="background:${c}">${n.slice(0,2)}</span><span>${n}</span></label>`).join('')}<p class="note">Demo only. No payment is taken here. The real gateway will confirm each payment on the server before a ticket is issued.</p><div class="btns" style="margin-top:1rem"><button class="btn btn-ghost" data-act="tk-back">Back</button><button class="btn btn-lg" data-act="tk-pay" ${TK.busy?'disabled':''}>${TK.busy?'Processing':'Pay '+money(tkTotal(e))}</button></div>`;
+  if(TK.step===4)main=`<div class="ok">${I('check',28)}</div><h2>${paid?'Payment received. Your tickets are ready':'You are registered'}</h2><p class="soft">Show the QR code at the entrance. Each code works once, so keep it private.</p>${TK.ids.map(([n,tid])=>`<div class="ticket"><div class="main"><span class="k">Sanatani Community, NSU</span><h3>${e.title}</h3><span class="k">Ticket</span><span class="v">${n}</span><span class="k">Name</span><span class="v">${esc(TK.info.name)}</span><span class="k">Date and venue</span><span class="v">${dRange(e)}, ${e.venue}</span></div><div class="stub"><div class="qr">${qr(tid)}</div><span class="tid">${tid}</span></div></div>`).join('')}<div class="btns"><button class="btn" data-act="toast" data-m="Ticket download will work once the backend is connected.">Save ticket</button><button class="btn btn-ghost" data-act="toast" data-m="Calendar files will be available once the site is connected to a backend.">Add to calendar</button><a class="btn btn-ghost" href="#/event/${e.id}">Back to event</a></div>`;
+  return {t:'Get Tickets: '+e.title,h:head('Get Ticket',e.title,[['Events','events'],[e.title,'event/'+e.id],['Tickets']])+`<section class="sec"><div class="wrap">${stepper}<div class="cols">${'<div>'+main+'</div>'}${summary}</div></div></section>`};
+};
+/* gallery */
+let LB=null;
+V.gallery=aid=>{
+  if(aid){const a=ALBp().find(x=>x.id===aid);if(!a)return notFound();const e=EVM[a.ev];
+    return {t:e.title+' gallery',h:head(e.title,`${dRange(e)}. ${e.blurb}`,[['Gallery','gallery'],[e.title]])+`<section class="sec"><div class="wrap"><div class="walls" style="grid-template-columns:repeat(auto-fill,minmax(min(100%,220px),1fr))">${Array.from({length:a.n},(_,i)=>`<button class="tile" data-act="lb" data-a="${a.id}" data-i="${i}" aria-label="Open photo ${i+1}">${photo(a.id+i,e.pal,300,300)}${a.vid.includes(i)?`<span class="play"><i>${I('play',20)}</i></span>`:''}</button>`).join('')}</div><p class="soft" style="margin-top:1.2rem">${a.n} items, including ${a.vid.length} video${a.vid.length===1?'':'s'}. <a href="#/event/${e.id}">Event page</a></p></div></section>`}}
+  const years=[...new Set(ALBp().map(a=>parts(EVM[a.ev].start).y))].sort().reverse(),fy=GY;
+  const list=ALBp().filter(a=>fy==='all'||String(parts(EVM[a.ev].start).y)===fy).sort((a,b)=>+new Date(EVM[b.ev].start)-+new Date(EVM[a.ev].start));
+  return {t:'Gallery',h:head('Gallery','A long-term archive of our festivals, organised by year and event.',[['Gallery']])+`<section class="sec"><div class="wrap"><div class="tabs">${['all',...years].map(y=>`<button class="tab" data-act="gy" data-y="${y}" ${fy==String(y)?'aria-current="true"':''}>${y==='all'?'All years':y}</button>`).join('')}</div><div class="albums">${list.map(a=>{const e=EVM[a.ev];return `<a class="alb" href="#/gallery/${a.id}"><div class="story-img">${photo(a.id+'c',e.pal,480,360)}</div><h3>${e.title}</h3><p class="soft" style="margin:0">${dShort(e.start)}, ${a.n} items</p></a>`}).join('')}</div></div></section>`};
+};
+let GY='all';
+/* blog + culture */
+V.blog=c=>{
+  const cat=CATS.find(x=>slug(x)===c);const list=POSTp().filter(p=>p.kind==='post'||p.cat==='Culture').filter(p=>!cat||p.cat===cat).sort((a,b)=>b.date.localeCompare(a.date));
+  return {t:'News and blog',h:head('News and blog','Community news, event updates, stories and writing on culture.',[['News and blog']])+`<section class="sec"><div class="wrap">${tabs([['All','blog'],...CATS.map(x=>[x,'blog/'+slug(x)])],c?'blog/'+c:'blog')}${list.length?`<div class="albums">${list.map(postCard).join('')}</div>`:empty('No posts in this category yet')}</div></section>`};
+};
+V.culture=sec=>{
+  const S=[['Festivals','festivals','The meaning behind the days we celebrate.'],['Traditions','traditions','Art, music and rituals passed from hand to hand.'],['Heritage','heritage','Temples, places and stories of Bengal.']];
+  const cur=S.find(s=>s[1]===sec)||S[0],list=POSTp().filter(p=>p.kind==='culture'&&p.sec===cur[1]);
+  return {t:'Culture',h:head('Culture and heritage',cur[2],[['Culture']])+`<section class="sec"><div class="wrap">${tabs(S.map(s=>[s[0],'culture/'+s[1]]),'culture/'+cur[1])}<div class="albums">${list.map(postCard).join('')}</div></div></section>`};
+};
+V.post=(id,kind)=>{
+  const p=POM[id];if(!p)return notFound();const rel=POSTp().filter(x=>x.id!==p.id&&(x.cat===p.cat||x.kind===p.kind)).slice(0,3),ev=p.ev&&EVM[p.ev];
+  const cr=p.kind==='culture'?[['Culture','culture/'+p.sec],[p.title]]:[['News and blog','blog'],[p.title]];
+  return {t:p.title,h:head(p.title,`${dShort(p.date)}, ${p.cat}`,cr)+`<section class="sec"><div class="wrap"><article class="prose" style="margin-inline:auto"><div class="article-img" style="margin-top:0">${art(p.motif,p.pal,p.id,900,450)}</div><p style="font-size:1.2rem;color:var(--soft)">${p.x}</p>${p.b.map(t=>`<p>${t}</p>`).join('')}${ev?`<p><a class="btn btn-ghost" href="#/event/${ev.id}">About ${ev.title}</a></p>`:''}</article></div></section><section class="sec alt"><div class="wrap"><h2>Keep reading</h2><div class="albums">${rel.map(postCard).join('')}</div></div></section>`};
+};
+V.partners=()=>({t:'Partners',h:head('Partners','The brands and organisations that stood beside us at our festivals.',[['Partners']])+`<section class="sec"><div class="wrap center"><div class="logos">${P.map(p=>`<span class="logo"><span class="mono" style="background:${p.c}">${p.mono}</span><span style="text-align:left">${p.name}<br><small class="soft" style="font:400 .82rem var(--sans)">${p.kind}</small></span></span>`).join('')}</div></div></section><section class="sec alt"><div class="wrap"><h2>Partnership stories</h2><p class="soft" style="margin-bottom:1.6rem">Each collaboration, as it appeared at the event.</p><div style="display:grid;gap:1.2rem">${PS.map((s,i)=>{const p=PM[s.p],e=EVM[s.ev];return `<article class="pship"><div><div class="logo"><span class="mono" style="background:${p.c}">${p.mono}</span><span>${p.name}</span></div><h3>At <a href="#/event/${e.id}" style="color:inherit">${e.title}</a></h3><p style="margin:0">${s.t}</p></div><div class="pship-t">${[0,1,2].map(k=>`<div>${photo(s.p+s.ev+k,e.pal,240,240)}</div>`).join('')}</div></article>`}).join('')}</div><p class="note" style="margin-top:1.6rem">Want to partner with us? <a href="#/contact">Get in touch</a>.</p></div></section>`});
+V.achievements=()=>({t:'Achievements',h:head('Achievements','What we have built together, in numbers and in years.',[['Achievements']])+`<section class="sec"><div class="wrap"><div class="ledger">${STATS.map(([n,l])=>`<div><b>${n}</b><span>${l}</span></div>`).join('')}</div><p class="note" style="margin-top:1.4rem">Figures are placeholders. Replace them with verified numbers before launch.</p></div></section><section class="sec alt"><div class="wrap"><h2>Our journey</h2><ol class="tl" style="margin-top:1.6rem">${TL.map(([y,t,d])=>`<li><b>${y}</b><h3 style="margin:.1rem 0 .2rem">${t}</h3><p class="soft">${d}</p></li>`).join('')}</ol></div></section>`});
+let DN={amt:1000,custom:'',pay:'bkash',name:'',email:'',done:null,busy:false,err:{}};
+V.donate=()=>{
+  const amt=DN.custom?T(DN.custom):DN.amt,er=k=>DN.err[k]?`<p class="err" role="alert">${DN.err[k]}</p>`:'';
+  const funds=[['Festival materials and decor',40],['Student scholarships',25],['Community welfare and food drives',20],['Running the platform',15]];
+  if(DN.done)return {t:'Thank you',h:head('Thank you','Your gift has been recorded.',[['Donate']])+`<section class="sec"><div class="wrap" style="max-width:640px"><div class="ok">${I('check',28)}</div><h2>Donation received</h2><div class="box"><div class="sum"><span>Amount</span><b>${money(DN.done.amt)}</b></div><div class="sum"><span>Receipt</span><span>${DN.done.id}</span></div><div class="sum"><span>Method</span><span>${DN.done.method}</span></div><div class="sum"><span>Date</span><span>${dShort(new Date().toISOString())}</span></div></div><p class="note" style="margin-top:1rem">Demo receipt. Real receipts will be emailed after the payment is verified on the server.</p><div class="btns" style="margin-top:1rem"><a class="btn" href="#/">Back to home</a><button class="btn btn-ghost" data-act="donate-again">Give again</button></div></div></section>`};
+  return {t:'Donate',h:head('Support our community','Every gift keeps a festival lit, a student fed or a scholarship funded.',[['Donate']])+`<section class="sec"><div class="wrap cols wide"><div><h2>Choose an amount</h2><div class="amts">${[500,1000,2500,5000].map(a=>`<button class="amt ${!DN.custom&&DN.amt===a?'on':''}" data-act="amt" data-a="${a}">${money(a)}</button>`).join('')}</div><div class="field"><label for="d-c">Or enter your own amount (BDT)</label><input id="d-c" data-d="custom" inputmode="numeric" value="${esc(DN.custom)}" placeholder="e.g. 750" ${DN.err.amt?'aria-invalid="true"':''}>${er('amt')}</div><h2 style="margin-top:1.6rem">Your details</h2><div class="two"><div class="field"><label for="d-n">Name</label><input id="d-n" data-d="name" value="${esc(DN.name)}" autocomplete="name" ${DN.err.name?'aria-invalid="true"':''}>${er('name')}</div><div class="field"><label for="d-e">Email for your receipt</label><input id="d-e" data-d="email" type="email" value="${esc(DN.email)}" autocomplete="email" ${DN.err.email?'aria-invalid="true"':''}>${er('email')}</div></div><h2 style="margin-top:1rem">Payment method</h2>${PAY.map(([k,n,c])=>`<label class="opt ${DN.pay===k?'on':''}"><input type="radio" name="dpay" value="${k}" data-act="dpay" ${DN.pay===k?'checked':''}><span class="mono" style="background:${c}">${n.slice(0,2)}</span><span>${n}</span></label>`).join('')}<button class="btn btn-lg btn-block" style="margin-top:.6rem" data-act="donate-go" ${DN.busy?'disabled':''}>${DN.busy?'Processing':'Donate '+(amt?money(amt):'')}</button><p class="note" style="margin-top:1rem">Demo only. No payment is taken.</p></div>
+<aside class="box sticky"><h3>Where your gift goes</h3>${funds.map(([l,p])=>`<div><div class="sum" style="padding-bottom:0"><span>${l}</span><b>${p}%</b></div><div class="bar"><i style="width:${p}%"></i></div></div>`).join('')}<p class="soft" style="margin:0;font-size:.9rem">Placeholder split. A full use-of-funds report will be published each semester.</p></aside></div></section>`};
+};
+V.contact=()=>({t:'Contact',h:head('Contact us','Questions, partnership ideas or a story to share? Write to us.',[['Contact']])+`<section class="sec"><div class="wrap cols"><div><h2>Send a message</h2><div class="two"><div class="field"><label for="c-n">Name</label><input id="c-n" autocomplete="name"></div><div class="field"><label for="c-e">Email</label><input id="c-e" type="email" autocomplete="email"></div></div><div class="field"><label for="c-s">Subject</label><input id="c-s"></div><div class="field"><label for="c-m">Message</label><textarea id="c-m" rows="6"></textarea></div><p class="err" id="c-err" role="alert" hidden></p><button class="btn btn-lg" data-act="contact-go">Send message</button></div><aside class="box"><h3>Reach us</h3><p class="meta">${I('pin',18)}${esc(SETTINGS.address)}</p><p>${esc(SETTINGS.email)}</p><p class="soft">Replies usually take two working days.</p><h3 style="margin-top:1.4rem">Follow us</h3><div class="btns">${soc().map(([n,u,i])=>`<a class="btn btn-ghost btn-sm" href="${u}" ${u[0]==='#'?'':'target="_blank" rel="noopener"'}>${I(i,18)}${n}</a>`).join('')}</div></aside></div></section>`});
+V.notices=()=>({t:'Notices',h:head('Notices','Announcements and event updates.',[['Notices']])+`<section class="sec"><div class="wrap"><div class="notices" style="grid-template-columns:1fr">${NTs().map(noticeRow).join('')}</div></div></section>`});
+V.notice=id=>{const n=NTM[id];if(!n)return notFound();const e=EVM[n.ev];return {t:n.title,h:head(n.title,`${dShort(n.date)}, ${n.cat}`,[['Notices','notices'],[n.title]])+`<section class="sec"><div class="wrap"><div class="prose" style="margin-inline:auto">${n.b.map(t=>`<p>${t}</p>`).join('')}${e?`<p><a class="btn" href="#/event/${e.id}">View ${e.title}</a></p>`:''}</div></div></section>`}};
+
+/* ---------- shell ---------- */
+const NAV=[['Home',''],['About','about'],['Events','events',[['Upcoming Events','events/upcoming'],['Ongoing Events','events/ongoing'],['Past Events','events/past'],['Event Calendar','events/calendar']]],['Gallery','gallery'],['News & Blog','blog'],['Culture','culture',[['Festivals','culture/festivals'],['Traditions','culture/traditions'],['Heritage','culture/heritage']]],['Partners','partners'],['Achievements','achievements'],['Donate','donate'],['Contact','contact']];
+const soc=()=>[['Facebook',SETTINGS.facebook||'#/contact','fb'],['Instagram',SETTINGS.instagram||'#/contact','ig'],['YouTube',SETTINGS.youtube||'#/contact','yt']];
+let shellDirty=false;
+function shell(){
+  $('#demo').hidden=SETTINGS.demoBar=='false'||SETTINGS.demoBar===false;
+  $('#hdr').innerHTML=`<div class="wrap hdr-in"><a class="brand" href="#/" aria-label="${esc(SETTINGS.siteName)}, home">${nsuMark()}${mark(50)}<span class="brand-txt"><b>${esc(SETTINGS.siteName)}</b><span>${esc(SETTINGS.university)}</span></span></a><nav class="nav" aria-label="Main">${NAV.map(([l,p,s])=>s?`<div class="dd"><a href="#/${p}" data-nav="${p}">${l}</a><div class="dd-menu">${s.map(([a,b])=>`<a href="#/${b}">${a}</a>`).join('')}</div></div>`:`<a href="#/${p}" data-nav="${p}">${l.replace('&','&amp;')}</a>`).join('')}</nav><div class="hdr-act"><button class="ib" data-act="search" aria-label="Search">${I('search',20)}</button><button class="ib hide-sm" data-act="theme" aria-label="Switch between light and dark">${I('moon',20)}</button><a class="btn btn-gold btn-sm" href="#/tickets">Get Tickets</a><button class="ib burger" data-act="menu" aria-label="Open menu" aria-expanded="false">${I('menu',24)}</button></div></div>`;
+  $('#mnav').innerHTML=`<button class="ib mnav-x" data-act="menu" aria-label="Close menu">${I('close',24)}</button><nav aria-label="Menu">${NAV.map(([l,p,s])=>`<a href="#/${p}">${l.replace('&','&amp;')}</a>${(s||[]).map(([a,b])=>`<a class="sub" href="#/${b}">${a}</a>`).join('')}`).join('')}</nav><div class="foot"><a class="btn btn-gold" href="#/tickets">Get Tickets</a><button class="btn btn-ghost" data-act="search">${I('search',18)}Search</button><button class="btn btn-ghost" data-act="theme">Light or dark</button></div>`;
+  $('#ftr').innerHTML=`<div class="wrap"><div class="ftr-in"><div><div class="brand">${nsuMark()}${mark(50)}<span class="brand-txt"><b>${esc(SETTINGS.siteName)}</b><span>${esc(SETTINGS.university)}</span></span></div><p>Culture, events, memories and stories from our community. Everyone is welcome.</p><div class="soc">${soc().map(([n,u,i])=>`<a href="${u}" aria-label="${n}" ${u[0]==='#'?'':'target="_blank" rel="noopener"'}>${I(i,20)}</a>`).join('')}</div></div><div><h4>Explore</h4><a href="#/events">Events</a><a href="#/gallery">Gallery</a><a href="#/blog">News and blog</a><a href="#/culture">Culture</a></div><div><h4>Community</h4><a href="#/about">About</a><a href="#/partners">Partners</a><a href="#/achievements">Achievements</a><a href="#/notices">Notices</a></div><div><h4>Take part</h4><a href="#/tickets">Get Tickets</a><a href="#/donate">Donate</a><a href="#/contact">Contact</a></div></div><p class="copy">\u00A9 2026 ${esc(SETTINGS.siteName)}, ${esc(SETTINGS.university)}. Placeholder content for design review. <a href="#/admin" style="display:inline;margin-left:.6rem">Admin sign in</a></p></div>`;
+}
+
+/* ---------- router ---------- */
+const parse=()=>decodeURIComponent((location.hash||'').replace(/^#\/?/,''));
+let curPath=null;
+function render(){
+  const path=parse();curPath=path;const [a,b]=path.split('/');let r;
+  if(a==='admin'){document.body.classList.add('is-admin');renderAdmin(path);return}
+  document.body.classList.remove('is-admin');if(shellDirty){shell();shellDirty=false}
+  try{
+    switch(a){case'':r=V.home();break;case'about':r=V.about();break;case'events':r=V.events(b);break;case'event':r=V.event(b);break;case'tickets':r=V.tickets(b);break;case'gallery':r=V.gallery(b);break;case'blog':r=V.blog(b);break;case'culture':r=V.culture(b);break;case'post':case'article':r=V.post(b);break;case'partners':r=V.partners();break;case'achievements':r=V.achievements();break;case'donate':r=V.donate();break;case'contact':r=V.contact();break;case'notices':r=V.notices();break;case'notice':r=V.notice(b);break;default:r=notFound()}
+  }catch(err){console.error(err);r={t:'Error',h:head('Something went wrong','Please reload the page.')}}
+  $('#app').innerHTML=r.h;document.title=(r.t?r.t+' | ':'')+SETTINGS.siteName;
+  const key={event:'events',post:'blog',article:'culture',tickets:null,notice:null,notices:null}[a];const k=key!==undefined?key:a;
+  $$('[data-nav]').forEach(x=>x.getAttribute('data-nav')===k?x.setAttribute('aria-current','page'):x.removeAttribute('aria-current'));
+  closeMenu();window.scrollTo(0,0);tick();
+}
+function go(p){try{if(parse()!==p)location.hash='#/'+p}catch(e){}if(curPath!==p)render()}
+window.addEventListener('hashchange',()=>{if(parse()!==curPath)render()});
+
+/* ---------- countdown ---------- */
+function tick(){
+  $$('[data-cd]').forEach(el=>{
+    const s=+new Date(el.dataset.cd),e=+new Date(el.dataset.end),n=Date.now();
+    if(n>=s){el.innerHTML=`<p class="cd-done">${n<=e?'Happening now':'Event completed'}</p>`;el.removeAttribute('data-cd');return}
+    let d=Math.floor((s-n)/1000);const v={d:Math.floor(d/86400),h:Math.floor(d%86400/3600),m:Math.floor(d%3600/60),s:d%60};
+    for(const k in v){const b=$(`[data-u="${k}"]`,el);if(b)b.textContent=String(v[k]).padStart(2,'0')}
+  });
+}
+setInterval(tick,1000);
+
+/* ---------- ui ---------- */
+let toastT;
+function toast(m){const t=$('#toast');t.textContent=m;t.hidden=false;clearTimeout(toastT);toastT=setTimeout(()=>t.hidden=true,3200)}
+function closeMenu(){const m=$('#mnav');if(m&&!m.hidden){m.hidden=true;const b=$('.burger');if(b)b.setAttribute('aria-expanded','false')}}
+function readForm(sel,obj){$$(sel).forEach(i=>{obj[i.dataset.f||i.dataset.d]=i.value})}
+function openLB(aid,i){const a=ALBp().find(x=>x.id===aid);LB={a,i};drawLB();$('#lb').hidden=false}
+function drawLB(){
+  const {a,i}=LB,e=EVM[a.ev];
+  $('#lb').innerHTML=`<button class="ib lb-x" data-act="lb-close" aria-label="Close viewer">${I('close',26)}</button><button class="ib lb-p" data-act="lb-prev" aria-label="Previous photo">${I('left',28)}</button><button class="ib lb-n" data-act="lb-next" aria-label="Next photo">${I('chev',28)}</button><div class="lb-f"><div class="lb-img">${photo(a.id+i,e.pal,800,600)}${a.vid.includes(i)?`<span class="play" style="position:absolute;inset:0;display:grid;place-items:center;color:#fff">${I('play',54)}</span>`:''}</div><p class="lb-cap">${e.title}, ${i+1} of ${a.n}${a.vid.includes(i)?' (video placeholder)':''}</p></div>`;
+  const x=$('.lb-x');if(x)x.focus();
+}
+function search(q){
+  q=q.trim().toLowerCase();const out=$('#res');if(!q){out.innerHTML='';return}
+  const terms=q.split(/\s+/),hit=t=>terms.every(w=>t.toLowerCase().includes(w));
+  const groups=[['Events',EVp().filter(e=>hit(e.title+' '+e.blurb+' '+e.venue)).map(e=>[e.title,dRange(e),'event/'+e.id])],
+   ['News and culture',POSTp().filter(p=>hit(p.title+' '+p.x+' '+p.cat)).map(p=>[p.title,p.cat,(p.kind==='culture'?'article/':'post/')+p.id])],
+   ['Gallery',ALBp().filter(a=>hit(EVM[a.ev].title+' gallery photos videos')).map(a=>[EVM[a.ev].title+' album',a.n+' items','gallery/'+a.id])],
+   ['Notices',NTp().filter(n=>hit(n.title+' '+n.short)).map(n=>[n.title,dShort(n.date),'notice/'+n.id])],
+   ['Partners',P.filter(p=>hit(p.name+' '+p.kind)).map(p=>[p.name,p.kind,'partners'])]].filter(g=>g[1].length);
+  out.innerHTML=groups.length?groups.map(([g,l])=>`<h4>${g}</h4>`+l.slice(0,5).map(([t,s,h])=>`<li><a href="#/${h}" data-close-search>${esc(t)}<br><small>${esc(s)}</small></a></li>`).join('')).join(''):`<li class="empty">No results for \u201C${esc(q)}\u201D. Try a festival name or a year.</li>`;
+}
+const openSearch=()=>{closeMenu();$('#search').hidden=false;const q=$('#q');q.value='';$('#res').innerHTML='';q.focus()};
+const closeSearch=()=>{$('#search').hidden=true};
+function theme(){const r=document.documentElement,dark=r.dataset.theme?r.dataset.theme==='dark':matchMedia('(prefers-color-scheme: dark)').matches;r.dataset.theme=dark?'light':'dark'}
+const emailOk=v=>/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
+function rr(){render()}
+
+document.addEventListener('click',e=>{
+  const l=e.target.closest('a');if(l&&l.closest('#mnav'))closeMenu();
+  if(e.target.closest('[data-close-search]'))closeSearch();
+  if(e.target.id==='search')closeSearch();
+  if(e.target.id==='lb'){$('#lb').hidden=true}
+  const b=e.target.closest('[data-act]');if(!b)return;const act=b.dataset.act;
+  switch(act){
+    case'close-demo':$('#demo').hidden=true;break;
+    case'menu':{const m=$('#mnav');m.hidden=!m.hidden;const bb=$('.burger');if(bb)bb.setAttribute('aria-expanded',String(!m.hidden));break}
+    case'theme':theme();break;
+    case'search':openSearch();break;
+    case'close-search':closeSearch();break;
+    case'toast':toast(b.dataset.m);break;
+    case'cal-prev':CAL.m--;if(CAL.m<0){CAL.m=11;CAL.y--}CAL.sel=null;rr();break;
+    case'cal-next':CAL.m++;if(CAL.m>11){CAL.m=0;CAL.y++}CAL.sel=null;rr();break;
+    case'cal-day':{const k=b.dataset.k;const evs=EVp().filter(ev=>{const a=parts(ev.start),z=parts(ev.end),t=Date.parse(k+'T00:00:00Z');return t>=Date.UTC(a.y,a.m-1,a.d)&&t<=Date.UTC(z.y,z.m-1,z.d)});if(evs.length===1)go('event/'+evs[0].id);else{CAL.sel=k;rr()}break}
+    case'gy':GY=b.dataset.y;rr();break;
+    case'lb':openLB(b.dataset.a,+b.dataset.i);break;
+    case'lb-close':$('#lb').hidden=true;break;
+    case'lb-prev':LB.i=(LB.i-1+LB.a.n)%LB.a.n;drawLB();break;
+    case'lb-next':LB.i=(LB.i+1)%LB.a.n;drawLB();break;
+    /* tickets */
+    case'qty':{const ev=EVM[TK.slug],n=b.dataset.t;TK.qty[n]=Math.max(0,Math.min(10,(TK.qty[n]||0)+ +b.dataset.d));TK.err={};rr();break}
+    case'tk-back':{readForm('[data-f]',TK.info);TK.step=TK.step===4||(TK.step===2)?TK.step-1:(TK.step===3?2:1);TK.err={};rr();break}
+    case'tk-next':{const ev=EVM[TK.slug];
+      if(TK.step===1){if(!tkCount(ev)){TK.err={qty:'Select at least one ticket to continue.'}}else{TK.err={};TK.step=2}rr();break}
+      if(TK.step===2){readForm('[data-f]',TK.info);const i=TK.info,er={};
+        if(i.name.trim().length<2)er.name='Enter your full name.';
+        if(!/^\+?\d[\d\s-]{8,13}$/.test(i.phone.trim()))er.phone='Enter a valid mobile number, for example 01712345678.';
+        if(!emailOk(i.email.trim()))er.email='Enter a valid email address.';
+        if(TK.qty.Student&&!/^\d{7,10}$/.test(i.sid.trim()))er.sid='Enter your NSU ID, 7 to 10 digits.';
+        TK.err=er;if(!Object.keys(er).length){if(tkTotal(ev)>0)TK.step=3;else{finishTk()}}
+        rr();break}
+      break}
+    case'pay':TK.pay=b.value;rr();break;
+    case'tk-pay':{TK.busy=true;rr();setTimeout(()=>{finishTk();TK.busy=false;rr()},1100);break}
+    /* donate */
+    case'amt':DN.amt=+b.dataset.a;DN.custom='';DN.err={};rr();break;
+    case'dpay':DN.pay=b.value;rr();break;
+    case'donate-again':DN={amt:1000,custom:'',pay:'bkash',name:'',email:'',done:null,busy:false,err:{}};rr();break;
+    case'donate-go':{readForm('[data-d]',DN);const amt=DN.custom?T(DN.custom):DN.amt,er={};
+      if(!(amt>=50))er.amt='Enter an amount of \u09F350 or more.';
+      if(DN.name.trim().length<2)er.name='Enter your name.';
+      if(!emailOk(DN.email.trim()))er.email='Enter a valid email address.';
+      DN.err=er;if(Object.keys(er).length){rr();break}
+      DN.busy=true;rr();setTimeout(()=>{DN.busy=false;const method=(PAY.find(p=>p[0]===DN.pay)||[])[1],rec=recordDonation({name:DN.name.trim(),email:DN.email.trim(),amt,method});DN.done={amt,id:rec.id,method};rr()},1100);break}
+    case'contact-go':{const n=$('#c-n').value.trim(),m=$('#c-e').value.trim(),s=$('#c-s').value.trim(),t=$('#c-m').value.trim(),er=$('#c-err');
+      if(!n||!emailOk(m)||!s||!t){er.textContent='Fill in your name, a valid email, a subject and a message.';er.hidden=false;break}
+      er.hidden=true;recordMessage({name:n,email:m,subject:s,body:t});['#c-n','#c-e','#c-s','#c-m'].forEach(x=>$(x).value='');toast('Message sent (demo). We will reply within two working days.');break}
+  }
+});
+function finishTk(){const ev=EVM[TK.slug],items=ev.tickets.filter(([n])=>TK.qty[n]).map(([n])=>[n,TK.qty[n]]),o=recordOrder(ev,TK.info,items,(PAY.find(p=>p[0]===TK.pay)||[])[1]);TK.ids=o.tickets.map(t=>[t.type,t.id]);TK.step=4}
+document.addEventListener('input',e=>{if(e.target.id==='q')search(e.target.value);if(e.target.dataset&&e.target.dataset.d==='custom'){DN.custom=e.target.value.replace(/\D/g,'');const bt=$('[data-act="donate-go"]');const a=DN.custom?T(DN.custom):DN.amt;if(bt&&!DN.busy)bt.textContent='Donate '+(a?money(a):'');$$('.amt').forEach(x=>x.classList.remove('on'))}});
+document.addEventListener('keydown',e=>{
+  if(e.key==='Escape'){if(!$('#lb').hidden)$('#lb').hidden=true;else if(!$('#search').hidden)closeSearch();else closeMenu()}
+  if(!$('#lb').hidden&&LB){if(e.key==='ArrowLeft'){LB.i=(LB.i-1+LB.a.n)%LB.a.n;drawLB()}if(e.key==='ArrowRight'){LB.i=(LB.i+1)%LB.a.n;drawLB()}}
+});
+/* ---------- admin panel (front end only) ----------
+   Schema-driven: each content type is described once in CFG and gets a list page and an editor for free.
+   Data goes through the store (20-store.js), so in the real build only saveDB() and the collections change. */
+Object.assign(ico,{home:'<path d="M4 11l8-7 8 7v9a1 1 0 0 1-1 1h-4v-6H9v6H5a1 1 0 0 1-1-1z"/>',doc:'<path d="M7 3h8l4 4v14H7z"/><path d="M14 3v5h5M10 13h6M10 17h6"/>',bell:'<path d="M6 16V11a6 6 0 0 1 12 0v5l2 2H4z"/><path d="M10 21h4"/>',img:'<rect x="3.5" y="4.5" width="17" height="15" rx="2"/><circle cx="9" cy="10" r="1.6"/><path d="m4 18 5-5 4 4 3-3 4 4"/>',link:'<path d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1"/><path d="M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1"/>',star:'<path d="m12 3.5 2.6 5.4 5.9.8-4.3 4.1 1 5.9-5.2-2.8-5.2 2.8 1-5.9L3.5 9.7l5.9-.8z"/>',scan:'<path d="M4 8V5a1 1 0 0 1 1-1h3M16 4h3a1 1 0 0 1 1 1v3M20 16v3a1 1 0 0 1-1 1h-3M8 20H5a1 1 0 0 1-1-1v-3M4 12h16"/>',mail:'<rect x="3.5" y="5.5" width="17" height="13" rx="2"/><path d="m4 7 8 6 8-6"/>',users:'<circle cx="9" cy="8" r="3.2"/><path d="M3 20a6 6 0 0 1 12 0M16 5.5a3 3 0 0 1 0 5.8M18 20a5.5 5.5 0 0 0-2.5-4.6"/>',cog:'<circle cx="12" cy="12" r="3"/><path d="M12 3v2.5M12 18.5V21M3 12h2.5M18.5 12H21M5.6 5.6l1.8 1.8M16.6 16.6l1.8 1.8M5.6 18.4l1.8-1.8M16.6 7.4l1.8-1.8"/>',plus:'<path d="M12 5v14M5 12h14"/>',trash:'<path d="M4 7h16M9 7V4h6v3M6 7l1 13h10l1-13"/>',edit:'<path d="M4 20h4L19 9l-4-4L4 16z"/>',out:'<path d="M9 4H5a1 1 0 0 0-1 1v14a1 1 0 0 0 1 1h4M15 8l4 4-4 4M19 12H9"/>',eye:'<path d="M2.5 12S6 5.5 12 5.5 21.5 12 21.5 12 18 18.5 12 18.5 2.5 12 2.5 12z"/><circle cx="12" cy="12" r="2.8"/>'});
+
+const AD={user:null,side:false,draft:null,modal:null,q:'',list:null,log:[],ck:{res:null},fEv:'all',fSt:'all',path:'',pg:''};
+const ROLE_PAGES={Admin:null,Editor:['dashboard','events','posts','notices','gallery','partners','partnerships','achievements','messages'],Volunteer:['dashboard','orders','checkin']};
+const can=pg=>{const r=ROLE_PAGES[AD.user.role];return !r||r.includes(pg)};
+const NAV_AD=[['Overview',[['dashboard','Dashboard','home']]],['Content',[['events','Events','cal'],['posts','News and culture','doc'],['notices','Notices','bell'],['gallery','Gallery','img'],['partners','Partners','link'],['achievements','Achievements','star']]],['Tickets and money',[['orders','Orders','ticket'],['checkin','Check-in','scan'],['donations','Donations','heart']]],['Inbox',[['messages','Messages','mail']]],['System',[['users','Users','users'],['settings','Settings','cog']]]];
+
+/* small helpers */
+const taka=n=>'\u09F3'+Number(n||0).toLocaleString('en-US');
+const dtm=iso=>fmt(iso,{day:'numeric',month:'short',hour:'numeric',minute:'2-digit',hour12:true});
+const badge=(t,c)=>`<span class="badge ${c||''}">${t}</span>`;
+const evTitle=id=>(byId(EV,id)||{title:id}).title;
+const slugify=s=>String(s).toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'')||'item';
+const uniqueId=(base,arr)=>{let id=base,n=2;while(arr.some(x=>x.id===id))id=base+'-'+n++;return id};
+const dtLocal=iso=>{if(!iso)return'';const p=new Intl.DateTimeFormat('en-CA',{timeZone:TZ,year:'numeric',month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit',hourCycle:'h23'}).formatToParts(new Date(iso)).reduce((a,x)=>(a[x.type]=x.value,a),{});return `${p.year}-${p.month}-${p.day}T${p.hour}:${p.minute}`};
+const todayISO=()=>new Date().toISOString().slice(0,10);
+const stBadge=x=>x.pub===false?badge('Draft'):badge('Published','ok');
+const evStBadge=e=>{const s=status(e);return (e.pub===false?badge('Draft')+' ':'')+badge(pillTxt[s],s==='upcoming'?'info':s==='ongoing'?'ok':'')};
+const ordBadge=s=>badge(s==='paid'?'Paid':s==='pending'?'Pending':'Cancelled',s==='paid'?'ok':s==='pending'?'warn':'bad');
+const table=(cols,rows,empty)=>rows.length?`<div class="tbl-w"><table class="tbl"><thead><tr>${cols.map(c=>`<th>${c[0]}</th>`).join('')}</tr></thead><tbody>${rows.map(r=>`<tr class="${r._cls||''}">${cols.map(c=>`<td ${c[0]?`data-label="${c[0]}"`:''} class="${c[2]||''}">${c[1](r)}</td>`).join('')}</tr>`).join('')}</tbody></table></div>`:`<div class="card empty">${empty||'Nothing here yet.'}</div>`;
+const notFoundAd=()=>({t:'Not found',b:`<div class="card"><h3>That item does not exist</h3><p><a href="#/admin">Back to dashboard</a></p></div>`});
+
+/* option lists */
+const evOpts=()=>EV.map(e=>[e.id,e.title]);
+const MOTIFS=[['mandala','Mandala (dark)'],['mandala-light','Alpana (light)'],['diya','Diyas'],['lotus','Lotus'],['splash','Colours'],['temple','Temple'],['sun','Sun'],['moon','Moon']];
+const PALS=[['maroon','Maroon'],['saffron','Saffron'],['night','Night indigo'],['yellow','Spring yellow'],['cream','Cream'],['holi','Blush'],['moon','Midnight blue'],['ivory','Ivory']];
+const yesNo=(k,l,def)=>({k,l,t:'check',chk:l,def});
+
+/* content types */
+const CFG={
+ events:{name:'events',route:'events',title:'Events',single:'Event',add:'Add event',sub:'Festivals, workshops and cultural nights.',coll:EV,pubToggle:1,
+  sort:(a,b)=>+new Date(b.start)-+new Date(a.start),
+  cols:[['Event',e=>`<b>${esc(e.title)}</b><br><small class="soft">${esc(e.cat)}</small>`],['When',e=>dRange(e)],['Status',evStBadge],['Tickets',e=>e.tickets?e.tickets.length+' types':'None']],
+  make:()=>({title:'',cat:'Festival',venue:V0,start:'',end:'',blurb:'',desc:[],sched:[],tickets:[],partners:[],coverImage:'',motif:'mandala',palKey:'maroon',cd:true,pub:false,posts:[],notices:[]}),
+  fields:[{k:'title',l:'Title',t:'text',req:1,w:1},{k:'cat',l:'Category',t:'select',opts:[['Festival','Festival'],['Workshop','Workshop'],['Cultural','Cultural'],['Other','Other']]},{k:'venue',l:'Venue',t:'text',req:1},{k:'start',l:'Starts',t:'dt',req:1},{k:'end',l:'Ends',t:'dt',req:1},{k:'blurb',l:'Short description',t:'text',req:1,w:1,help:'One sentence shown on cards.'},{k:'desc',l:'About this event',t:'paras',req:1,w:1,help:'Separate paragraphs with a blank line.'},
+   {k:'sched',l:'Schedule',t:'rows',w:1,cols:[{l:'When',w:'150px'},{l:'What happens'}]},
+   {k:'tickets',l:'Ticket types',t:'rows',w:1,help:'Leave empty if the event needs no tickets or registration.',cols:[{l:'Type',w:'130px'},{l:'Price (BDT)',t:'num',w:'110px'},{l:'Note'},{l:'Capacity',t:'num',w:'100px'}]},
+   {k:'partners',l:'Partners',t:'multi',w:1,opts:()=>P.map(p=>[p.id,p.name])},
+   {k:'coverImage',l:'Cover image',t:'image',help:'Upload a photo to use as the cover. If empty, the generated art below is used.'},{k:'motif',l:'Cover art',t:'select',opts:MOTIFS,refresh:1},{k:'palKey',l:'Cover colours',t:'select',opts:PALS,refresh:1},yesNo('cd','Show countdown on the event page',true),yesNo('pub','Published on the website',false)],
+  validate:d=>d.start&&d.end&&+new Date(d.end)<=+new Date(d.start)?{end:'End must be after the start.'}:{},
+  before:(d,n)=>{d.pal=PAL[d.palKey]||PAL.maroon;d.tickets=d.tickets&&d.tickets.length?d.tickets.map(t=>[t[0],Number(t[1])||0,t[2]||'',Number(t[3])||0]):null;d.sched=d.sched||[];if(n)d.id=uniqueId(slugify(d.title),EV)},
+  preview:d=>`<div class="cov">${d.coverImage?`<img src="${d.coverImage}" alt="Cover" style="width:100%;height:100%;object-fit:cover">`:art(d.motif,PAL[d.palKey]||PAL.maroon,d.title||'preview',500,400)}</div><b>${esc(d.title||'Untitled event')}</b><p class="soft" style="margin:.2rem 0 0">${d.start&&d.end?dRange({start:d.start,end:d.end}):'Set the dates'}</p>`},
+ posts:{name:'posts',route:'posts',title:'News and culture',single:'Post',add:'Add post',sub:'News, updates, stories and culture articles.',coll:POSTS,pubToggle:1,sort:(a,b)=>b.date.localeCompare(a.date),
+  cols:[['Title',p=>`<b>${esc(p.title)}</b><br><small class="soft">${esc(p.cat)}${p.kind==='culture'?' / '+p.sec:''}</small>`],['Date',p=>dShort(p.date)],['Type',p=>p.kind==='culture'?'Culture article':'News post'],['Status',stBadge]],
+  make:()=>({title:'',kind:'post',cat:'Community News',sec:'festivals',date:todayISO(),x:'',b:[],ev:'',motif:'lotus',palKey:'yellow',pub:false}),
+  fields:[{k:'title',l:'Title',t:'text',req:1,w:1},{k:'kind',l:'Type',t:'select',opts:[['post','News post'],['culture','Culture article']],refresh:1},{k:'cat',l:'Category',t:'select',opts:()=>CATS.filter(c=>c!=='Culture').map(c=>[c,c])},{k:'sec',l:'Culture section',t:'select',opts:[['festivals','Festivals'],['traditions','Traditions'],['heritage','Heritage']],help:'Used for culture articles only.'},{k:'date',l:'Date',t:'date',req:1},{k:'ev',l:'Related event',t:'select',opts:()=>[['','None'],...evOpts()]},{k:'x',l:'Summary',t:'area',rows:2,req:1,w:1},{k:'b',l:'Article text',t:'paras',req:1,w:1,help:'Separate paragraphs with a blank line.'},{k:'motif',l:'Cover art',t:'select',opts:MOTIFS,refresh:1},{k:'palKey',l:'Cover colours',t:'select',opts:PALS,refresh:1},yesNo('pub','Published on the website',false)],
+  before:(d,n)=>{d.pal=PAL[d.palKey]||PAL.maroon;if(d.kind==='culture'){d.cat='Culture'}else{delete d.sec;if(d.cat==='Culture')d.cat='Community News'}if(!d.ev)delete d.ev;if(n)d.id=uniqueId(slugify(d.title),POSTS)},
+  preview:d=>`<div class="cov" style="border-radius:10px;aspect-ratio:16/9">${art(d.motif,PAL[d.palKey]||PAL.maroon,d.title||'preview',500,280)}</div><b>${esc(d.title||'Untitled')}</b><p class="soft" style="margin:.2rem 0 0">${esc(d.x||'')}</p>`},
+ notices:{name:'notices',route:'notices',title:'Notices',single:'Notice',add:'Add notice',sub:'Short announcements shown on the homepage.',coll:NT,pubToggle:1,sort:(a,b)=>b.date.localeCompare(a.date),
+  cols:[['Notice',n=>`<b>${esc(n.title)}</b><br><small class="soft">${esc(n.cat)}</small>`],['Date',n=>dShort(n.date)],['Event',n=>n.ev?esc(evTitle(n.ev)):'None'],['Status',stBadge]],
+  make:()=>({title:'',cat:'Announcement',date:todayISO(),short:'',b:[],ev:'',pub:false}),
+  fields:[{k:'title',l:'Title',t:'text',req:1,w:1},{k:'cat',l:'Category',t:'select',opts:['Registration','Volunteers','Event update','Announcement','Sponsorship'].map(x=>[x,x])},{k:'date',l:'Date',t:'date',req:1},{k:'short',l:'Summary',t:'area',rows:2,req:1,w:1},{k:'b',l:'Full notice',t:'paras',req:1,w:1},{k:'ev',l:'Related event',t:'select',opts:()=>[['','None'],...evOpts()]},yesNo('pub','Published on the website',false)],
+  before:(d,n)=>{if(!d.ev)delete d.ev;if(n)d.id=uniqueId(slugify(d.title),NT)}},
+ albums:{name:'albums',seg:'gallery',route:'gallery',title:'Gallery',single:'Album',add:'Add album',sub:'One album per event. Photos and videos are uploaded here.',coll:ALB,pubToggle:1,
+  cols:[['Album',a=>`<b>${esc(evTitle(a.ev))}</b>`],['Items',a=>a.n],['Videos',a=>(a.vid||[]).length],['Status',stBadge]],
+  make:()=>({ev:EV[0]?EV[0].id:'',n:8,vid:[],pub:true}),
+  fields:[{k:'ev',l:'Event',t:'select',req:1,opts:evOpts},{k:'n',l:'Number of items',t:'num',req:1,refresh:1},{k:'vid',l:'Which items are videos',t:'vid',help:'Item numbers starting from 0, separated by commas.',refresh:1},yesNo('pub','Published on the website',true)],
+  validate:d=>d.n<1?{n:'Add at least one item.'}:{},before:(d,n)=>{d.n=Math.min(60,d.n);if(n)d.id=uniqueId(d.ev,ALB)},
+  preview:d=>{const e=byId(EV,d.ev)||{pal:PAL.maroon};return `<div class="dz">Drop photos and videos here<br><small>Uploads connect to file storage in the full build</small></div><div class="thumbs">${Array.from({length:Math.min(d.n||0,24)},(_,i)=>`<div>${photo((d.ev||'x')+i,e.pal,120,120)}${(d.vid||[]).includes(i)?'<span class="v">video</span>':''}</div>`).join('')}</div>`}},
+ partners:{name:'partners',route:'partners',title:'Partners',single:'Partner',add:'Add partner',sub:'',coll:P,
+  cols:[['Partner',p=>`<span class="logo"><span class="mono" style="background:${p.c};width:34px;height:34px;font-size:.75rem">${esc(p.mono)}</span><b>${esc(p.name)}</b></span>`],['Type',p=>esc(p.kind)],['Events',p=>EV.filter(e=>(e.partners||[]).includes(p.id)).length]],
+  make:()=>({name:'',kind:'',mono:'',c:'#8A1C30'}),
+  fields:[{k:'name',l:'Name',t:'text',req:1},{k:'kind',l:'What they do',t:'text',req:1},{k:'mono',l:'Initials for logo (up to 3)',t:'text',req:1},{k:'c',l:'Logo colour',t:'color'}],
+  before:(d,n)=>{d.mono=d.mono.slice(0,3);if(n)d.id=uniqueId(slugify(d.name),P)}},
+ partnerships:{name:'partnerships',route:'partners',title:'Partnership stories',single:'Story',add:'Add story',sub:'',coll:PS,
+  cols:[['Partner',s=>esc((byId(P,s.p)||{name:s.p}).name)],['Event',s=>esc(evTitle(s.ev))],['What they did',s=>esc(s.t)]],
+  make:()=>({p:P[0]?P[0].id:'',ev:EV[0]?EV[0].id:'',t:''}),
+  fields:[{k:'p',l:'Partner',t:'select',req:1,opts:()=>P.map(p=>[p.id,p.name])},{k:'ev',l:'Event',t:'select',req:1,opts:evOpts},{k:'t',l:'What they did',t:'area',rows:3,req:1,w:1}],before:(d,n)=>{if(n)d.id=newId('ps',PS)}},
+ users:{name:'users',route:'users',title:'Users',single:'User',add:'Add user',sub:'Who can sign in and what they can do.',coll:USERS,
+  cols:[['Name',u=>`<b>${esc(u.name)}</b><br><small class="soft">${esc(u.email)}</small>`],['Role',u=>badge(u.role,u.role==='Admin'?'info':'')],['Status',u=>u.active?badge('Active','ok'):badge('Inactive')]],
+  make:()=>({name:'',email:'',role:'Editor',active:true}),
+  fields:[{k:'name',l:'Name',t:'text',req:1},{k:'email',l:'Email',t:'text',req:1},{k:'role',l:'Role',t:'select',opts:[['Admin','Admin: everything'],['Editor','Editor: content only'],['Volunteer','Volunteer: check-in and orders']]},yesNo('active','Can sign in',true)],
+  validate:d=>/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(d.email||'')?{}:{email:'Enter a valid email.'},before:(d,n)=>{if(n)d.id=newId('u',USERS)}},
+ achievements:{name:'achievements',singleton:1,title:'Achievements',single:'Achievements',
+  get:()=>({stats:STATS,timeline:TL}),put:d=>{STATS.splice(0,STATS.length,...d.stats);TL.splice(0,TL.length,...d.timeline)},
+  fields:[{k:'stats',l:'Numbers shown on the homepage and Achievements page',t:'rows',w:1,cols:[{l:'Number',w:'140px'},{l:'Label'}],help:'Use verified figures only.'},{k:'timeline',l:'Timeline',t:'rows',w:1,cols:[{l:'Year',w:'90px'},{l:'Title',w:'1fr'},{l:'Description',w:'1.6fr'}]}]},
+ settings:{name:'settings',singleton:1,title:'Settings',single:'Settings',get:()=>SETTINGS,put:d=>{Object.assign(SETTINGS,d);shellDirty=true},
+  fields:[{k:'siteName',l:'Community name',t:'text',req:1},{k:'university',l:'University',t:'text',req:1},{k:'tagline',l:'Homepage headline',t:'text',req:1,w:1},{k:'email',l:'Contact email',t:'text'},{k:'address',l:'Address',t:'text'},{k:'facebook',l:'Facebook page link',t:'text'},{k:'instagram',l:'Instagram link',t:'text'},{k:'youtube',l:'YouTube link',t:'text'},{k:'featured',l:'Featured event on the homepage',t:'select',opts:()=>[['auto','Automatic (next event)'],...EV.filter(isPub).map(e=>[e.id,e.title])]},yesNo('demoBar','Show the preview notice bar',true)]}
+};
+
+/* form engine */
+function opts(f){return typeof f.opts==='function'?f.opts():f.opts}
+function fieldHtml(f,d,err){
+  const v=d[f.k],id='ff-'+f.k,a=`id="${id}" data-fk="${f.k}" ${err[f.k]?'aria-invalid="true"':''} ${f.refresh?'data-refresh="1"':''}`;let inp;
+  switch(f.t){
+    case'area':inp=`<textarea ${a} rows="${f.rows||3}">${esc(v||'')}</textarea>`;break;
+    case'paras':inp=`<textarea ${a} rows="7">${esc((v||[]).join('\n\n'))}</textarea>`;break;
+    case'select':inp=`<select ${a}>${opts(f).map(([o,l])=>`<option value="${esc(o)}" ${String(v==null?'':v)===String(o)?'selected':''}>${esc(l)}</option>`).join('')}</select>`;break;
+    case'check':inp=`<label class="chk"><input type="checkbox" ${a} ${(v==null?f.def:v)?'checked':''}> ${f.chk}</label>`;break;
+    case'multi':inp=`<div class="multi">${opts(f).map(([o,l])=>`<label><input type="checkbox" data-fk="${f.k}" value="${esc(o)}" ${(v||[]).includes(o)?'checked':''}> ${esc(l)}</label>`).join('')||'<span class="soft">Nothing to choose yet.</span>'}</div>`;break;
+    case'dt':inp=`<input type="datetime-local" ${a} value="${dtLocal(v)}">`;break;
+    case'date':inp=`<input type="date" ${a} value="${esc(v||'')}">`;break;
+    case'num':inp=`<input type="number" min="0" ${a} value="${v==null?'':v}">`;break;
+    case'color':inp=`<input type="color" ${a} value="${esc(v||'#8A1C30')}">`;break;
+    case'vid':inp=`<input ${a} value="${esc((v||[]).join(', '))}" placeholder="e.g. 3, 9">`;break;
+    case'image':inp=`<div class="img-up${v?' has':''}" data-fk="${f.k}">${v?`<img src="${v}" alt="Cover image preview">`:''}<label class="img-up-btn"><input type="file" accept="image/*" data-ad="img-pick" data-fk="${f.k}" hidden>${v?`${I('edit',16)}Change image`:`${I('img',16)}Choose image`}</label>${v?`<button class="img-up-rm" data-ad="img-rm" data-fk="${f.k}" aria-label="Remove image">${I('trash',16)}Remove</button>`:''}</div>`;break;
+    case'rows':inp=`<div class="rows">${(v||[]).map((r,i)=>`<div class="row" style="--cols:${f.cols.map(c=>c.w||'1fr').join(' ')}">${f.cols.map((c,j)=>`<input data-fk="${f.k}" data-r="${i}" data-c="${j}" placeholder="${c.l}" aria-label="${c.l}" ${c.t==='num'?'type="number" min="0"':''} value="${esc(r[j]==null?'':r[j])}">`).join('')}<button class="ib danger" data-ad="row-del" data-k="${f.k}" data-r="${i}" aria-label="Remove row">${I('trash',18)}</button></div>`).join('')}<div><button class="btn btn-ghost btn-sm" data-ad="row-add" data-k="${f.k}">${I('plus',16)}Add row</button></div></div>`;break;
+    default:inp=`<input ${a} value="${esc(v==null?'':v)}">`;
+  }
+  return `<div class="field ${f.w?'span2':''}"><label ${f.t==='check'||f.t==='multi'||f.t==='rows'?'':`for="${id}"`}>${f.t==='check'?'':f.l}${f.req&&f.t!=='check'?' *':''}</label>${inp}${f.help?`<small class="soft">${f.help}</small>`:''}${err[f.k]?`<p class="err" role="alert">${err[f.k]}</p>`:''}</div>`;
+}
+function collect(fields,d){
+  const root=$('#admin');
+  fields.forEach(f=>{
+    const els=$$(`[data-fk="${f.k}"]`,root);
+    if(f.t==='rows'){const rows=[];els.forEach(el=>{const r=+el.dataset.r,c=+el.dataset.c;(rows[r]=rows[r]||[])[c]=el.value});d[f.k]=rows.filter(Boolean).map(r=>f.cols.map((c,j)=>c.t==='num'?Number(r[j])||0:String(r[j]||'').trim())).filter(r=>r.some((x,j)=>f.cols[j].t!=='num'&&x));return}
+    if(f.t==='image')return;
+    if(!els.length)return;const el=els[0];
+    switch(f.t){case'check':d[f.k]=el.checked;break;case'multi':d[f.k]=els.filter(x=>x.checked).map(x=>x.value);break;case'paras':d[f.k]=el.value.split(/\n\s*\n/).map(x=>x.trim()).filter(Boolean);break;case'dt':d[f.k]=el.value?el.value+':00+06:00':'';break;case'num':d[f.k]=Number(el.value)||0;break;case'vid':d[f.k]=el.value.split(',').map(x=>parseInt(x,10)).filter(n=>!isNaN(n)&&n>=0);break;default:d[f.k]=el.value.trim()}
+  });
+}
+function editorPage(name,id){
+  const c=CFG[name];let dr=AD.draft;
+  if(!dr||dr._name!==name||dr._id!==id){
+    const src=c.singleton?c.get():id==='new'?c.make():byId(c.coll,id);
+    if(!src)return notFoundAd();
+    dr=AD.draft={_name:name,_id:id,o:JSON.parse(JSON.stringify(src)),err:{}};
+  }
+  const d=dr.o,isNew=id==='new',pv=c.preview?`<aside class="card pvbox"><h3>Preview</h3>${c.preview(d)}</aside>`:'';
+  return {t:c.singleton?c.title:(isNew?c.add:'Edit '+c.single.toLowerCase()),b:`<div class="ad-h"><div><h2>${c.singleton?c.title:isNew?c.add:'Edit '+c.single.toLowerCase()}</h2>${c.singleton?'':`<p><a href="#/admin/${c.route}">Back to ${c.title.toLowerCase()}</a></p>`}</div><div class="btns">${!isNew&&!c.singleton?`<button class="btn btn-ghost" data-ad="ask-del" data-n="${name}" data-id="${id}">${I('trash',18)}Delete</button>`:''}<button class="btn" data-ad="save">${I('check',18)}Save</button></div></div><div class="ed ${pv?'pv':''}"><div class="card"><div class="fgrid">${c.fields.map(f=>fieldHtml(f,d,dr.err)).join('')}</div>${name==='settings'?`<hr style="border:0;border-top:1px solid var(--line);margin:1.4rem 0"><h3>Demo data</h3><p class="soft">Reset events, orders, donations and messages to the sample set.</p><button class="btn btn-ghost" data-ad="ask-reset">Reset demo data</button>`:''}</div>${pv}</div>`};
+}
+const adminGo=p=>curPath===p?renderAdmin(p):go(p);
+async function saveDraft(){
+  const dr=AD.draft;if(!dr)return;const c=CFG[dr._name],d=dr.o,isNew=dr._id==='new';
+  collect(c.fields,d);const err={};
+  c.fields.forEach(f=>{if(!f.req)return;const v=d[f.k];if(v==null||v===''||(Array.isArray(v)&&!v.length))err[f.k]='This field is required.'});
+  if(c.validate)Object.assign(err,c.validate(d,isNew));
+  dr.err=err;
+  if(Object.keys(err).length){renderAdmin(AD.path);toast('Fix the highlighted fields.');return}
+  if(c.before)c.before(d,isNew);
+  const type=c.route||c.name;
+  try{
+    if(c.singleton){c.put(d);await apiFetch(type,{method:'PUT',body:JSON.stringify(d)})}
+    else if(isNew){const data=await apiFetch(type,{method:'POST',body:JSON.stringify(d)});c.coll.push(data)}
+    else{const data=await apiFetch(type+'/'+dr._id,{method:'PUT',body:JSON.stringify(d)});const i=c.coll.findIndex(x=>x.id===dr._id);if(i>-1)c.coll[i]=data}
+    AD.draft=null;toast(c.single+' saved.');
+    if(c.singleton)renderAdmin(AD.path);else adminGo('admin/'+c.route);
+  }catch(err){toast('Save failed: '+err.message)}
+}
+
+/* list pages */
+const acts=(c,x)=>`${c.pubToggle?`<button class="ib sm" data-ad="pub" data-n="${c.name}" data-id="${x.id}" aria-label="${isPub(x)?'Unpublish':'Publish'}" title="${isPub(x)?'Unpublish':'Publish'}">${I('eye',18)}</button>`:''}<a class="ib sm" href="#/admin/${c.seg||c.name}/${x.id}" aria-label="Edit">${I('edit',18)}</a><button class="ib sm danger" data-ad="ask-del" data-n="${c.name}" data-id="${x.id}" aria-label="Delete">${I('trash',18)}</button>`;
+function listTable(name,useQ){
+  const c=CFG[name],q=useQ?(AD.q||'').toLowerCase():'';
+  let rows=c.coll.filter(x=>!q||JSON.stringify(x).toLowerCase().includes(q));if(c.sort)rows=rows.slice().sort(c.sort);
+  return table([...c.cols,['',x=>acts(c,x),'act']],rows,q?'No matches.':'Nothing here yet. Use the button above to add one.');
+}
+function listPage(name){
+  const c=CFG[name];AD.list=name;
+  return {t:c.title,b:`<div class="ad-h"><div><h2>${c.title}</h2><p>${c.sub}</p></div><a class="btn" href="#/admin/${c.seg||c.name}/new">${I('plus',18)}${c.add}</a></div><div class="toolbar"><input data-ad-q placeholder="Search ${c.title.toLowerCase()}" aria-label="Search" value="${esc(AD.q)}"></div><div id="adm-list">${listTable(name,1)}</div>`};
+}
+const crudPage=name=>arg=>arg?editorPage(name,arg):listPage(name);
+
+/* orders */
+function ordersTable(){
+  const q=(AD.q||'').toLowerCase();
+  const rows=ORDERS.filter(o=>(AD.fEv==='all'||o.ev===AD.fEv)&&(AD.fSt==='all'||o.status===AD.fSt)&&(!q||(o.id+o.name+o.email+o.phone).toLowerCase().includes(q)));
+  return table([['Order',o=>`<b>${o.id}</b>`],['Buyer',o=>`${esc(o.name)}<br><small class="soft">${esc(o.email)}</small>`],['Event',o=>esc(evTitle(o.ev))],['Tickets',o=>o.items.map(([n,c])=>c+' \u00D7 '+n).join(', ')],['Total',o=>o.total?taka(o.total):'Free'],['Status',o=>ordBadge(o.status)],['Placed',o=>dtm(o.at)],['',o=>`<button class="btn btn-ghost btn-sm" data-ad="order" data-id="${o.id}">Details</button>`,'act']],rows,'No orders match these filters.');
+}
+const PAGES_ORDERS=()=>{
+  AD.list='orders';
+  return {t:'Orders',b:`<div class="ad-h"><div><h2>Orders</h2><p>Every ticket purchase and registration, including ones made on the public site in this demo.</p></div><button class="btn btn-ghost" data-ad="toast" data-m="Export arrives once the backend is connected.">Export CSV</button></div><div class="toolbar"><input data-ad-q placeholder="Search name, email, order" aria-label="Search orders" value="${esc(AD.q)}"><select data-ad-f="fEv" aria-label="Filter by event"><option value="all">All events</option>${evOpts().map(([i,t])=>`<option value="${i}" ${AD.fEv===i?'selected':''}>${esc(t)}</option>`).join('')}</select><select data-ad-f="fSt" aria-label="Filter by status">${[['all','All statuses'],['paid','Paid'],['pending','Pending'],['cancelled','Cancelled']].map(([v,l])=>`<option value="${v}" ${AD.fSt===v?'selected':''}>${l}</option>`).join('')}</select></div><div id="adm-list">${ordersTable()}</div>`};
+};
+function orderModal(id){
+  const o=byId(ORDERS,id);if(!o)return;
+  openModal(`<h3>${o.id}</h3><p>${ordBadge(o.status)} <span class="soft">${dtm(o.at)}</span></p><div class="sum"><span>Buyer</span><span>${esc(o.name)}</span></div><div class="sum"><span>Email</span><span>${esc(o.email)}</span></div><div class="sum"><span>Phone</span><span>${esc(o.phone||'')}</span></div><div class="sum"><span>Event</span><span>${esc(evTitle(o.ev))}</span></div><div class="sum"><span>Payment</span><span>${esc(o.method)}</span></div><div class="sum tot"><span>Total</span><span>${o.total?taka(o.total):'Free'}</span></div><h4 style="margin-top:1rem">Tickets</h4>${o.tickets.length?o.tickets.map(t=>`<div class="sum"><span><code>${t.id}</code> ${esc(t.type)}</span>${t.used?badge('Used','warn'):badge('Valid','ok')}</div>`).join(''):'<p class="soft">No tickets issued.</p>'}<div class="btns" style="margin-top:1.2rem"><button class="btn btn-ghost" data-ad="modal-close">Close</button>${o.status==='pending'?`<button class="btn" data-ad="order-paid" data-id="${o.id}">Mark as paid</button>`:''}${o.status!=='cancelled'?`<button class="btn btn-danger" data-ad="order-cancel" data-id="${o.id}">Cancel order</button>`:''}</div>`);
+}
+
+/* check-in */
+function findTicket(code){code=String(code).trim().toUpperCase();for(const o of ORDERS){const t=o.tickets.find(x=>x.id===code);if(t)return{o,t}}return null}
+function checkinPage(){
+  const r=AD.ck.res,used=ORDERS.reduce((s,o)=>s+o.tickets.filter(t=>t.used).length,0),all=ORDERS.reduce((s,o)=>s+(o.status==='paid'?o.tickets.length:0),0);
+  const card=r?r.kind==='bad'?`<div class="res-card bad" role="alert"><h3>Ticket not found</h3><p>No ticket matches <code>${esc(r.code)}</code>. Check the code and try again.</p></div>`:`<div class="res-card ${r.kind}" role="status"><h3>${r.kind==='ok'?'Valid ticket':r.t.used?'Already used':'Cancelled order'}</h3><p><b>${esc(r.o.name)}</b>, ${esc(r.t.type)}</p><p>${esc(evTitle(r.o.ev))}</p><p><code>${r.t.id}</code></p>${r.kind==='ok'?`<button class="btn" style="margin-top:.7rem" data-ad="ck-admit" data-id="${r.t.id}">Admit</button>`:''}</div>`:'';
+  return {t:'Check-in',b:`<div class="ad-h"><div><h2>Check-in</h2><p>Verify a ticket at the gate by its code.</p></div></div><div class="dg two"><div class="card"><div class="field"><label for="ck-in">Ticket code</label><input id="ck-in" placeholder="NSUSC-2026-000184" autocapitalize="characters" autocomplete="off"></div><button class="btn btn-lg" data-ad="ck-verify">${I('scan',18)}Verify ticket</button>${card}<div class="scan">Camera scanning arrives with the backend. For now, type or paste the code printed under the QR.</div></div><div><div class="kpi" style="margin-bottom:.8rem"><b>${used} / ${all}</b><span>Tickets admitted</span></div><div class="card"><h3>Recent scans</h3>${AD.log.length?AD.log.slice(0,8).map(l=>`<div class="sum"><span><code>${l.id}</code><br><small class="soft">${esc(l.name)}</small></span><span class="soft">${l.at}</span></div>`).join(''):'<p class="soft">Scans from this session appear here.</p>'}</div></div></div>`};
+}
+
+/* other pages */
+function chart14(){
+  const now=Date.now(),days=Array.from({length:14},(_,i)=>new Date(now-(13-i)*864e5)),key=d=>{const p=parts(d.toISOString());return p.y+'-'+p.m+'-'+p.d};
+  const counts=days.map(d=>ORDERS.filter(o=>o.status==='paid'&&key(new Date(o.at))===key(d)).reduce((s,o)=>s+o.tickets.length,0)),max=Math.max(4,...counts),w=560,h=160,bw=28,gap=(w-14*bw)/15;
+  return `<svg class="chart" viewBox="0 0 ${w} ${h+24}" role="img" aria-label="Tickets sold per day over the last 14 days">${counts.map((c,i)=>{const bh=Math.round(c/max*h),x=gap+i*(bw+gap);return `<rect x="${x}" y="${h-bh}" width="${bw}" height="${Math.max(bh,2)}" rx="4" fill="var(--saffron)"/>${c?`<text x="${x+bw/2}" y="${h-bh-5}" text-anchor="middle">${c}</text>`:''}<text x="${x+bw/2}" y="${h+16}" text-anchor="middle">${fmt(days[i].toISOString(),{day:'numeric'})}</text>`}).join('')}<line x1="0" x2="${w}" y1="${h}" y2="${h}" stroke="var(--line)"/></svg>`;
+}
+const PAGES={
+ dashboard:()=>{
+  const paid=ORDERS.filter(o=>o.status==='paid'),sold=paid.reduce((s,o)=>s+o.tickets.length,0),rev=paid.reduce((s,o)=>s+o.total,0),don=DONS.reduce((s,d)=>s+d.amt,0),live=EV.filter(e=>isPub(e)&&status(e)!=='past').sort((a,b)=>+new Date(a.start)-+new Date(b.start)),unread=MSGS.filter(m=>!m.read).length;
+  const per=EV.filter(e=>e.tickets&&status(e)!=='past').map(e=>({e,s:paid.filter(o=>o.ev===e.id).reduce((a,o)=>a+o.tickets.length,0),cap:e.tickets.reduce((a,t)=>a+(t[3]||0),0)||1}));
+  return {t:'Dashboard',b:`<div class="kpis"><div class="kpi"><b>${sold}</b><span>Tickets issued</span></div><div class="kpi"><b>${taka(rev)}</b><span>Ticket revenue</span></div><div class="kpi"><b>${taka(don)}</b><span>Donations</span></div><div class="kpi"><b>${live.length}</b><span>Live and upcoming events</span></div></div>
+  <div class="dg two"><div class="card"><h3>Tickets issued, last 14 days</h3>${chart14()}</div><div class="card"><h3>Quick actions</h3><div class="qa">${can('events')?`<a class="btn btn-sm" href="#/admin/events/new">${I('plus',16)}New event</a><a class="btn btn-ghost btn-sm" href="#/admin/notices/new">New notice</a><a class="btn btn-ghost btn-sm" href="#/admin/posts/new">New post</a>`:''}${can('checkin')?`<a class="btn btn-ghost btn-sm" href="#/admin/checkin">Open check-in</a>`:''}${can('messages')?`<a class="btn btn-ghost btn-sm" href="#/admin/messages">${unread} unread message${unread===1?'':'s'}</a>`:''}</div><h3 style="margin-top:1.4rem">Ticket capacity</h3><div class="bars">${per.length?per.map(({e,s,cap})=>`<div class="b"><div class="t"><span>${esc(e.title)}</span><b>${s} / ${cap}</b></div><div class="bar"><i style="width:${Math.min(100,Math.round(s/cap*100))}%"></i></div></div>`).join(''):'<p class="soft">No ticketed events yet.</p>'}</div></div></div>
+  <div class="dg two" style="margin-top:1rem"><div class="card"><h3>Latest orders</h3>${ORDERS.slice(0,5).map(o=>`<div class="sum"><span><b>${o.id}</b> ${esc(o.name)}<br><small class="soft">${esc(evTitle(o.ev))}</small></span><span>${o.total?taka(o.total):'Free'} ${ordBadge(o.status)}</span></div>`).join('')||'<p class="soft">No orders yet.</p>'}</div><div class="card"><h3>Coming up</h3>${live.slice(0,4).map(e=>`<div class="sum"><span><b>${esc(e.title)}</b><br><small class="soft">${dRange(e)}</small></span>${can('events')?`<a class="btn btn-ghost btn-sm" href="#/admin/events/${e.id}">Edit</a>`:''}</div>`).join('')||'<p class="soft">No upcoming events.</p>'}</div></div>`};
+ },
+ events:crudPage('events'),posts:crudPage('posts'),notices:crudPage('notices'),gallery:crudPage('albums'),users:crudPage('users'),
+ partners:arg=>arg?editorPage('partners',arg):{t:'Partners',b:`<div class="ad-h"><div><h2>Partners</h2><p>Brands and organisations you work with.</p></div><a class="btn" href="#/admin/partners/new">${I('plus',18)}Add partner</a></div>${listTable('partners')}<div class="ad-h" style="margin-top:2rem"><div><h2>Partnership stories</h2><p>What each partner did at an event. Shown on the public Partners page.</p></div><a class="btn btn-ghost" href="#/admin/partnerships/new">${I('plus',18)}Add story</a></div>${listTable('partnerships')}`},
+ partnerships:arg=>editorPage('partnerships',arg||'new'),
+ achievements:()=>editorPage('achievements'),settings:()=>editorPage('settings'),
+ orders:()=>PAGES_ORDERS(),checkin:checkinPage,
+ donations:()=>{
+  const tot=DONS.reduce((s,d)=>s+d.amt,0),avg=DONS.length?Math.round(tot/DONS.length):0;
+  return {t:'Donations',b:`<div class="ad-h"><div><h2>Donations</h2><p>Gifts received, including ones made on the public site in this demo.</p></div></div><div class="kpis"><div class="kpi"><b>${taka(tot)}</b><span>Total raised</span></div><div class="kpi"><b>${DONS.length}</b><span>Gifts</span></div><div class="kpi"><b>${taka(avg)}</b><span>Average gift</span></div><div class="kpi"><b>${taka(Math.max(0,...DONS.map(d=>d.amt)))}</b><span>Largest gift</span></div></div>${table([['Receipt',d=>`<b>${d.id}</b>`],['Donor',d=>`${esc(d.name)}<br><small class="soft">${esc(d.email)}</small>`],['Amount',d=>taka(d.amt)],['Method',d=>esc(d.method)],['Date',d=>dtm(d.at)]],DONS,'No donations yet.')}`};
+ },
+ messages:()=>{AD.list='messages';const un=MSGS.filter(m=>!m.read).length;return {t:'Messages',b:`<div class="ad-h"><div><h2>Messages</h2><p>${un} unread. Sent from the Contact page.</p></div></div>${table([['From',m=>`<b>${esc(m.name)}</b><br><small class="soft">${esc(m.email)}</small>`],['Subject',m=>esc(m.subject)],['Received',m=>dtm(m.at)],['Status',m=>m.read?badge('Read'):badge('New','warn')],['',m=>`<button class="btn btn-ghost btn-sm" data-ad="msg" data-id="${m.id}">Open</button>`,'act']],MSGS.map(m=>Object.assign({},m,{_cls:m.read?'':'unread'})),'No messages yet.')}`}}
+};
+const NAV_KEY={partnerships:'partners',gallery:'gallery'};
+
+/* shell */
+function loginView(){return `<div class="login"><div class="card"><div class="ad-brand" style="color:var(--text)">${mark(56)}<span>${esc(SETTINGS.siteName)}<small style="color:var(--soft)">Admin sign in</small></span></div><h2>Welcome back</h2><p class="soft">Prototype sign in. Use any email and the password <b>admin</b>.</p><div class="field"><label for="l-e">Email</label><input id="l-e" type="email" value="admin@sanatani-nsu.example" autocomplete="username"></div><div class="field"><label for="l-p">Password</label><input id="l-p" type="password" autocomplete="current-password"></div><div class="field"><label for="l-r">Sign in as</label><select id="l-r"><option>Admin</option><option>Editor</option><option>Volunteer</option></select><small class="soft">The role decides which pages appear in the menu.</small></div><p class="err" id="l-err" role="alert" hidden>That password is not right. Hint: admin</p><button class="btn btn-block btn-lg" data-ad="login">Sign in</button><p style="margin:1rem 0 0"><a href="#/">Back to the website</a></p></div></div>`}
+function layout(pg,title,body){
+  const key=NAV_KEY[pg]||pg,un=MSGS.filter(m=>!m.read).length;
+  return `<div class="ad ${AD.side?'open':''}"><aside class="ad-side" aria-label="Admin menu"><div class="ad-brand">${mark(50)}<span>${esc(SETTINGS.siteName)}<small>Admin panel</small></span></div>${NAV_AD.map(([g,items])=>{const it=items.filter(i=>can(i[0]));return it.length?`<h4>${g}</h4>`+it.map(([p,l,ic])=>`<a href="#/admin${p==='dashboard'?'':'/'+p}" ${key===p?'aria-current="page"':''}>${I(ic,19)}${l}${p==='messages'&&un?`<span class="cnt">${un}</span>`:''}</a>`).join(''):''}).join('')}</aside><div class="ad-scrim" data-ad="side"></div><div class="ad-main"><header class="ad-top"><button class="ib ad-burger" data-ad="side" aria-label="Open menu">${I('menu',24)}</button><h1>${title}</h1><div class="ad-topr"><a class="btn btn-ghost btn-sm" href="#/">View site</a><span class="ad-user">${esc(AD.user.name)}<small>${AD.user.role}</small></span><button class="ib" data-ad="theme" aria-label="Switch between light and dark">${I('moon',20)}</button><button class="ib" data-ad="logout" aria-label="Sign out">${I('out',20)}</button></div></header><div class="ad-body">${body}</div></div></div>${AD.modal?`<div class="modal" data-ad="modal-bg"><div class="card" role="dialog" aria-modal="true">${AD.modal}</div></div>`:''}`;
+}
+function renderAdmin(path){
+  const [,pg='dashboard',arg]=path.split('/'),root=$('#admin'),same=AD.path===path,y=window.scrollY;
+  AD.path=path;document.title='Admin | '+SETTINGS.siteName;
+  if(AD.pg!==pg){AD.q='';AD.fEv='all';AD.fSt='all'}AD.pg=pg;
+  if(!same){AD.side=false;AD.modal=null}
+  if(!AD.user){root.innerHTML=loginView();return}
+  if(AD.draft&&(AD.draft._name!==(pg==='gallery'?'albums':pg)||AD.draft._id!==arg))AD.draft=null;
+  let r;
+  if(!PAGES[pg])r=notFoundAd();else if(!can(pg))r={t:'No access',b:`<div class="card"><h3>This page is not available for your role</h3><p>Ask an Admin to change your role.</p></div>`};else r=PAGES[pg](arg);
+  root.innerHTML=layout(pg,r.t,r.b);window.scrollTo(0,same?y:0);
+}
+const openModal=h=>{AD.modal=h;renderAdmin(AD.path)},closeModal=()=>{AD.modal=null;renderAdmin(AD.path)};
+function refreshList(){const el=$('#adm-list');if(!el)return;if(AD.list==='orders')el.innerHTML=ordersTable();else if(CFG[AD.list])el.innerHTML=listTable(AD.list,1)}
+
+/* events */
+const adminEl=()=>$('#admin');
+document.addEventListener('click',e=>{
+  const b=e.target.closest('#admin [data-ad]');if(!b)return;const a=b.dataset.ad;
+  switch(a){
+    case'side':AD.side=!AD.side;$('.ad').classList.toggle('open',AD.side);break;
+    case'theme':theme();break;
+    case'toast':toast(b.dataset.m);break;
+    case'login':{const p=$('#l-p').value,em=$('#l-e').value.trim(),role=$('#l-r').value;if(!p||!em){$('#l-err').hidden=false;break}
+      apiLogin(em,p).then(user=>{AD.user=user;loadDB().then(()=>adminGo(role==='Volunteer'?'admin/checkin':'admin'))}).catch(()=>{$('#l-err').hidden=false});break}
+    case'logout':AD.user=null;AD.draft=null;apiLogout();adminGo('admin');break;
+    case'modal-bg':if(e.target===b)closeModal();break;
+    case'modal-close':closeModal();break;
+    case'save':saveDraft();break;
+    case'row-add':case'row-del':{const dr=AD.draft,c=CFG[dr._name];collect(c.fields,dr.o);const f=c.fields.find(x=>x.k===b.dataset.k);dr.o[f.k]=dr.o[f.k]||[];if(a==='row-add')dr.o[f.k].push(f.cols.map(x=>x.t==='num'?0:''));else dr.o[f.k].splice(+b.dataset.r,1);renderAdmin(AD.path);break}
+    case'pub':{const c=CFG[b.dataset.n];adminTogglePub(c.route||c.name,b.dataset.id).then(()=>{refreshList();toast('Updated.')}).catch(()=>toast('Failed.'));break}
+    case'ask-del':{const c=CFG[b.dataset.n];openModal(`<h3>Delete this ${c.single.toLowerCase()}?</h3><p class="soft">It will disappear from the website. This cannot be undone.</p><div class="btns"><button class="btn btn-ghost" data-ad="modal-close">Cancel</button><button class="btn btn-danger" data-ad="do-del" data-n="${c.name}" data-id="${b.dataset.id}">Delete</button></div>`);break}
+    case'do-del':{const c=CFG[b.dataset.n];adminDelete(c.route||c.name,b.dataset.id).then(()=>{AD.modal=null;AD.draft=null;toast(c.single+' deleted.');if(AD.path.split('/')[2])adminGo('admin/'+c.route);else renderAdmin(AD.path)}).catch(()=>toast('Delete failed.'));break}
+    case'ask-reset':openModal(`<h3>Reset demo data?</h3><p class="soft">Everything you added or changed here goes back to the sample set.</p><div class="btns"><button class="btn btn-ghost" data-ad="modal-close">Cancel</button><button class="btn btn-danger" data-ad="do-reset">Reset</button></div>`);break;
+    case'do-reset':{AD.modal=null;AD.draft=null;loadDB().then(()=>{shellDirty=true;toast('Data reloaded from server.');renderAdmin(AD.path)}).catch(()=>toast('Failed to reload.'));break}
+    case'order':orderModal(b.dataset.id);break;
+    case'order-paid':case'order-cancel':{const o=byId(ORDERS,b.dataset.id);const newStatus=a==='order-paid'?'paid':'cancelled';apiFetch('orders/'+o.id+'/status',{method:'PATCH',body:JSON.stringify({status:newStatus})}).then(()=>{o.status=newStatus;if(newStatus==='cancelled')o.tickets=[];AD.modal=null;renderAdmin(AD.path);toast(a==='order-paid'?'Order marked as paid.':'Order cancelled.')} ).catch(()=>toast('Failed.'));break}
+    case'ck-verify':{const code=$('#ck-in').value,r=findTicket(code);AD.ck.res=!r?{kind:'bad',code:code.trim()}:{kind:r.o.status==='paid'&&!r.t.used?'ok':'warn',o:r.o,t:r.t};renderAdmin(AD.path);const i=$('#ck-in');if(i)i.focus();break}
+    case'ck-admit':{const r=findTicket(b.dataset.id);r.t.used=true;saveDB();AD.log.unshift({id:r.t.id,name:r.o.name,at:new Date().toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit'})});AD.ck.res=null;renderAdmin(AD.path);toast('Admitted.');break}
+    case'msg':{const m=byId(MSGS,b.dataset.id);apiFetch('messages/'+m.id+'/read',{method:'PATCH'}).then(()=>{m.read=true;saveDB();openModal(`<h3>${esc(m.subject)}</h3><p class="soft">${esc(m.name)}, ${esc(m.email)}<br>${dtm(m.at)}</p><div class="msg-b">${esc(m.body)}</div><div class="btns"><button class="btn btn-ghost" data-ad="modal-close">Close</button><button class="btn btn-ghost" data-ad="msg-unread" data-id="${m.id}">Mark as unread</button><a class="btn" href="mailto:${esc(m.email)}?subject=Re: ${esc(m.subject)}">Reply by email</a><button class="btn btn-danger" data-ad="msg-del" data-id="${m.id}">Delete</button></div>`)}).catch(()=>toast('Failed.'));break}
+    case'msg-unread':{const m=byId(MSGS,b.dataset.id);apiFetch('messages/'+m.id+'/read',{method:'PATCH'}).then(()=>{m.read=false;saveDB();closeModal()}).catch(()=>toast('Failed.'));break}
+    case'msg-del':{apiFetch('messages/'+b.dataset.id,{method:'DELETE'}).then(()=>{MSGS.splice(MSGS.findIndex(m=>m.id===b.dataset.id),1);saveDB();closeModal();toast('Message deleted.')}).catch(()=>toast('Failed.'));break}
+    case'img-rm':{if(AD.draft){AD.draft.o[b.dataset.fk]='';collect(CFG[AD.draft._name].fields,AD.draft.o);renderAdmin(AD.path)}break}
+  }
+});
+document.addEventListener('input',e=>{if(e.target.matches('#admin [data-ad-q]')){AD.q=e.target.value;refreshList()}});
+document.addEventListener('change',e=>{
+  const t=e.target;if(!t.closest||!t.closest('#admin'))return;
+  if(t.dataset.adF){AD[t.dataset.adF]=t.value;refreshList()}
+  if(t.dataset.ad==='img-pick'&&t.files&&t.files[0]&&AD.draft){
+    apiUpload(t.files[0]).then(res=>{AD.draft.o[t.dataset.fk]=res.url;collect(CFG[AD.draft._name].fields,AD.draft.o);renderAdmin(AD.path)}).catch(()=>toast('Upload failed.'));return;
+  }
+  if(t.dataset.refresh&&AD.draft){const c=CFG[AD.draft._name];collect(c.fields,AD.draft.o);renderAdmin(AD.path)}
+});
+document.addEventListener('keydown',e=>{
+  if(e.key==='Enter'&&e.target.id&&e.target.id.startsWith('l-')&&!AD.user){const b=$('#admin [data-ad="login"]');if(b)b.click()}
+  if(e.key==='Enter'&&e.target.id==='ck-in'){const b=$('#admin [data-ad="ck-verify"]');if(b)b.click()}
+  if(e.key==='Escape'&&AD.modal&&document.body.classList.contains('is-admin'))closeModal();
+});
+
+/* ---------- boot ---------- */
+shell();
+render();
+
+})();
+</script>
+</body>
+</html>

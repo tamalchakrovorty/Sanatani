@@ -1,0 +1,134 @@
+CREATE TABLE IF NOT EXISTS users (
+  id TEXT PRIMARY KEY,
+  name TEXT NOT NULL,
+  email TEXT UNIQUE NOT NULL,
+  password_hash TEXT NOT NULL,
+  role TEXT NOT NULL DEFAULT 'Editor' CHECK (role IN ('Admin','Editor','Volunteer')),
+  active BOOLEAN NOT NULL DEFAULT true
+);
+
+CREATE TABLE IF NOT EXISTS events (
+  id TEXT PRIMARY KEY,
+  title TEXT NOT NULL,
+  cat TEXT NOT NULL DEFAULT 'Festival',
+  venue TEXT NOT NULL,
+  start TIMESTAMPTZ NOT NULL,
+  "end" TIMESTAMPTZ NOT NULL,
+  blurb TEXT NOT NULL DEFAULT '',
+  "desc" JSONB NOT NULL DEFAULT '[]',
+  sched JSONB NOT NULL DEFAULT '[]',
+  tickets JSONB,
+  partners JSONB NOT NULL DEFAULT '[]',
+  cover_image TEXT NOT NULL DEFAULT '',
+  motif TEXT NOT NULL DEFAULT 'mandala',
+  pal_key TEXT NOT NULL DEFAULT 'maroon',
+  pal JSONB NOT NULL DEFAULT '["#8a1c30","#3d0a14"]',
+  cd BOOLEAN NOT NULL DEFAULT true,
+  pub BOOLEAN NOT NULL DEFAULT false,
+  posts JSONB NOT NULL DEFAULT '[]',
+  notices JSONB NOT NULL DEFAULT '[]'
+);
+
+CREATE TABLE IF NOT EXISTS posts (
+  id TEXT PRIMARY KEY,
+  title TEXT NOT NULL,
+  kind TEXT NOT NULL DEFAULT 'post',
+  cat TEXT NOT NULL DEFAULT 'Community News',
+  sec TEXT,
+  date DATE NOT NULL,
+  summary TEXT NOT NULL DEFAULT '',
+  body JSONB NOT NULL DEFAULT '[]',
+  ev_id TEXT,
+  cover_image TEXT NOT NULL DEFAULT '',
+  motif TEXT NOT NULL DEFAULT 'lotus',
+  pal_key TEXT NOT NULL DEFAULT 'yellow',
+  pal JSONB NOT NULL DEFAULT '["#fff1a8","#f0b94a"]',
+  pub BOOLEAN NOT NULL DEFAULT false
+);
+
+CREATE TABLE IF NOT EXISTS notices (
+  id TEXT PRIMARY KEY,
+  title TEXT NOT NULL,
+  cat TEXT NOT NULL DEFAULT 'Announcement',
+  date DATE NOT NULL,
+  short TEXT NOT NULL DEFAULT '',
+  body JSONB NOT NULL DEFAULT '[]',
+  ev_id TEXT,
+  pub BOOLEAN NOT NULL DEFAULT false
+);
+
+CREATE TABLE IF NOT EXISTS albums (
+  id TEXT PRIMARY KEY,
+  ev_id TEXT NOT NULL,
+  n INTEGER NOT NULL DEFAULT 8,
+  vid JSONB NOT NULL DEFAULT '[]',
+  pub BOOLEAN NOT NULL DEFAULT true
+);
+
+CREATE TABLE IF NOT EXISTS partners (
+  id TEXT PRIMARY KEY,
+  name TEXT NOT NULL,
+  kind TEXT NOT NULL DEFAULT '',
+  mono TEXT NOT NULL DEFAULT '',
+  color TEXT NOT NULL DEFAULT '#8A1C30'
+);
+
+CREATE TABLE IF NOT EXISTS partnerships (
+  id TEXT PRIMARY KEY,
+  partner_id TEXT NOT NULL,
+  event_id TEXT NOT NULL,
+  text TEXT NOT NULL DEFAULT ''
+);
+
+CREATE TABLE IF NOT EXISTS orders (
+  id TEXT PRIMARY KEY,
+  event_id TEXT NOT NULL,
+  name TEXT NOT NULL,
+  email TEXT NOT NULL,
+  phone TEXT NOT NULL DEFAULT '',
+  items JSONB NOT NULL DEFAULT '[]',
+  total INTEGER NOT NULL DEFAULT 0,
+  status TEXT NOT NULL DEFAULT 'pending' CHECK (status IN ('paid','pending','cancelled')),
+  method TEXT NOT NULL DEFAULT '',
+  tickets JSONB NOT NULL DEFAULT '[]',
+  created_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
+);
+
+CREATE TABLE IF NOT EXISTS donations (
+  id TEXT PRIMARY KEY,
+  name TEXT NOT NULL,
+  email TEXT NOT NULL,
+  amount INTEGER NOT NULL,
+  method TEXT NOT NULL DEFAULT '',
+  created_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
+);
+
+CREATE TABLE IF NOT EXISTS messages (
+  id TEXT PRIMARY KEY,
+  name TEXT NOT NULL,
+  email TEXT NOT NULL,
+  subject TEXT NOT NULL DEFAULT '',
+  body TEXT NOT NULL DEFAULT '',
+  read BOOLEAN NOT NULL DEFAULT false,
+  created_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
+);
+
+CREATE TABLE IF NOT EXISTS settings (
+  key TEXT PRIMARY KEY,
+  value JSONB NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS stats (
+  id SERIAL PRIMARY KEY,
+  number TEXT NOT NULL,
+  label TEXT NOT NULL,
+  sort_order INTEGER NOT NULL DEFAULT 0
+);
+
+CREATE TABLE IF NOT EXISTS timeline (
+  id SERIAL PRIMARY KEY,
+  year TEXT NOT NULL,
+  title TEXT NOT NULL,
+  description TEXT NOT NULL DEFAULT '',
+  sort_order INTEGER NOT NULL DEFAULT 0
+);
