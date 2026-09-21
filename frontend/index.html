@@ -369,6 +369,10 @@ input[type=color]{padding:.15rem;height:42px;width:80px}
 .cover-opts{margin-top:.6rem}
 .cover-opts .seg{font-size:.85rem}
 .cover-opts .seg button{padding:.45rem .7rem}
+.hero-preview{border:1px solid var(--line)}
+.hero-image{position:relative}
+.hero-image::after{content:'';position:absolute;inset:0;background:rgba(0,0,0,.45);pointer-events:none}
+.hero-image .wrap{position:relative;z-index:1}
 
 </style>
 </head>
@@ -749,7 +753,7 @@ const MN=['January','February','March','April','May','June','July','August','Sep
 V.event=id=>{
   const e=EVM[id];if(!e)return notFound();const st=status(e),alb=ALBp().find(a=>a.ev===e.id),ns=NTp().filter(n=>n.ev===e.id),ps=POSTp().filter(p=>p.ev===e.id||(e.posts||[]).includes(p.id));
   const tk=e.tickets&&st!=='past'?`<div class="box"><h3>Tickets</h3>${e.tickets.map(([n,pr,d])=>`<div class="tt"><div><b>${n}</b><small>${d}</small></div><span class="price">${money(pr)}</span></div>`).join('')}<a class="btn btn-block" style="margin-top:1rem" href="#/tickets/${e.id}">Get Ticket</a></div>`:`<div class="box"><h3>${st==='past'?'This event has ended':'Entry'}</h3><p class="soft" style="margin:0">${alb?'See the photos and videos in the gallery.':'No tickets are needed for this event.'}</p>${alb?`<a class="btn btn-block" style="margin-top:1rem" href="#/gallery/${alb.id}">Open gallery</a>`:''}</div>`;
-  return {t:e.title,h:`<section class="phead"><div class="ph-mand">${mandSvg(290,'#F2D592',1)}</div><div class="wrap ev-head"><div><p class="crumb"><a href="#/">Home</a> / <a href="#/events">Events</a> / ${e.title}</p><span class="pill pill-i ${st}" style="margin-bottom:.8rem">${pillTxt[st]}</span><h1>${e.title}</h1><p class="lede" style="margin-bottom:1rem">${e.blurb}</p><p class="meta">${I('cal',18)}${dRange(e)}</p><p class="meta">${I('clock',18)}${tRange(e)}</p><p class="meta">${I('pin',18)}${e.venue}</p>${st==='upcoming'&&e.cd?`<div style="margin-top:1.2rem;max-width:420px">${cd(e,'cd-sm')}</div>`:''}<div class="btns" style="margin-top:1.3rem">${canBook(e)?`<a class="btn btn-gold" href="#/tickets/${e.id}">Get Ticket</a>`:''}<button class="btn btn-light" data-act="toast" data-m="Calendar files will be available once the site is connected to a backend.">Add to calendar</button></div></div><div class="ev-arch" style="${e.coverMode==='image'?frameStyle(e.coverFrame):''}">${cover(e,500,575)}</div></div></section>
+  return {t:e.title,h:`<section class="phead${e.heroStyle==='image'&&e.coverImage?' hero-image':''}" style="${e.heroStyle==='image'&&e.coverImage?`background:url('${e.coverImage}') center/cover`:e.heroStyle==='gradient'&&e.heroColors&&e.heroColors.length===2?`background:linear-gradient(135deg,${e.heroColors[0]},${e.heroColors[1]})`:''}"><div class="ph-mand"${e.heroStyle==='image'?' style="display:none"':''}>${mandSvg(290,'#F2D592',1)}</div><div class="wrap ev-head"><div><p class="crumb"><a href="#/">Home</a> / <a href="#/events">Events</a> / ${e.title}</p><span class="pill pill-i ${st}" style="margin-bottom:.8rem">${pillTxt[st]}</span><h1>${e.title}</h1><p class="lede" style="margin-bottom:1rem">${e.blurb}</p><p class="meta">${I('cal',18)}${dRange(e)}</p><p class="meta">${I('clock',18)}${tRange(e)}</p><p class="meta">${I('pin',18)}${e.venue}</p>${st==='upcoming'&&e.cd?`<div style="margin-top:1.2rem;max-width:420px">${cd(e,'cd-sm')}</div>`:''}<div class="btns" style="margin-top:1.3rem">${canBook(e)?`<a class="btn btn-gold" href="#/tickets/${e.id}">Get Ticket</a>`:''}<button class="btn btn-light" data-act="toast" data-m="Calendar files will be available once the site is connected to a backend.">Add to calendar</button></div></div><div class="ev-arch" style="${e.coverMode==='image'?frameStyle(e.coverFrame):''}">${cover(e,500,575)}</div></div></section>
 <section class="sec"><div class="wrap cols"><div>
  <div class="prose"><h2>About this event</h2>${e.desc.map(p=>`<p>${p}</p>`).join('')}</div>
  ${e.sched.length?`<h2 style="margin-top:2rem">Schedule</h2><ul class="sched">${e.sched.map(([a,b])=>`<li><b>${a}</b><span>${b}</span></li>`).join('')}</ul>`:''}
@@ -976,12 +980,15 @@ const CFG={
  events:{name:'events',route:'events',title:'Events',single:'Event',add:'Add event',sub:'Festivals, workshops and cultural nights.',coll:EV,pubToggle:1,
   sort:(a,b)=>+new Date(b.start)-+new Date(a.start),
   cols:[['Event',e=>`<b>${esc(e.title)}</b><br><small class="soft">${esc(e.cat)}</small>`],['When',e=>dRange(e)],['Status',evStBadge],['Tickets',e=>e.tickets?e.tickets.length+' types':'None']],
-  make:()=>({title:'',cat:'Festival',venue:V0,start:'',end:'',blurb:'',desc:[],sched:[],tickets:[],partners:[],coverMode:'art',coverFrame:'arch',coverImage:'',motif:'mandala',palKey:'maroon',cd:true,pub:false,posts:[],notices:[]}),
+  make:()=>({title:'',cat:'Festival',venue:V0,start:'',end:'',blurb:'',desc:[],sched:[],tickets:[],partners:[],coverMode:'art',coverFrame:'arch',coverImage:'',motif:'mandala',palKey:'maroon',heroStyle:'palette',heroColors:[],cd:true,pub:false,posts:[],notices:[]}),
   fields:[{k:'title',l:'Title',t:'text',req:1,w:1},{k:'cat',l:'Category',t:'select',opts:[['Festival','Festival'],['Workshop','Workshop'],['Cultural','Cultural'],['Other','Other']]},{k:'venue',l:'Venue',t:'text',req:1},{k:'start',l:'Starts',t:'dt',req:1},{k:'end',l:'Ends',t:'dt',req:1},{k:'blurb',l:'Short description',t:'text',req:1,w:1,help:'One sentence shown on cards.'},{k:'desc',l:'About this event',t:'paras',req:1,w:1,help:'Separate paragraphs with a blank line.'},
    {k:'sched',l:'Schedule',t:'rows',w:1,cols:[{l:'When',w:'150px'},{l:'What happens'}]},
    {k:'tickets',l:'Ticket types',t:'rows',w:1,help:'Leave empty if the event needs no tickets or registration.',cols:[{l:'Type',w:'130px'},{l:'Price (BDT)',t:'num',w:'110px'},{l:'Note'},{l:'Capacity',t:'num',w:'100px'}]},
    {k:'partners',l:'Partners',t:'multi',w:1,opts:()=>P.map(p=>[p.id,p.name])},
-   {k:'_cover',l:'Cover',t:'cover',w:1},yesNo('cd','Show countdown on the event page',true),yesNo('pub','Published on the website',false)],
+   {k:'_cover',l:'Cover',t:'cover',w:1},
+   {k:'motif',l:'',t:'text',show:()=>false},{k:'palKey',l:'',t:'text',show:()=>false},
+   {k:'_hero',l:'Hero background',t:'hero',w:1},{k:'heroColors',l:'',t:'text',show:()=>false},
+   yesNo('cd','Show countdown on the event page',true),yesNo('pub','Published on the website',false)],
   validate:d=>d.start&&d.end&&+new Date(d.end)<=+new Date(d.start)?{end:'End must be after the start.'}:{},
   before:(d,n)=>{d.pal=PAL[d.palKey]||PAL.maroon;d.tickets=d.tickets&&d.tickets.length?d.tickets.map(t=>[t[0],Number(t[1])||0,t[2]||'',Number(t[3])||0]):null;d.sched=d.sched||[];if(n)d.id=uniqueId(slugify(d.title),EV)},
   preview:d=>`<div class="cov" style="${d.coverMode==='image'?frameStyle(d.coverFrame):''}">${d.coverMode==='image'&&d.coverImage?`<img src="${d.coverImage}" alt="Cover" style="width:100%;height:100%;object-fit:cover">`:art(d.motif,PAL[d.palKey]||PAL.maroon,d.title||'preview',500,400)}</div><b>${esc(d.title||'Untitled event')}</b><p class="soft" style="margin:.2rem 0 0">${d.start&&d.end?dRange({start:d.start,end:d.end}):'Set the dates'}</p>`},
@@ -1041,6 +1048,19 @@ function fieldHtml(f,d,err){
       const frameHtml=cm==='image'?`<div class="cover-opts"><div class="field"><label>Image frame</label><div class="seg" role="group"><button type="button" data-ad="cover-frame" data-val="arch" aria-pressed="${fr==='arch'}">${I('arch',16)} Arch</button><button type="button" data-ad="cover-frame" data-val="rect" aria-pressed="${fr==='rect'}">${I('rect',16)} Rectangle</button><button type="button" data-ad="cover-frame" data-val="circle" aria-pressed="${fr==='circle'}">${I('circle',16)} Circle</button></div><p class="soft" style="margin:.4rem 0 0;font-size:.82rem">Recommended ratio: ${ratioMap[fr]||'10:11.5'}</p></div></div>`:'';
       const imgHtml=cm==='image'?`<div class="img-up${d.coverImage?' has':''}" data-fk="coverImage">${d.coverImage?`<img src="${d.coverImage}" alt="Cover image preview">`:''}<label class="img-up-btn"><input type="file" accept="image/*" data-ad="img-pick" data-fk="coverImage" hidden>${d.coverImage?`${I('edit',16)}Change image`:`${I('img',16)}Choose image`}</label>${d.coverImage?`<button class="img-up-rm" data-ad="cover-img-rm" data-fk="coverImage" aria-label="Remove image">${I('trash',16)}Remove</button>`:''}</div>`:'';
       inp=`<div class="cover-section">${toggleHtml}<div class="cover-body">${cm==='image'?imgHtml+frameHtml:artHtml}</div></div>`;break}
+    case'hero':{const hs=d.heroStyle||'palette';
+      const hc=d.heroColors&&d.heroColors.length===2?d.heroColors:['#8a1c30','#3d0a14'];
+      const toggleHtml=`<div class="seg" role="group"><button type="button" data-ad="hero-style" data-val="palette" aria-pressed="${hs==='palette'}">Palette</button><button type="button" data-ad="hero-style" data-val="gradient" aria-pressed="${hs==='gradient'}">Custom gradient</button><button type="button" data-ad="hero-style" data-val="image" aria-pressed="${hs==='image'}">Image background</button></div>`;
+      let body='';
+      if(hs==='palette'){
+        const p=PAL[d.palKey]||PAL.maroon;
+        body=`<div class="hero-preview" style="background:linear-gradient(135deg,${p[0]},${p[1]});height:60px;border-radius:8px;margin-top:.5rem"></div><p class="soft" style="margin:.3rem 0 0;font-size:.82rem">Uses the event's palette colours automatically.</p>`;
+      }else if(hs==='gradient'){
+        body=`<div class="cover-opts" style="margin-top:.5rem"><div class="field"><label>First colour</label><input type="color" data-ad="hero-color" data-idx="0" value="${esc(hc[0])}"></div><div class="field"><label>Second colour</label><input type="color" data-ad="hero-color" data-idx="1" value="${esc(hc[1])}"></div></div><div class="hero-preview" style="background:linear-gradient(135deg,${hc[0]},${hc[1]});height:60px;border-radius:8px;margin-top:.5rem"></div>`;
+      }else{
+        body=d.coverImage?`<div class="hero-preview" style="background:url('${d.coverImage}') center/cover;height:80px;border-radius:8px;margin-top:.5rem"></div><p class="soft" style="margin:.3rem 0 0;font-size:.82rem">Uses the uploaded cover image as a full-width hero background.</p>`:`<p class="soft" style="margin:.5rem 0 0;font-size:.85rem">Upload a cover image first (in the Cover section above) to use as hero background.</p>`;
+      }
+      inp=`<div class="cover-section">${toggleHtml}${body}</div>`;break}
     case'multi':inp=`<div class="multi">${opts(f).map(([o,l])=>`<label><input type="checkbox" data-fk="${f.k}" value="${esc(o)}" ${(v||[]).includes(o)?'checked':''}> ${esc(l)}</label>`).join('')||'<span class="soft">Nothing to choose yet.</span>'}</div>`;break;
     case'dt':inp=`<input type="datetime-local" ${a} value="${dtLocal(v)}">`;break;
     case'date':inp=`<input type="date" ${a} value="${esc(v||'')}">`;break;
@@ -1060,6 +1080,7 @@ function collect(fields,d){
     if(f.t==='rows'){const rows=[];els.forEach(el=>{const r=+el.dataset.r,c=+el.dataset.c;(rows[r]=rows[r]||[])[c]=el.value});d[f.k]=rows.filter(Boolean).map(r=>f.cols.map((c,j)=>c.t==='num'?Number(r[j])||0:String(r[j]||'').trim())).filter(r=>r.some((x,j)=>f.cols[j].t!=='num'&&x));return}
     if(f.t==='image')return;
     if(f.t==='cover')return;
+    if(f.t==='hero')return;
     if(!els.length)return;const el=els[0];
     switch(f.t){case'check':d[f.k]=el.checked;break;case'multi':d[f.k]=els.filter(x=>x.checked).map(x=>x.value);break;case'paras':d[f.k]=el.value.split(/\n\s*\n/).map(x=>x.trim()).filter(Boolean);break;case'dt':d[f.k]=el.value?el.value+':00+06:00':'';break;case'num':d[f.k]=Number(el.value)||0;break;case'vid':d[f.k]=el.value.split(',').map(x=>parseInt(x,10)).filter(n=>!isNaN(n)&&n>=0);break;default:d[f.k]=el.value.trim()}
   });
@@ -1207,6 +1228,7 @@ document.addEventListener('click',e=>{
     case'toggle':{if(AD.draft){AD.draft.o[b.dataset.fk]=b.dataset.val;collect(CFG[AD.draft._name].fields,AD.draft.o);renderAdmin(AD.path)}break}
     case'cover-toggle':{if(AD.draft){AD.draft.o.coverMode=b.dataset.val;collect(CFG[AD.draft._name].fields,AD.draft.o);renderAdmin(AD.path)}break}
     case'cover-frame':{if(AD.draft){AD.draft.o.coverFrame=b.dataset.val;collect(CFG[AD.draft._name].fields,AD.draft.o);renderAdmin(AD.path)}break}
+    case'hero-style':{if(AD.draft){AD.draft.o.heroStyle=b.dataset.val;collect(CFG[AD.draft._name].fields,AD.draft.o);renderAdmin(AD.path)}break}
   }
 });
 document.addEventListener('input',e=>{if(e.target.matches('#admin [data-ad-q]')){AD.q=e.target.value;refreshList()}});
@@ -1215,6 +1237,11 @@ document.addEventListener('change',e=>{
   if(t.dataset.adF){AD[t.dataset.adF]=t.value;refreshList()}
   if(t.dataset.ad==='img-pick'&&t.files&&t.files[0]&&AD.draft){
     apiUpload(t.files[0]).then(res=>{AD.draft.o[t.dataset.fk]=res.url;collect(CFG[AD.draft._name].fields,AD.draft.o);renderAdmin(AD.path)}).catch(()=>toast('Upload failed.'));return;
+  }
+  if(t.dataset.ad==='hero-color'&&AD.draft){
+    const hc=AD.draft.o.heroColors&&AD.draft.o.heroColors.length===2?[...AD.draft.o.heroColors]:['#8a1c30','#3d0a14'];
+    hc[+t.dataset.idx]=t.value;AD.draft.o.heroColors=hc;
+    collect(CFG[AD.draft._name].fields,AD.draft.o);renderAdmin(AD.path);return;
   }
   if(t.dataset.refresh&&AD.draft){const c=CFG[AD.draft._name];collect(c.fields,AD.draft.o);renderAdmin(AD.path)}
 });
